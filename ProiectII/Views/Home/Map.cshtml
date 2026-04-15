@@ -1,0 +1,76 @@
+﻿@{
+    ViewData["Title"] = "Map";
+}
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+<div class="container mt-5">
+    <div class="text-center mb-4">
+        <h1 class="display-5 fw-bold">Fox Activity Map 🦊</h1>
+        <p class="lead">
+            This map highlights rescued fox locations, habitat areas, and sensitive wildlife zones.
+        </p>
+    </div>
+
+    <div class="bg-white p-4 rounded shadow-sm mb-4">
+        <h4 class="mb-3">Map purpose</h4>
+        <p class="mb-2">
+            The map helps users understand where foxes have been found, where fox activity is more common,
+            and which areas may require protection from future urban expansion.
+        </p>
+        <p class="mb-0">
+            It is an important part of the Fox Shelter application because it connects rescue data with real locations.
+        </p>
+    </div>
+
+    <div class="bg-white p-4 rounded shadow-sm mb-4">
+        <h5 class="mb-3">Legend</h5>
+        <ul class="mb-0">
+            <li><strong>Rescued Fox Location</strong> – place where a fox was found or rescued</li>
+            <li><strong>Habitat Area</strong> – area where fox activity is higher</li>
+            <li><strong>Sensitive Zone</strong> – area that may need protection</li>
+        </ul>
+    </div>
+
+    <div class="bg-white p-3 rounded shadow-sm">
+        <div id="map" style="height: 500px; width: 100%; border-radius: 10px;"></div>
+    </div>
+</div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script>
+    var map = L.map('map').setView([46.75, 23.60], 12);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+   
+    var redIcon = new L.Icon({
+        iconUrl: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png',
+        iconSize: [32, 32]
+    });
+
+    var greenIcon = new L.Icon({
+        iconUrl: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png',
+        iconSize: [32, 32]
+    });
+
+    var orangeIcon = new L.Icon({
+        iconUrl: 'https://maps.google.com/mapfiles/ms/icons/orange-dot.png',
+        iconSize: [32, 32]
+    });
+    
+    //  Rescued fox
+    L.marker([46.7300, 23.5500], { icon: redIcon }).addTo(map)
+        .bindPopup("<b>Rescued Fox</b><br>Fox found near Făget forest.");
+
+    //  Habitat 
+    L.marker([46.7800, 23.5300], { icon: greenIcon }).addTo(map)
+        .bindPopup("<b>Habitat Area</b><br>High fox activity in Hoia forest.");
+
+    //  Sensitive zone
+    L.marker([46.7600, 23.5800], { icon: orangeIcon }).addTo(map)
+        .bindPopup("<b>Sensitive Zone</b><br>Area at risk due to urban expansion.");
+</script>
