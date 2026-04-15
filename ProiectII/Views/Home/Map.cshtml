@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-﻿@{
+@{
     ViewData["Title"] = "Map";
 }
 
@@ -47,7 +46,6 @@
         attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
-   
     var redIcon = new L.Icon({
         iconUrl: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png',
         iconSize: [32, 32]
@@ -62,24 +60,13 @@
         iconUrl: 'https://maps.google.com/mapfiles/ms/icons/orange-dot.png',
         iconSize: [32, 32]
     });
-    
-    //  Rescued fox
+
     L.marker([46.7300, 23.5500], { icon: redIcon }).addTo(map)
         .bindPopup("<b>Rescued Fox</b><br>Fox found near Făget forest.");
 
-    //  Habitat 
     L.marker([46.7800, 23.5300], { icon: greenIcon }).addTo(map)
         .bindPopup("<b>Habitat Area</b><br>High fox activity in Hoia forest.");
 
-    //  Sensitive zone
     L.marker([46.7600, 23.5800], { icon: orangeIcon }).addTo(map)
         .bindPopup("<b>Sensitive Zone</b><br>Area at risk due to urban expansion.");
 </script>
-=======
-@{
-    ViewData["Title"] = "Map";
-}
-
-<h1>Fox Shelter Map</h1>
-<p>This is the fox shelter map page.</p>
->>>>>>> 2afe62f6ef8578a71c77066d149d195660c74d3a
