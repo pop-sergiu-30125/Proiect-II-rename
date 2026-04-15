@@ -33,10 +33,13 @@ namespace ProiectII.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+<<<<<<< HEAD
 
         public IActionResult About()
         {
             return View();
         }
+=======
+>>>>>>> 2afe62f6ef8578a71c77066d149d195660c74d3a
     }
 }

@@ -19,6 +19,7 @@ html {
 
 body {
   margin-bottom: 60px;
+<<<<<<< HEAD
 }
 
 body {
@@ -27,4 +28,6 @@ body {
 .hero-card {
     max-width: 900px;
     margin: auto;
+=======
+>>>>>>> 2afe62f6ef8578a71c77066d149d195660c74d3a
 }
