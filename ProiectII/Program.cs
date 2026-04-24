@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ProiectII.Data;
@@ -11,10 +12,19 @@ using ProiectII.Services.UtilityServices;
 var builder = WebApplication.CreateBuilder(args);
 
 // 1. Conexiunea la MySQL
+=======
+using Microsoft.EntityFrameworkCore;
+using ProiectII.Data;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+>>>>>>> ba6453231bd2437d347e22cd73ca3ac1658f82c7
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
+<<<<<<< HEAD
 // 2. OBLIGATORIU: Serviciile de Identity (Fără asta, Seeding-ul nu merge!)
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options => {
     options.Password.RequireDigit = true;
@@ -114,11 +124,23 @@ if (app.Environment.IsDevelopment())
 else
 {
     app.UseExceptionHandler("/Home/Error");
+=======
+builder.Services.AddControllersWithViews();
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Home/Error");
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+>>>>>>> ba6453231bd2437d347e22cd73ca3ac1658f82c7
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+<<<<<<< HEAD
 app.UseRouting();
 
 // OBLIGATORIU: Ordinea contează!
@@ -126,8 +148,19 @@ app.UseAuthentication(); // Cine ești?
 app.UseAuthorization();  // Ce ai voie să faci?
 
 app.MapControllers();
+=======
+
+app.UseRouting();
+
+app.UseAuthorization();
+
+>>>>>>> ba6453231bd2437d347e22cd73ca3ac1658f82c7
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+<<<<<<< HEAD
 app.Run();
+=======
+app.Run();
+>>>>>>> ba6453231bd2437d347e22cd73ca3ac1658f82c7
