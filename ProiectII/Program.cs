@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ProiectII.Data;
@@ -12,19 +11,10 @@ using ProiectII.Services.UtilityServices;
 var builder = WebApplication.CreateBuilder(args);
 
 // 1. Conexiunea la MySQL
-=======
-using Microsoft.EntityFrameworkCore;
-using ProiectII.Data;
-
-var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
->>>>>>> ba6453231bd2437d347e22cd73ca3ac1658f82c7
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
-<<<<<<< HEAD
 // 2. OBLIGATORIU: Serviciile de Identity (Fără asta, Seeding-ul nu merge!)
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options => {
     options.Password.RequireDigit = true;
@@ -34,8 +24,6 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options => {
 .AddEntityFrameworkStores<ApplicationDbContext>()
 .AddDefaultTokenProviders();
 
-
-
 builder.Services.AddScoped<IFoxRepository, FoxRepository>();
 builder.Services.AddScoped<IAdoptionRepository, AdoptionRepository>();
 builder.Services.AddScoped<IReportRepository, ReportRepository>();
@@ -43,48 +31,21 @@ builder.Services.AddScoped<IEnclosureRepository, EnclosureRepository>();
 
 // Înregistrarea generică - syntaxa e specială pentru că avem <T>
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-//serviciu  pentru automapper!!!
-
-
 
 builder.Services.AddAutoMapper(typeof(MappingProfile));
-
 
 // 3. Servicii pentru API și Swagger (PĂSTREAZĂ-LE, sunt utile pentru testat)
 builder.Services.AddControllersWithViews();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
 builder.Services.AddScoped<IFileStorageService, FileStorageService>();
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 builder.Services.AddScoped<ICommentService, CommentService>();
 builder.Services.AddScoped<ILocationRepository, LocationRepository>();
-builder.Services.AddScoped<IReportRepository, ReportRepository>();
 builder.Services.AddScoped<IReportService, ReportService>();
 
 var app = builder.Build();
-
-// 4. INTEGRARE SEEDING (Rulează o singură dată la pornire)
-//using (var scope = app.Services.CreateScope())
-//{
-//    var services = scope.ServiceProvider;
-//    try
-//    {
-//        var context = services.GetRequiredService<ApplicationDbContext>();
-//        var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
-//        var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-
-//        // Apelăm DbInitializer asincron
-//        await DbInitializer.SeedData(context, userManager, roleManager);
-//    }
-//    catch (Exception ex)
-//    {
-//        var logger = services.GetRequiredService<ILogger<Program>>();
-//        logger.LogError(ex, "A apărut o eroare la popularea bazei de date.");
-//    }
-//}
-
 
 // 4. INTEGRARE SEEDING + VERIFICARE MAPPING
 using (var scope = app.Services.CreateScope())
@@ -112,9 +73,6 @@ using (var scope = app.Services.CreateScope())
     }
 }
 
-
-
-
 // 5. Pipeline-ul HTTP
 if (app.Environment.IsDevelopment())
 {
@@ -124,23 +82,12 @@ if (app.Environment.IsDevelopment())
 else
 {
     app.UseExceptionHandler("/Home/Error");
-=======
-builder.Services.AddControllersWithViews();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
->>>>>>> ba6453231bd2437d347e22cd73ca3ac1658f82c7
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-<<<<<<< HEAD
+
 app.UseRouting();
 
 // OBLIGATORIU: Ordinea contează!
@@ -148,19 +95,8 @@ app.UseAuthentication(); // Cine ești?
 app.UseAuthorization();  // Ce ai voie să faci?
 
 app.MapControllers();
-=======
-
-app.UseRouting();
-
-app.UseAuthorization();
-
->>>>>>> ba6453231bd2437d347e22cd73ca3ac1658f82c7
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-<<<<<<< HEAD
 app.Run();
-=======
-app.Run();
->>>>>>> ba6453231bd2437d347e22cd73ca3ac1658f82c7
