@@ -360,4 +360,13 @@ MigrationBackup/
 .ionide/
 
 # Fody - auto-generated XML schema
+<<<<<<< HEAD
 FodyWeavers.xsd
+
+# ===== CUSTOM PROJECT FILES =====
+
+wwwroot/uploads/
+/ProiectII/wwwroot/uploads
+=======
+FodyWeavers.xsd
+>>>>>>> ba6453231bd2437d347e22cd73ca3ac1658f82c7

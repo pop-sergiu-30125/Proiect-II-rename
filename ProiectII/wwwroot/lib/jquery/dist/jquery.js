@@ -9976,7 +9976,12 @@ var xhrSuccessStatus = {
 		0: 200,
 
 		// Support: IE <=9 only
+<<<<<<< HEAD
+		// #1
+		: sometimes IE returns 1223 when it should be 204
+=======
 		// #1450: sometimes IE returns 1223 when it should be 204
+>>>>>>> ba6453231bd2437d347e22cd73ca3ac1658f82c7
 		1223: 204
 	},
 	xhrSupported = jQuery.ajaxSettings.xhr();
