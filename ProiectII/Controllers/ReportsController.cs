@@ -1,40 +1,64 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using ProiectII.DTO.CommentsReport;
 using ProiectII.Interfaces;
+using ProiectII.Models;
+using System.Security.Claims;
 
-[ApiController]
-[Route("api/[controller]")]
-public class ReportsController : ControllerBase
+namespace ProiectII.Controllers
 {
-    private readonly IReportService _reportService;
-
-    public ReportsController(IReportService reportService)
+    [Authorize]
+    public class ReportsController : Controller
     {
-        _reportService = reportService;
-    }
+        private readonly IReportService _reportService;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-    [HttpPost]
-    [Consumes("multipart/form-data")]
-    public async Task<IActionResult> Create([FromForm] CreateReportDto dto)
-    {
-        // Analiză rece: Hardcodăm un UserId de test până faci Auth-ul
-        string testUserId = "b144d7ba-6ab2-4efd-b81c-5eec01ba039f";
-
-        try
+        public ReportsController(IReportService reportService, UserManager<ApplicationUser> userManager)
         {
-            var result = await _reportService.CreateReportAsync(dto, testUserId);
-            return Ok(result);
+            _reportService = reportService;
+            _userManager = userManager;
         }
-        catch (Exception ex)
-        {
-            return BadRequest(ex.Message);
-        }
-    }
 
-    [HttpGet]
-    public async Task<IActionResult> GetAll()
-    {
-        var reports = await _reportService.GetAllActiveReportsAsync();
-        return Ok(reports);
+        // GET: /Reports/Create
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: /Reports/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(CreateReportDto dto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(dto);
+            }
+
+            var userId = _userManager.GetUserId(User);
+
+            try
+            {
+                await _reportService.CreateReportAsync(dto, userId);
+                TempData["SuccessMessage"] = "Raportul a fost trimis cu succes!";
+                return RedirectToAction("Index", "Home");
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "Eroare la salvarea raportului: " + ex.Message);
+                return View(dto);
+            }
+        }
+
+        // API-like endpoint still available if needed via URL /Reports/GetAll
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetAll()
+        {
+            var reports = await _reportService.GetAllActiveReportsAsync();
+            return Json(reports);
+        }
     }
 }
