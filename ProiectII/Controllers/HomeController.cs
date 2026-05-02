@@ -18,6 +18,7 @@ namespace ProiectII.Controllers
             return View();
         }
 
+        [Microsoft.AspNetCore.Authorization.Authorize]
         public IActionResult Privacy()
         {
             return View();

@@ -22,7 +22,70 @@ body {
     background-color: #f5f7fa;
 }
 
+/* Redesign variables for specific sections (Reports, Login) */
+:root {
+    --primary-color: #7391b8;
+    --secondary-color: #3c4f6b;
+    --card-bg: #b8c3d1;
+    --text-color: #ffffff;
+    --accent-green: #90ee90;
+    --accent-red: #ff6b6b;
+    --bg-color: #eef2f7;
+}
+
+/* Custom styles for Reports and Login pages */
+.btn-custom {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 8px 25px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    min-width: 150px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+}
+
+.btn-custom:hover {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.form-container {
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 5px;
+    max-width: 800px;
+    margin: 40px auto;
+}
+
+.form-title {
+    color: #333;
+    margin-bottom: 25px;
+    font-weight: bold;
+}
+
+.form-control-custom {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid #ccc;
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-clip: padding-box;
+    appearance: none;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
 .hero-card {
     max-width: 900px;
     margin: auto;
+}
+
+/* Re-added original layout helpers if needed */
+.nav-link.text-dark {
+    color: #212529 !important;
 }

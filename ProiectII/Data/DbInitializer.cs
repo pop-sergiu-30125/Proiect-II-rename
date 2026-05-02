@@ -26,10 +26,19 @@ namespace ProiectII.Data
                     FirstName = "Victor",
                     LastName = "Admin",
                     BornDate = new DateOnly(1995, 5, 20),
-                    EmailConfirmed = true
+                    EmailConfirmed = true,
+                    IsActive = true
                 };
-                await userManager.CreateAsync(adminUser, "SecurePass123!");
-                await userManager.AddToRoleAsync(adminUser, "Admin");
+                var result = await userManager.CreateAsync(adminUser, "SecurePass123!");
+                if (result.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(adminUser, "Admin");
+                }
+                else
+                {
+                    var errors = string.Join(", ", result.Errors.Select(e => e.Description));
+                    Console.WriteLine($"[SEED] Eroare la crearea adminului: {errors}");
+                }
             }
 
             ApplicationUser normalUser = await userManager.FindByEmailAsync("user@fox.com");
@@ -42,10 +51,14 @@ namespace ProiectII.Data
                     FirstName = "Ion",
                     LastName = "Popescu",
                     BornDate = new DateOnly(2000, 1, 1),
-                    EmailConfirmed = true
+                    EmailConfirmed = true,
+                    IsActive = true
                 };
-                await userManager.CreateAsync(normalUser, "UserPass123!");
-                await userManager.AddToRoleAsync(normalUser, "User");
+                var result = await userManager.CreateAsync(normalUser, "UserPass123!");
+                if (result.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(normalUser, "User");
+                }
             }
 
             // 3. Statusuri
