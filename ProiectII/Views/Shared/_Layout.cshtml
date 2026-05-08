@@ -17,18 +17,23 @@
         <div style="background-color: #add8e6; height: 40px; width: 100%; display: flex; align-items: center; gap: 20px; padding-left: 20px;">
             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index" style="font-weight: 500;">Home</a>
             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Map" style="font-weight: 500;">Map</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Foxes" asp-action="Index" style="font-weight: 500;">Rescued Foxes</a>
             <a class="nav-link text-dark" asp-area="" asp-controller="Reports" asp-action="Create" style="font-weight: 500; background-color: #ffcc99; border-radius: 5px;">Report Sighting</a>
             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About" style="font-weight: 500;">About</a>
-            
+
             @if (User?.Identity?.IsAuthenticated == true)
             {
                 @if (User.IsInRole("Admin"))
                 {
                     <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Users" style="font-weight: 500;">Manage Users</a>
                 }
+
                 <span class="text-dark">Hello, @User.Identity.Name!</span>
+
                 <form asp-controller="Account" asp-action="Logout" method="post" style="display:inline;">
-                    <button type="submit" class="btn btn-link nav-link text-dark" style="font-weight: 500; display:inline; padding: 0; margin-left: 10px; vertical-align: baseline;">Logout</button>
+                    <button type="submit" class="btn btn-link nav-link text-dark" style="font-weight: 500; display:inline; padding: 0; margin-left: 10px; vertical-align: baseline;">
+                        Logout
+                    </button>
                 </form>
             }
             else
@@ -46,6 +51,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         }
+
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -56,7 +62,7 @@
             &copy; 2026 - Fox Shelter Application
         </div>
     </footer>
-    
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
@@ -66,6 +72,7 @@
             Auth.logout();
         }
     </script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
