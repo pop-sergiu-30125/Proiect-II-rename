@@ -1,9 +1,15 @@
 ﻿using System.ComponentModel.DataAnnotations;
+<<<<<<< HEAD
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProiectII.Models
 {
     [Table("Statuses")]
+=======
+
+namespace ProiectII.Models
+{
+>>>>>>> origin/master
     public class Status
     {
         [Key]

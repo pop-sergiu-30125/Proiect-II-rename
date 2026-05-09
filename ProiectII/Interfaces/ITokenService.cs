@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿using ProiectII.Models;
+=======
+using ProiectII.Models;
+>>>>>>> origin/master
 
 namespace ProiectII.Interfaces
 {

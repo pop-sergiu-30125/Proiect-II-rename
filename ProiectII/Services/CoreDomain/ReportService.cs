@@ -24,6 +24,7 @@ namespace ProiectII.Services.CoreDomain
             _mapper = mapper;
         }
 
+<<<<<<< HEAD
         public async Task<ReportDto> CreateReportAsync(CreateReportDto dto, string? userId)
         {
             // 1. Salvarea imaginii pe disc (Fără poză, sistemul crapă mai sus, e ok)
@@ -73,14 +74,120 @@ namespace ProiectII.Services.CoreDomain
 
         public async Task<IEnumerable<ReportDto>> GetAllActiveReportsAsync()
         {
+=======
+        //public async Task<ReportDto> CreateReportAsync(CreateReportDto dto, string? userId)
+        //{
+        //    // 1. Salvarea imaginii pe disc
+        //    string imageUrl = await _fileService.SaveFileAsync(dto.ImageFile, "reports");
+
+        //    try
+        //    {
+        //        // 2. Crearea și salvarea Locației PRIMA DATĂ
+        //        var location = new Location
+        //        {
+        //            Name = "Report Location",
+        //            Coordinate = new Coordinate
+        //            {
+        //                Latitude = (decimal)dto.Latitude,
+        //                Longitude = (decimal)dto.Longitude
+        //            }
+        //        };
+
+
+        //        await _locationRepository.AddAsync(location);
+        //        // CRITIC: Trebuie să salvăm ca să primim location.Id de la MySQL
+        //        await _locationRepository.SaveChangesAsync();
+
+        //        // 3. Crearea Raportului
+        //        var report = _mapper.Map<Report>(dto);
+        //        report.ImageUrl = imageUrl;
+        //        report.LocationId = location.Id; // Acum avem un ID real
+        //        report.ReporterId = userId;
+        //        report.ReportStatus = ReportStatus.Pending;
+        //        report.CreatedAt = DateTime.UtcNow;
+
+        //        await _reportRepository.AddAsync(report);
+        //        // CRITIC: Salvăm raportul în MySQL
+        //        await _reportRepository.SaveChangesAsync();
+
+        //        // Dacă ai o metodă care aduce raportul cu tot cu detalii, o folosești, 
+        //        // altfel returnăm direct maparea pe ce am creat
+        //        return _mapper.Map<ReportDto>(report);
+        //    }
+        //    catch (Exception)
+        //    {
+        //        // Dacă baza de date a crăpat, ștergem poza de pe disc ca să nu ocupe loc degeaba
+        //        _fileService.DeleteFile(imageUrl);
+        //        throw;
+        //    }
+        //}
+
+
+        public async Task<ReportDto> CreateReportAsync(CreateReportDto dto, string? userId)
+        {
+            // 1. Imaginea
+            string imageUrl = await _fileService.SaveFileAsync(dto.ImageFile, "reports");
+
+            // 2. Locația
+            var location = new Location
+            {
+                Name = "Report Location",
+                Coordinate = new Coordinate
+                 {
+                     Latitude = (decimal)dto.Latitude,
+                     Longitude = (decimal)dto.Longitude
+                 }
+
+
+
+            };
+            await _locationRepository.AddAsync(location);
+            await _locationRepository.SaveChangesAsync(); // Salvăm ca să avem ID-ul locației
+
+            // 3. MAPAREA (Trebuie să fie prima!)
+            // Aceasta curăță obiectul, deci tot ce setăm după ea va rămâne în DB
+            var report = _mapper.Map<Report>(dto);
+
+            // 4. SETĂRILE MANUALE (Trebuie să fie ultimele!)
+            report.ImageUrl = imageUrl;
+            report.LocationId = location.Id;
+            report.ReporterId = userId;
+            report.ReportStatus = ReportStatus.Pending;
+            report.CreatedAt = DateTime.UtcNow;
+
+            // 5. Salvarea Raportului
+            await _reportRepository.AddAsync(report);
+            await _reportRepository.SaveChangesAsync();
+
+            return _mapper.Map<ReportDto>(report);
+        }
+
+
+
+
+
+
+
+        public async Task<IEnumerable<ReportDto>> GetAllActiveReportsAsync()
+        {
+            // Observație: Asigură-te că metoda GetAllActiveReportsWithDetailsAsync există în ReportRepository
+>>>>>>> origin/master
             var reports = await _reportRepository.GetAllActiveReportsWithDetailsAsync();
             return _mapper.Map<IEnumerable<ReportDto>>(reports);
         }
 
         public async Task<ReportDto?> GetReportByIdAsync(uint id)
         {
+<<<<<<< HEAD
             var report = await _reportRepository.GetByIdWithDetailsAsync(id);
             return report == null ? null : _mapper.Map<ReportDto>(report);
+=======
+            // Observație: Asigură-te că metoda GetByIdWithDetailsAsync există în ReportRepository
+            var report = await _reportRepository.GetByIdWithDetailsAsync(id);
+            if (report == null) return null;
+
+            return _mapper.Map<ReportDto>(report);
+>>>>>>> origin/master
         }
 
         public async Task<bool> UpdateReportStatusAsync(uint reportId, UpdateReportStatusDto dto)
@@ -88,16 +195,30 @@ namespace ProiectII.Services.CoreDomain
             var report = await _reportRepository.GetByIdAsync(reportId);
             if (report == null) return false;
 
+<<<<<<< HEAD
             // Tratăm posibilitatea ca UI-ul să trimită un status invalid
             if (Enum.TryParse<ReportStatus>(dto.Status, true, out var newStatus))
             {
                 report.ReportStatus = newStatus;
+=======
+            // Convertim string-ul din DTO (ex: "Investigated") în Enum. 
+            // Dacă trimiti ID (uint) din frontend, faci cast (ReportStatus)dto.Status
+            if (Enum.TryParse<ReportStatus>(dto.Status, true, out var newStatus))
+            {
+                report.ReportStatus = newStatus;
+                // Dacă ai un LastUpdateAt în model, acum e momentul să-l modifici
+                // report.LastUpdateAt = DateTime.UtcNow; 
+>>>>>>> origin/master
 
                 _reportRepository.Update(report);
                 return await _reportRepository.SaveChangesAsync();
             }
 
+<<<<<<< HEAD
             return false;
+=======
+            return false; // Status invalid trimis de UI
+>>>>>>> origin/master
         }
 
         public async Task<bool> DeleteReportAsync(uint reportId)
@@ -105,6 +226,10 @@ namespace ProiectII.Services.CoreDomain
             var report = await _reportRepository.GetByIdAsync(reportId);
             if (report == null) return false;
 
+<<<<<<< HEAD
+=======
+            // Curățenie industrială: Ștergem și fișierul fizic, nu doar rândul din MySQL
+>>>>>>> origin/master
             if (!string.IsNullOrEmpty(report.ImageUrl))
             {
                 _fileService.DeleteFile(report.ImageUrl);

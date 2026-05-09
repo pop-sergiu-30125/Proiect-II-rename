@@ -1,0 +1,45 @@
+@model ProiectII.DTO.CommentsReport.CreateReportDto
+@{
+    ViewData["Title"] = "Report a Sighting";
+}
+
+<div class="form-container">
+    <h2 class="form-title text-center">Report a Fox Sighting</h2>
+    
+    <form asp-action="Create" method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="mb-4">
+            <label asp-for="Description" class="form-label">Description</label>
+            <textarea asp-for="Description" class="form-control" rows="4" placeholder="Tell us what you saw..."></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <label asp-for="Latitude" class="form-label">Latitude</label>
+                <input asp-for="Latitude" class="form-control" type="number" step="any" placeholder="e.g. 44.4268" />
+                <span asp-validation-for="Latitude" class="text-danger"></span>
+            </div>
+            <div class="col-md-6 mb-4">
+                <label asp-for="Longitude" class="form-label">Longitude</label>
+                <input asp-for="Longitude" class="form-control" type="number" step="any" placeholder="e.g. 26.1025" />
+                <span asp-validation-for="Longitude" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <label asp-for="ImageFile" class="form-label">Photo (Optional)</label>
+            <input asp-for="ImageFile" class="form-control" type="file" accept="image/*" />
+            <span asp-validation-for="ImageFile" class="text-danger"></span>
+        </div>
+
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-custom">Submit Sighting</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

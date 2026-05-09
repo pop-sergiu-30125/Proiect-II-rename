@@ -1,15 +1,29 @@
+<<<<<<< HEAD
 services:
   db:
     image: mariadb:10.11
+=======
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+>>>>>>> origin/master
     container_name: fox_shelter_db
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: RootPassword123!
+<<<<<<< HEAD
+=======
+#      MYSQL_ROOT_PASSWORD: admin
+
+>>>>>>> origin/master
       MYSQL_DATABASE: FoxShelterDB
     ports:
       - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
+<<<<<<< HEAD
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pRootPassword123!"]
       interval: 5s
@@ -45,6 +59,24 @@ services:
       - ./wwwroot:/app/wwwroot:ro
     depends_on:
       - api
+=======
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fox_shelter_api
+    depends_on:
+      - db
+    ports:
+      - "8080:8080"
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=db;Port=3306;Database=FoxShelterDB;Uid=root;Pwd=RootPassword123!;
+#      - ConnectionStrings__DefaultConnection=Server=db;Port=3306;Database=FoxShelterDB;Uid=root;Pwd=admin;
+      - JWT__Secret=FoxShelter_Cheie_Super_Secreta_Si_Lunga_2026!
+      - JWT__ValidIssuer=http://localhost:8080
+      - JWT__ValidAudience=http://localhost:8080
+>>>>>>> origin/master
 
 volumes:
   db_data:

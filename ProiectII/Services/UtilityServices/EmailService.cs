@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿using ProiectII.Interfaces;
+=======
+using ProiectII.Interfaces;
+>>>>>>> origin/master
 using Microsoft.Extensions.Logging;
 
 namespace ProiectII.Services.UtilityServices
@@ -21,8 +25,15 @@ namespace ProiectII.Services.UtilityServices
             _logger.LogWarning("Content: {Body}", body);
             _logger.LogWarning("================================================================");
 
+<<<<<<< HEAD
 
             return Task.FromResult(true);
         }
     }
 }
+=======
+            return Task.FromResult(true);
+        }
+    }
+}
+>>>>>>> origin/master

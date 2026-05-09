@@ -1,7 +1,10 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using ProiectII.Models;
+<<<<<<< HEAD
 using System.Reflection.Emit;
+=======
+>>>>>>> origin/master
 
 namespace ProiectII.Data
 {
@@ -28,7 +31,11 @@ namespace ProiectII.Data
         {
             // Apelul base.OnModelCreating este critic pentru configurarea tabelelor de Identity (Useri, Roluri)
             base.OnModelCreating(builder);
+<<<<<<< HEAD
             builder.Entity<Status>().ToTable("Statuses");
+=======
+
+>>>>>>> origin/master
             // 1. Configurarea clasei Coordinate ca Owned Type (se va vărsa în coloane în tabelele părinte)
             // Presupunem că ai schimbat Latitude și Longitude în tipul 'decimal' în clasa Coordinate
             builder.Entity<Location>().OwnsOne(l => l.Coordinate, c =>
@@ -76,4 +83,8 @@ namespace ProiectII.Data
             builder.Entity<Comment>().HasIndex(c => c.CreatedAt);
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/master

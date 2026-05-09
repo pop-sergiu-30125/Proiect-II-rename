@@ -1,4 +1,5 @@
 ﻿using ProiectII.Models;
+<<<<<<< HEAD
 
 namespace ProiectII.Interfaces
 {
@@ -10,3 +11,17 @@ namespace ProiectII.Interfaces
         // AM STERS UpdateAsync. Folosim Update() din IGenericRepository.
     }
 }
+=======
+namespace ProiectII.Interfaces
+{
+    public interface ICommentRepository: IGenericRepository<Comment>
+    {
+
+        Task<IEnumerable<Comment>> GetCommentsByFoxIdAsync(uint foxId);
+        Task<IEnumerable<Comment>> GetCommentsByUserIdAsync(string userId);
+        Task UpdateAsync(Comment comment);
+
+       
+    }
+}
+>>>>>>> origin/master
