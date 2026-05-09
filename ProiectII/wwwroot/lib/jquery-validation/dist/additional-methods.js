@@ -206,12 +206,7 @@ $.validator.addMethod( "bic", function( value, element ) {
  *   P. Local authorities
  *   Q. Autonomous bodies, state or not, and the like, and congregations and religious institutions
  *   R. Congregations and religious institutions (since 2008 ORDER EHA/451/2008)
-<<<<<<< HEAD
- *   S. Organs of State 
- istration and regions
-=======
  *   S. Organs of State Administration and regions
->>>>>>> origin/master
  *   V. Agrarian Transformation
  *   W. Permanent establishments of non-resident in Spain
  *

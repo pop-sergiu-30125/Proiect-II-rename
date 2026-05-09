@@ -10,13 +10,10 @@ namespace ProiectII.Interfaces
         Task<IEnumerable<FoxSummaryDto>> GetAllFoxesAsync();
         Task<FoxDetailsDto?> GetFoxByIdAsync(uint id);
         Task<FoxDetailsDto> CreateFoxAsync(CreateFoxDto dto);
-<<<<<<< HEAD
         Task<bool> ArchiveFoxAsync(uint id);
         Task<bool> UpdateFoxStatusAsync(uint id, UpdateFoxStatusDto dto);
         Task<bool> UpdateFoxAsync(uint id, UpdateFoxDto dto);
 
         Task<IEnumerable<FoxMapMarkerDto>> GetMapMarkersAsync();
-=======
->>>>>>> origin/master
     }
 }

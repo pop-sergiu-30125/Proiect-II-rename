@@ -18,10 +18,6 @@ namespace ProiectII.Controllers
             return View();
         }
 
-<<<<<<< HEAD
-=======
-        [Microsoft.AspNetCore.Authorization.Authorize]
->>>>>>> origin/master
         public IActionResult Privacy()
         {
             return View();
@@ -32,14 +28,6 @@ namespace ProiectII.Controllers
             return View();
         }
 
-<<<<<<< HEAD
-=======
-        public IActionResult About()
-        {
-            return View();
-        }
-
->>>>>>> origin/master
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
