@@ -111,6 +111,7 @@ namespace ProiectII.Controllers
                 var roles = await _userManager.GetRolesAsync(user);
                 viewModel.Users.Add(new UserWithRolesViewModel
                 {
+                    // + posibil de implementat id, deoarece pentru updaterole din AdminUserController trebuie un dto cu acel id
                     Email = user.Email ?? "",
                     FullName = $"{user.FirstName} {user.LastName}",
                     Roles = string.Join(", ", roles),
