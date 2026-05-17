@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -97,10 +98,18 @@ namespace ProiectII.Controllers
                 SameSite = SameSiteMode.Lax,
                 Path = "/"
             });
+
             return RedirectToAction("Login");
         }
 
-        [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Admin")]
+        [HttpGet]
+        [Authorize]
+        public IActionResult Profile()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Users()
         {
             var users = await _userManager.Users.ToListAsync();

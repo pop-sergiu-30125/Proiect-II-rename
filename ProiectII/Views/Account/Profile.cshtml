@@ -1,0 +1,269 @@
+﻿@{
+    ViewData["Title"] = "My Profile";
+}
+
+<div class="container mt-5">
+    <div class="text-center mb-4">
+        <h1 class="display-5 fw-bold">My Profile</h1>
+        <p class="lead">
+            View and manage your personal account information.
+        </p>
+    </div>
+
+    <div id="loadingMessage" class="alert alert-info text-center">
+        Loading profile data...
+    </div>
+
+    <div id="errorMessage" class="alert alert-danger text-center d-none">
+        Could not load profile information.
+    </div>
+
+    <div id="successMessage" class="alert alert-success text-center d-none">
+        Profile updated successfully.
+    </div>
+
+    <div id="passwordSuccessMessage" class="alert alert-success text-center d-none">
+        Password changed successfully.
+    </div>
+
+    <div id="passwordErrorMessage" class="alert alert-danger text-center d-none">
+        Could not change password.
+    </div>
+
+    <div id="profileContent" class="row justify-content-center d-none">
+        <div class="col-md-8">
+
+            <div class="bg-white rounded shadow-sm p-4 mb-4">
+                <div class="text-center mb-4">
+                    <img id="profileImage"
+                         src="https://placehold.co/150x150?text=User"
+                         class="rounded-circle mb-3"
+                         style="width: 150px; height: 150px; object-fit: cover;"
+                         alt="Profile picture" />
+
+                    <h4 id="profileName">User Profile</h4>
+                    <p id="profileEmail" class="text-muted mb-0"></p>
+                </div>
+
+                <hr />
+
+                <form id="profileForm">
+                    <h5 class="mb-3">Personal Information</h5>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">First Name</label>
+                            <input type="text" id="firstName" class="form-control" placeholder="First name" />
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Last Name</label>
+                            <input type="text" id="lastName" class="form-control" placeholder="Last name" />
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" id="email" class="form-control" disabled />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Birth Date</label>
+                        <input type="date" id="bornDate" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Last Login</label>
+                        <input type="text" id="lastLogin" class="form-control" disabled />
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-primary">
+                            Save Changes
+                        </button>
+
+                        <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary">
+                            Back to Home
+                        </a>
+                    </div>
+                </form>
+            </div>
+
+            <div class="bg-white rounded shadow-sm p-4">
+                <h5 class="mb-3">Change Password</h5>
+
+                <form id="passwordForm">
+                    <div class="mb-3">
+                        <label class="form-label">Current Password</label>
+                        <input type="password" id="oldPassword" class="form-control" placeholder="Current password" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">New Password</label>
+                        <input type="password" id="newPassword" class="form-control" placeholder="New password" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Confirm New Password</label>
+                        <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm new password" />
+                    </div>
+
+                    <button type="submit" class="btn btn-outline-dark">
+                        Change Password
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            loadProfile();
+        });
+
+        async function loadProfile() {
+            const loadingMessage = document.getElementById("loadingMessage");
+            const errorMessage = document.getElementById("errorMessage");
+            const profileContent = document.getElementById("profileContent");
+
+            try {
+                const response = await fetch("/api/User/profile");
+
+                if (!response.ok) {
+                    throw new Error("Could not load profile");
+                }
+
+                const user = await response.json();
+
+                const firstName = user.firstName || user.FirstName || "";
+                const lastName = user.lastName || user.LastName || "";
+                const email = user.email || user.Email || "";
+                const bornDate = user.bornDate || user.BornDate || "";
+                const profilePictureUrl = user.profilePictureUrl || user.ProfilePictureUrl || "";
+                const lastLogin = user.lastLogin || user.LastLogin || "";
+
+                document.getElementById("firstName").value = firstName;
+                document.getElementById("lastName").value = lastName;
+                document.getElementById("email").value = email;
+
+                document.getElementById("profileName").textContent =
+                    `${firstName} ${lastName}`.trim() || "User Profile";
+
+                document.getElementById("profileEmail").textContent = email;
+
+                if (profilePictureUrl) {
+                    document.getElementById("profileImage").src = profilePictureUrl;
+                }
+
+                if (bornDate) {
+                    document.getElementById("bornDate").value = bornDate.substring(0, 10);
+                }
+
+                document.getElementById("lastLogin").value =
+                    lastLogin ? new Date(lastLogin).toLocaleString() : "Not available";
+
+                loadingMessage.classList.add("d-none");
+                profileContent.classList.remove("d-none");
+            } catch (error) {
+                loadingMessage.classList.add("d-none");
+                errorMessage.classList.remove("d-none");
+                console.error(error);
+            }
+        }
+
+        document.getElementById("profileForm").addEventListener("submit", async function (event) {
+            event.preventDefault();
+
+            const successMessage = document.getElementById("successMessage");
+            const errorMessage = document.getElementById("errorMessage");
+
+            const data = {
+                firstName: document.getElementById("firstName").value,
+                lastName: document.getElementById("lastName").value,
+                birthDate: document.getElementById("bornDate").value
+            };
+
+            try {
+                const response = await fetch("/api/User/update-profile", {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (!response.ok) {
+                    throw new Error("Could not update profile");
+                }
+
+                successMessage.classList.remove("d-none");
+                errorMessage.classList.add("d-none");
+
+                await loadProfile();
+            } catch (error) {
+                successMessage.classList.add("d-none");
+                errorMessage.classList.remove("d-none");
+                console.error(error);
+            }
+        });
+
+        document.getElementById("passwordForm").addEventListener("submit", async function (event) {
+            event.preventDefault();
+
+            const passwordSuccessMessage = document.getElementById("passwordSuccessMessage");
+            const passwordErrorMessage = document.getElementById("passwordErrorMessage");
+
+            const oldPassword = document.getElementById("oldPassword").value;
+            const newPassword = document.getElementById("newPassword").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
+
+            passwordSuccessMessage.classList.add("d-none");
+            passwordErrorMessage.classList.add("d-none");
+
+            if (!oldPassword || !newPassword || !confirmPassword) {
+                passwordErrorMessage.textContent = "Please complete all password fields.";
+                passwordErrorMessage.classList.remove("d-none");
+                return;
+            }
+
+            if (newPassword !== confirmPassword) {
+                passwordErrorMessage.textContent = "New password and confirmation do not match.";
+                passwordErrorMessage.classList.remove("d-none");
+                return;
+            }
+
+            const data = {
+                oldPassword: oldPassword,
+                newPassword: newPassword
+            };
+
+            try {
+                const response = await fetch("/api/User/change-password", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (!response.ok) {
+                    throw new Error("Could not change password");
+                }
+
+                passwordSuccessMessage.textContent = "Password changed successfully.";
+                passwordSuccessMessage.classList.remove("d-none");
+
+                document.getElementById("oldPassword").value = "";
+                document.getElementById("newPassword").value = "";
+                document.getElementById("confirmPassword").value = "";
+            } catch (error) {
+                passwordErrorMessage.textContent = "Could not change password.";
+                passwordErrorMessage.classList.remove("d-none");
+                console.error(error);
+            }
+        });
+    </script>
+}
