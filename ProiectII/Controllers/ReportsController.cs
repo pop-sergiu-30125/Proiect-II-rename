@@ -52,6 +52,13 @@ namespace ProiectII.Controllers
             }
         }
 
+        [HttpGet]
+        [Authorize(Roles = "Admin,Employee")]
+        public IActionResult All()
+        {
+            return View();
+        }
+
         // API-like endpoint still available if needed via URL /Reports/GetAll
         [HttpGet]
         [AllowAnonymous]

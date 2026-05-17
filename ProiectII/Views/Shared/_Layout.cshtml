@@ -23,6 +23,11 @@
 
             @if (User?.Identity?.IsAuthenticated == true)
             {
+                @if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+                {
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Reports" asp-action="All" style="font-weight: 500;">All Reports</a>
+                }
+
                 @if (User.IsInRole("Admin"))
                 {
                     <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Users" style="font-weight: 500;">Manage Users</a>
