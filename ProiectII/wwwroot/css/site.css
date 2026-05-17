@@ -8,7 +8,11 @@ html {
     }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
     box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
@@ -42,13 +46,13 @@ body {
     border-radius: 10px;
     font-size: 0.9rem;
     min-width: 150px;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.btn-custom:hover {
-    background-color: var(--secondary-color);
-    color: white;
-}
+    .btn-custom:hover {
+        background-color: var(--secondary-color);
+        color: white;
+    }
 
 .form-container {
     background-color: var(--card-bg);
@@ -77,7 +81,7 @@ body {
     background-clip: padding-box;
     appearance: none;
     border-radius: .25rem;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
 .hero-card {
@@ -88,4 +92,21 @@ body {
 /* Re-added original layout helpers if needed */
 .nav-link.text-dark {
     color: #212529 !important;
+}
+
+/* Profile page styles */
+#profileImage {
+    border: 3px solid #e9ecef;
+}
+
+#profileContent .bg-white {
+    border: 1px solid #eeeeee;
+}
+
+#profileContent h5 {
+    font-weight: 600;
+}
+
+#profileContent .form-label {
+    font-weight: 500;
 }
