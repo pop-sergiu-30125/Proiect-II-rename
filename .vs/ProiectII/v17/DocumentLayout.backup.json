@@ -3,16 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|c:\\users\\sergiu\\desktop\\facultate\\an3s2\\ii\\proiect\\lastvictor\\proiect-ii-victor-04-stabil\\proiect-ii-victor-04-stabil\\proiectii\\views\\account\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|solutionrelative:proiectii\\views\\account\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|c:\\users\\sergiu\\desktop\\facultate\\an3s2\\ii\\proiect\\lastvictor\\proiect-ii-victor-04-stabil\\proiect-ii-victor-04-stabil\\proiectii\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|solutionrelative:proiectii\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|c:\\users\\sergiu\\desktop\\facultate\\an3s2\\ii\\proiect\\lastvictor\\proiect-ii-victor-04-stabil\\proiect-ii-victor-04-stabil\\proiectii\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|solutionrelative:proiectii\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|c:\\users\\sergiu\\desktop\\facultate\\an3s2\\ii\\proiect\\lastvictor\\proiect-ii-victor-04-stabil\\proiect-ii-victor-04-stabil\\proiectii\\controllers\\reportscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|solutionrelative:proiectii\\controllers\\reportscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|c:\\users\\sergiu\\desktop\\facultate\\an3s2\\ii\\proiect\\lastvictor\\proiect-ii-victor-04-stabil\\proiect-ii-victor-04-stabil\\proiectii\\controllers\\foxcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|solutionrelative:proiectii\\controllers\\foxcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|c:\\users\\sergiu\\desktop\\facultate\\an3s2\\ii\\proiect\\lastvictor\\proiect-ii-victor-04-stabil\\proiect-ii-victor-04-stabil\\proiectii\\controllers\\commentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|solutionrelative:proiectii\\controllers\\commentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|c:\\users\\sergiu\\desktop\\facultate\\an3s2\\ii\\proiect\\lastvictor\\proiect-ii-victor-04-stabil\\proiect-ii-victor-04-stabil\\proiectii\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|solutionrelative:proiectii\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|c:\\users\\sergiu\\desktop\\facultate\\an3s2\\ii\\proiect\\lastvictor\\proiect-ii-victor-04-stabil\\proiect-ii-victor-04-stabil\\proiectii\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -21,6 +29,26 @@
     {
       "AbsoluteMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|c:\\users\\sergiu\\desktop\\facultate\\an3s2\\ii\\proiect\\lastvictor\\proiect-ii-victor-04-stabil\\proiect-ii-victor-04-stabil\\proiectii\\controllers\\adminusercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|solutionrelative:proiectii\\controllers\\adminusercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|c:\\users\\sergiu\\desktop\\facultate\\an3s2\\ii\\proiect\\lastvictor\\proiect-ii-victor-04-stabil\\proiect-ii-victor-04-stabil\\proiectii\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|solutionrelative:proiectii\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|c:\\users\\sergiu\\desktop\\facultate\\an3s2\\ii\\proiect\\lastvictor\\proiect-ii-victor-04-stabil\\proiect-ii-victor-04-stabil\\proiectii\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|solutionrelative:proiectii\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|c:\\users\\sergiu\\desktop\\facultate\\an3s2\\ii\\proiect\\lastvictor\\proiect-ii-victor-04-stabil\\proiect-ii-victor-04-stabil\\proiectii\\views\\account\\users.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|solutionrelative:proiectii\\views\\account\\users.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|c:\\users\\sergiu\\desktop\\facultate\\an3s2\\ii\\proiect\\lastvictor\\proiect-ii-victor-04-stabil\\proiect-ii-victor-04-stabil\\proiectii\\controllers\\commentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|solutionrelative:proiectii\\controllers\\commentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|c:\\users\\sergiu\\desktop\\facultate\\an3s2\\ii\\proiect\\lastvictor\\proiect-ii-victor-04-stabil\\proiect-ii-victor-04-stabil\\proiectii\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|solutionrelative:proiectii\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|c:\\users\\sergiu\\desktop\\facultate\\an3s2\\ii\\proiect\\lastvictor\\proiect-ii-victor-04-stabil\\proiect-ii-victor-04-stabil\\proiectii\\services\\securityidentity\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -163,16 +191,8 @@
       "RelativeMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|solutionrelative:proiectii\\data\\olddbinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|c:\\users\\sergiu\\desktop\\facultate\\an3s2\\ii\\proiect\\lastvictor\\proiect-ii-victor-04-stabil\\proiect-ii-victor-04-stabil\\proiectii\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|solutionrelative:proiectii\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|c:\\users\\sergiu\\desktop\\facultate\\an3s2\\ii\\proiect\\lastvictor\\proiect-ii-victor-04-stabil\\proiect-ii-victor-04-stabil\\proiectii\\mappings\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|solutionrelative:proiectii\\mappings\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|c:\\users\\sergiu\\desktop\\facultate\\an3s2\\ii\\proiect\\lastvictor\\proiect-ii-victor-04-stabil\\proiect-ii-victor-04-stabil\\proiectii\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|solutionrelative:proiectii\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|c:\\users\\sergiu\\desktop\\facultate\\an3s2\\ii\\proiect\\lastvictor\\proiect-ii-victor-04-stabil\\proiect-ii-victor-04-stabil\\proiectii\\dto\\recentactivitydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -189,14 +209,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|c:\\users\\sergiu\\desktop\\facultate\\an3s2\\ii\\proiect\\lastvictor\\proiect-ii-victor-04-stabil\\proiect-ii-victor-04-stabil\\proiectii\\controllers\\foxescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|solutionrelative:proiectii\\controllers\\foxescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|c:\\users\\sergiu\\desktop\\facultate\\an3s2\\ii\\proiect\\lastvictor\\proiect-ii-victor-04-stabil\\proiect-ii-victor-04-stabil\\proiectii\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|solutionrelative:proiectii\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|c:\\users\\sergiu\\desktop\\facultate\\an3s2\\ii\\proiect\\lastvictor\\proiect-ii-victor-04-stabil\\proiect-ii-victor-04-stabil\\proiectii\\controllers\\reportscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|solutionrelative:proiectii\\controllers\\reportscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|c:\\users\\sergiu\\desktop\\facultate\\an3s2\\ii\\proiect\\lastvictor\\proiect-ii-victor-04-stabil\\proiect-ii-victor-04-stabil\\proiectii\\controllers\\referencedatacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -234,76 +246,53 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "TokenService.cs",
-              "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Services\\SecurityIdentity\\TokenService.cs",
-              "RelativeDocumentMoniker": "ProiectII\\Services\\SecurityIdentity\\TokenService.cs",
-              "ToolTip": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Services\\SecurityIdentity\\TokenService.cs",
-              "RelativeToolTip": "ProiectII\\Services\\SecurityIdentity\\TokenService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T13:52:27.655Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "FoxController.cs",
-              "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Controllers\\FoxController.cs",
-              "RelativeDocumentMoniker": "ProiectII\\Controllers\\FoxController.cs",
-              "ToolTip": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Controllers\\FoxController.cs",
-              "RelativeToolTip": "ProiectII\\Controllers\\FoxController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T11:46:16.23Z",
+              "Title": "Profile.cshtml",
+              "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Views\\Account\\Profile.cshtml",
+              "RelativeDocumentMoniker": "ProiectII\\Views\\Account\\Profile.cshtml",
+              "ToolTip": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Views\\Account\\Profile.cshtml",
+              "RelativeToolTip": "ProiectII\\Views\\Account\\Profile.cshtml",
+              "ViewState": "AgIAAH4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-14T06:14:47.005Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "FileStorageService.cs",
-              "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Services\\UtilityServices\\FileStorageService.cs",
-              "RelativeDocumentMoniker": "ProiectII\\Services\\UtilityServices\\FileStorageService.cs",
-              "ToolTip": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Services\\UtilityServices\\FileStorageService.cs",
-              "RelativeToolTip": "ProiectII\\Services\\UtilityServices\\FileStorageService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T13:51:57.954Z",
+              "DocumentIndex": 1,
+              "Title": "site.css",
+              "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\wwwroot\\css\\site.css",
+              "RelativeDocumentMoniker": "ProiectII\\wwwroot\\css\\site.css",
+              "ToolTip": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\wwwroot\\css\\site.css",
+              "RelativeToolTip": "ProiectII\\wwwroot\\css\\site.css",
+              "ViewState": "AgIAADwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-05-14T06:14:28.506Z",
               "EditorCaption": ""
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AdminUserController.cs",
-              "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Controllers\\AdminUserController.cs",
-              "RelativeDocumentMoniker": "ProiectII\\Controllers\\AdminUserController.cs",
-              "ToolTip": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Controllers\\AdminUserController.cs",
-              "RelativeToolTip": "ProiectII\\Controllers\\AdminUserController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T11:39:12.096Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "AccountController.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Controllers\\AccountController.cs",
               "RelativeDocumentMoniker": "ProiectII\\Controllers\\AccountController.cs",
               "ToolTip": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Controllers\\AccountController.cs",
               "RelativeToolTip": "ProiectII\\Controllers\\AccountController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAFwAAAAAAAAAAAAuwHMAAABDAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T14:53:05.258Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-10T14:53:05.258Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 11,
               "Title": "DashboardController.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Controllers\\DashboardController.cs",
               "RelativeDocumentMoniker": "ProiectII\\Controllers\\DashboardController.cs",
@@ -311,12 +300,120 @@
               "RelativeToolTip": "ProiectII\\Controllers\\DashboardController.cs",
               "ViewState": "AgIAAA4AAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T11:42:00.47Z",
+              "WhenOpened": "2026-05-10T11:42:00.47Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "ProiectII\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Controllers\\UserController.cs",
+              "RelativeToolTip": "ProiectII\\Controllers\\UserController.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAAwFgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-10T11:22:39.705Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "ProiectII\\Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "ProiectII\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-10T11:46:02.7Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ReportsController.cs",
+              "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Controllers\\ReportsController.cs",
+              "RelativeDocumentMoniker": "ProiectII\\Controllers\\ReportsController.cs",
+              "ToolTip": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Controllers\\ReportsController.cs",
+              "RelativeToolTip": "ProiectII\\Controllers\\ReportsController.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAgwD4AAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-10T11:36:30.859Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "FileStorageService.cs",
+              "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Services\\UtilityServices\\FileStorageService.cs",
+              "RelativeDocumentMoniker": "ProiectII\\Services\\UtilityServices\\FileStorageService.cs",
+              "ToolTip": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Services\\UtilityServices\\FileStorageService.cs",
+              "RelativeToolTip": "ProiectII\\Services\\UtilityServices\\FileStorageService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-10T13:51:57.954Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Program.cs",
+              "RelativeDocumentMoniker": "ProiectII\\Program.cs",
+              "ToolTip": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Program.cs",
+              "RelativeToolTip": "ProiectII\\Program.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAAAAFAAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-09T11:00:25.899Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
+              "Title": "AdminUserController.cs",
+              "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Controllers\\AdminUserController.cs",
+              "RelativeDocumentMoniker": "ProiectII\\Controllers\\AdminUserController.cs",
+              "ToolTip": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Controllers\\AdminUserController.cs",
+              "RelativeToolTip": "ProiectII\\Controllers\\AdminUserController.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAEwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-10T11:39:12.096Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FoxController.cs",
+              "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Controllers\\FoxController.cs",
+              "RelativeDocumentMoniker": "ProiectII\\Controllers\\FoxController.cs",
+              "ToolTip": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Controllers\\FoxController.cs",
+              "RelativeToolTip": "ProiectII\\Controllers\\FoxController.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAADsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-10T11:46:16.23Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Users.cshtml",
+              "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Views\\Account\\Users.cshtml",
+              "RelativeDocumentMoniker": "ProiectII\\Views\\Account\\Users.cshtml",
+              "ToolTip": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Views\\Account\\Users.cshtml",
+              "RelativeToolTip": "ProiectII\\Views\\Account\\Users.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-11T12:01:58.493Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "TokenService.cs",
+              "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Services\\SecurityIdentity\\TokenService.cs",
+              "RelativeDocumentMoniker": "ProiectII\\Services\\SecurityIdentity\\TokenService.cs",
+              "ToolTip": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Services\\SecurityIdentity\\TokenService.cs",
+              "RelativeToolTip": "ProiectII\\Services\\SecurityIdentity\\TokenService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-10T13:52:27.655Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "CommentController.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Controllers\\CommentController.cs",
               "RelativeDocumentMoniker": "ProiectII\\Controllers\\CommentController.cs",
@@ -324,12 +421,11 @@
               "RelativeToolTip": "ProiectII\\Controllers\\CommentController.cs",
               "ViewState": "AgIAAFIAAAAAAAAAAAAwwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T11:41:17.758Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-10T11:41:17.758Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 14,
               "Title": "ILocationRepository.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Interfaces\\ILocationRepository.cs",
               "RelativeDocumentMoniker": "ProiectII\\Interfaces\\ILocationRepository.cs",
@@ -337,12 +433,11 @@
               "RelativeToolTip": "ProiectII\\Interfaces\\ILocationRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T14:52:33.456Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-10T14:52:33.456Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 15,
               "Title": "SecurityLog.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Models\\SecurityLog.cs",
               "RelativeDocumentMoniker": "ProiectII\\Models\\SecurityLog.cs",
@@ -350,12 +445,11 @@
               "RelativeToolTip": "ProiectII\\Models\\SecurityLog.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T15:57:45.115Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-10T15:57:45.115Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 17,
               "Title": "FoxService.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Services\\CoreDomain\\FoxService.cs",
               "RelativeDocumentMoniker": "ProiectII\\Services\\CoreDomain\\FoxService.cs",
@@ -363,12 +457,11 @@
               "RelativeToolTip": "ProiectII\\Services\\CoreDomain\\FoxService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T15:08:06.476Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-10T15:08:06.476Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 18,
               "Title": "ReportService.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Services\\CoreDomain\\ReportService.cs",
               "RelativeDocumentMoniker": "ProiectII\\Services\\CoreDomain\\ReportService.cs",
@@ -376,12 +469,11 @@
               "RelativeToolTip": "ProiectII\\Services\\CoreDomain\\ReportService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T15:44:04.735Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-10T15:44:04.735Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 19,
               "Title": "EmailService.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Services\\UtilityServices\\EmailService.cs",
               "RelativeDocumentMoniker": "ProiectII\\Services\\UtilityServices\\EmailService.cs",
@@ -389,12 +481,11 @@
               "RelativeToolTip": "ProiectII\\Services\\UtilityServices\\EmailService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T13:52:20.998Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-10T13:52:20.998Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 20,
               "Title": "AuthService.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Services\\SecurityIdentity\\AuthService.cs",
               "RelativeDocumentMoniker": "ProiectII\\Services\\SecurityIdentity\\AuthService.cs",
@@ -402,12 +493,11 @@
               "RelativeToolTip": "ProiectII\\Services\\SecurityIdentity\\AuthService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T13:52:25.624Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-10T13:52:25.624Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 21,
               "Title": "AdoptionService.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Services\\CoreDomain\\AdoptionService.cs",
               "RelativeDocumentMoniker": "ProiectII\\Services\\CoreDomain\\AdoptionService.cs",
@@ -415,12 +505,11 @@
               "RelativeToolTip": "ProiectII\\Services\\CoreDomain\\AdoptionService.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T11:51:02.104Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-10T11:51:02.104Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 16,
               "Title": "IFoxRepository.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Interfaces\\IFoxRepository.cs",
               "RelativeDocumentMoniker": "ProiectII\\Interfaces\\IFoxRepository.cs",
@@ -428,12 +517,11 @@
               "RelativeToolTip": "ProiectII\\Interfaces\\IFoxRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T14:52:29.722Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-10T14:52:29.722Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 22,
               "Title": "CommentService.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Services\\CoreDomain\\CommentService.cs",
               "RelativeDocumentMoniker": "ProiectII\\Services\\CoreDomain\\CommentService.cs",
@@ -441,12 +529,11 @@
               "RelativeToolTip": "ProiectII\\Services\\CoreDomain\\CommentService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T15:08:01.765Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-10T15:08:01.765Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 23,
               "Title": "IFoxService.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Interfaces\\IFoxService.cs",
               "RelativeDocumentMoniker": "ProiectII\\Interfaces\\IFoxService.cs",
@@ -454,12 +541,11 @@
               "RelativeToolTip": "ProiectII\\Interfaces\\IFoxService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T14:52:30.634Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-10T14:52:30.634Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 24,
               "Title": "IReportService.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Interfaces\\IReportService.cs",
               "RelativeDocumentMoniker": "ProiectII\\Interfaces\\IReportService.cs",
@@ -467,12 +553,11 @@
               "RelativeToolTip": "ProiectII\\Interfaces\\IReportService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T15:43:54.157Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-10T15:43:54.157Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 25,
               "Title": "ITokenService.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Interfaces\\ITokenService.cs",
               "RelativeDocumentMoniker": "ProiectII\\Interfaces\\ITokenService.cs",
@@ -480,12 +565,11 @@
               "RelativeToolTip": "ProiectII\\Interfaces\\ITokenService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAABFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T15:21:30.746Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-10T15:21:30.746Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 26,
               "Title": "IAdoptionService.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Interfaces\\IAdoptionService.cs",
               "RelativeDocumentMoniker": "ProiectII\\Interfaces\\IAdoptionService.cs",
@@ -493,12 +577,11 @@
               "RelativeToolTip": "ProiectII\\Interfaces\\IAdoptionService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T14:52:19.705Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-10T14:52:19.705Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 30,
               "Title": "AdoptionRepository.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Repositories\\AdoptionRepository.cs",
               "RelativeDocumentMoniker": "ProiectII\\Repositories\\AdoptionRepository.cs",
@@ -506,12 +589,11 @@
               "RelativeToolTip": "ProiectII\\Repositories\\AdoptionRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T14:52:46.419Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-10T14:52:46.419Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 29,
               "Title": "ICommentRepository.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Interfaces\\ICommentRepository.cs",
               "RelativeDocumentMoniker": "ProiectII\\Interfaces\\ICommentRepository.cs",
@@ -519,12 +601,11 @@
               "RelativeToolTip": "ProiectII\\Interfaces\\ICommentRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T14:52:22.427Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-10T14:52:22.427Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 28,
               "Title": "IAuthService.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Interfaces\\IAuthService.cs",
               "RelativeDocumentMoniker": "ProiectII\\Interfaces\\IAuthService.cs",
@@ -532,12 +613,11 @@
               "RelativeToolTip": "ProiectII\\Interfaces\\IAuthService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T14:52:21.519Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-10T14:52:21.519Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 31,
               "Title": "LocationRepository.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Repositories\\LocationRepository.cs",
               "RelativeDocumentMoniker": "ProiectII\\Repositories\\LocationRepository.cs",
@@ -545,12 +625,11 @@
               "RelativeToolTip": "ProiectII\\Repositories\\LocationRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T14:52:54.166Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-10T14:52:54.166Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 27,
               "Title": "IAdoptionRepository.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Interfaces\\IAdoptionRepository.cs",
               "RelativeDocumentMoniker": "ProiectII\\Interfaces\\IAdoptionRepository.cs",
@@ -558,12 +637,11 @@
               "RelativeToolTip": "ProiectII\\Interfaces\\IAdoptionRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T14:52:17.04Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-10T14:52:17.04Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 32,
               "Title": "ReportRepository.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Repositories\\ReportRepository.cs",
               "RelativeDocumentMoniker": "ProiectII\\Repositories\\ReportRepository.cs",
@@ -571,12 +649,11 @@
               "RelativeToolTip": "ProiectII\\Repositories\\ReportRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T14:52:54.858Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-10T14:52:54.858Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 33,
               "Title": "GenericRepository.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Repositories\\GenericRepository.cs",
               "RelativeDocumentMoniker": "ProiectII\\Repositories\\GenericRepository.cs",
@@ -584,12 +661,11 @@
               "RelativeToolTip": "ProiectII\\Repositories\\GenericRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T14:52:52.644Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-10T14:52:52.644Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 34,
               "Title": "FoxRepository.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Repositories\\FoxRepository.cs",
               "RelativeDocumentMoniker": "ProiectII\\Repositories\\FoxRepository.cs",
@@ -597,12 +673,11 @@
               "RelativeToolTip": "ProiectII\\Repositories\\FoxRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T14:52:51.478Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-10T14:52:51.478Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 35,
               "Title": "EnclosureRepository.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Repositories\\EnclosureRepository.cs",
               "RelativeDocumentMoniker": "ProiectII\\Repositories\\EnclosureRepository.cs",
@@ -610,12 +685,11 @@
               "RelativeToolTip": "ProiectII\\Repositories\\EnclosureRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T14:52:48.154Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-10T14:52:48.154Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 36,
               "Title": "CommentRepository.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Repositories\\CommentRepository.cs",
               "RelativeDocumentMoniker": "ProiectII\\Repositories\\CommentRepository.cs",
@@ -623,12 +697,11 @@
               "RelativeToolTip": "ProiectII\\Repositories\\CommentRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T14:52:48.981Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-10T14:52:48.981Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 37,
               "Title": "ICommentService.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Interfaces\\ICommentService.cs",
               "RelativeDocumentMoniker": "ProiectII\\Interfaces\\ICommentService.cs",
@@ -636,12 +709,11 @@
               "RelativeToolTip": "ProiectII\\Interfaces\\ICommentService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T14:52:24.649Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-10T14:52:24.649Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 38,
               "Title": "IGenericRepository.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Interfaces\\IGenericRepository.cs",
               "RelativeDocumentMoniker": "ProiectII\\Interfaces\\IGenericRepository.cs",
@@ -649,12 +721,11 @@
               "RelativeToolTip": "ProiectII\\Interfaces\\IGenericRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T14:52:31.789Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-10T14:52:31.789Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 39,
               "Title": "docker-compose.yml",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\docker-compose.yml",
               "RelativeDocumentMoniker": "ProiectII\\docker-compose.yml",
@@ -662,12 +733,11 @@
               "RelativeToolTip": "ProiectII\\docker-compose.yml",
               "ViewState": "AgIAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
-              "WhenOpened": "2026-05-10T14:54:15.997Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-10T14:54:15.997Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 41,
               "Title": "IReportRepository.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Interfaces\\IReportRepository.cs",
               "RelativeDocumentMoniker": "ProiectII\\Interfaces\\IReportRepository.cs",
@@ -675,12 +745,11 @@
               "RelativeToolTip": "ProiectII\\Interfaces\\IReportRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T14:52:36.353Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-10T14:52:36.353Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 40,
               "Title": "IEnclosureRepository.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Interfaces\\IEnclosureRepository.cs",
               "RelativeDocumentMoniker": "ProiectII\\Interfaces\\IEnclosureRepository.cs",
@@ -688,12 +757,11 @@
               "RelativeToolTip": "ProiectII\\Interfaces\\IEnclosureRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T14:52:27.589Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-10T14:52:27.589Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 42,
               "Title": "IFileStorageService.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Interfaces\\IFileStorageService.cs",
               "RelativeDocumentMoniker": "ProiectII\\Interfaces\\IFileStorageService.cs",
@@ -701,12 +769,11 @@
               "RelativeToolTip": "ProiectII\\Interfaces\\IFileStorageService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T14:52:28.25Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-10T14:52:28.25Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 43,
               "Title": "IEmailService.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Interfaces\\IEmailService.cs",
               "RelativeDocumentMoniker": "ProiectII\\Interfaces\\IEmailService.cs",
@@ -714,12 +781,11 @@
               "RelativeToolTip": "ProiectII\\Interfaces\\IEmailService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T14:52:26.558Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-10T14:52:26.558Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 44,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Views\\Foxes\\Index.cshtml",
               "RelativeDocumentMoniker": "ProiectII\\Views\\Foxes\\Index.cshtml",
@@ -727,12 +793,11 @@
               "RelativeToolTip": "ProiectII\\Views\\Foxes\\Index.cshtml",
               "ViewState": "AgIAACoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-05-10T14:03:12.772Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-10T14:03:12.772Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 45,
               "Title": "DbInitializer.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Data\\DbInitializer.cs",
               "RelativeDocumentMoniker": "ProiectII\\Data\\DbInitializer.cs",
@@ -740,12 +805,11 @@
               "RelativeToolTip": "ProiectII\\Data\\DbInitializer.cs",
               "ViewState": "AgIAACEAAAAAAAAAAAAYwIcAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T11:52:39.378Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-10T11:52:39.378Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 46,
               "Title": "oldDbInitializer.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Data\\oldDbInitializer.cs",
               "RelativeDocumentMoniker": "ProiectII\\Data\\oldDbInitializer.cs",
@@ -753,12 +817,11 @@
               "RelativeToolTip": "ProiectII\\Data\\oldDbInitializer.cs",
               "ViewState": "AgIAACEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T11:52:37.202Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-10T11:52:37.202Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 47,
               "Title": "MappingProfile.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Mappings\\MappingProfile.cs",
               "RelativeDocumentMoniker": "ProiectII\\Mappings\\MappingProfile.cs",
@@ -770,7 +833,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 48,
               "Title": "RecentActivityDto.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\DTO\\RecentActivityDto.cs",
               "RelativeDocumentMoniker": "ProiectII\\DTO\\RecentActivityDto.cs",
@@ -782,24 +845,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Controllers\\UserController.cs",
-              "RelativeDocumentMoniker": "ProiectII\\Controllers\\UserController.cs",
-              "ToolTip": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Controllers\\UserController.cs",
-              "RelativeToolTip": "ProiectII\\Controllers\\UserController.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T11:22:39.705Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 49,
               "Title": "DashboardStatsDto.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\DTO\\DashboardStatsDto.cs",
               "RelativeDocumentMoniker": "ProiectII\\DTO\\DashboardStatsDto.cs",
@@ -811,7 +857,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 50,
               "Title": "HomeController.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "ProiectII\\Controllers\\HomeController.cs",
@@ -823,7 +869,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 51,
               "Title": "FoxesController.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Controllers\\FoxesController.cs",
               "RelativeDocumentMoniker": "ProiectII\\Controllers\\FoxesController.cs",
@@ -835,43 +881,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Program.cs",
-              "RelativeDocumentMoniker": "ProiectII\\Program.cs",
-              "ToolTip": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Program.cs",
-              "RelativeToolTip": "ProiectII\\Program.cs",
-              "ViewState": "AgIAAEoAAAAAAAAAAAAQwDkBAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-09T11:00:25.899Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 47,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "ProiectII\\Controllers\\AuthController.cs",
-              "ToolTip": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "ProiectII\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAAGUAAAAAAAAAAAAswAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T11:46:02.7Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 48,
-              "Title": "ReportsController.cs",
-              "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Controllers\\ReportsController.cs",
-              "RelativeDocumentMoniker": "ProiectII\\Controllers\\ReportsController.cs",
-              "ToolTip": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Controllers\\ReportsController.cs",
-              "RelativeToolTip": "ProiectII\\Controllers\\ReportsController.cs",
-              "ViewState": "AgIAADsAAAAAAAAAAAAgwE4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T11:36:30.859Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 52,
               "Title": "ReferenceDataController.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Controllers\\ReferenceDataController.cs",
               "RelativeDocumentMoniker": "ProiectII\\Controllers\\ReferenceDataController.cs",
@@ -883,7 +893,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 53,
               "Title": "AdoptionController.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Controllers\\AdoptionController.cs",
               "RelativeDocumentMoniker": "ProiectII\\Controllers\\AdoptionController.cs",
@@ -895,7 +905,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 54,
               "Title": "auth.js",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\wwwroot\\js\\auth.js",
               "RelativeDocumentMoniker": "ProiectII\\wwwroot\\js\\auth.js",
@@ -907,7 +917,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 55,
               "Title": "site.js",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\wwwroot\\js\\site.js",
               "RelativeDocumentMoniker": "ProiectII\\wwwroot\\js\\site.js",
@@ -919,7 +929,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
+              "DocumentIndex": 56,
               "Title": "Enclosure.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Models\\Enclosure.cs",
               "RelativeDocumentMoniker": "ProiectII\\Models\\Enclosure.cs",
@@ -931,7 +941,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 54,
+              "DocumentIndex": 57,
               "Title": ".filenesting.json",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\.filenesting.json",
               "RelativeDocumentMoniker": ".filenesting.json",
@@ -943,7 +953,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 55,
+              "DocumentIndex": 58,
               "Title": "ProiectII.Tests.csproj",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII.Tests\\ProiectII.Tests.csproj",
               "RelativeDocumentMoniker": "ProiectII.Tests\\ProiectII.Tests.csproj",

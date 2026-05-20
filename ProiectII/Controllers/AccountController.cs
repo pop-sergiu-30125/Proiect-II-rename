@@ -2,9 +2,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProiectII.DTO.AuthAccount;
+using ProiectII.DTO.AdminSystem;
 using ProiectII.Interfaces;
 using ProiectII.Models;
-using ProiectII.ViewModels;
 
 namespace ProiectII.Controllers
 {
@@ -12,11 +12,13 @@ namespace ProiectII.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IAuthService _authService;
+        private readonly IFileStorageService _fileStorageService;
 
-        public AccountController(UserManager<ApplicationUser> userManager, IAuthService authService)
+        public AccountController(UserManager<ApplicationUser> userManager, IAuthService authService, IFileStorageService fileStorageService)
         {
             _userManager = userManager;
             _authService = authService;
+            _fileStorageService = fileStorageService;
         }
 
         [HttpGet]
@@ -36,7 +38,7 @@ namespace ProiectII.Controllers
                 var authResponse = await _authService.LoginAsync(dto);
                 if (authResponse == null)
                 {
-                    ModelState.AddModelError("", "Email sau parolă incorectă.");
+                    ModelState.AddModelError("", "Invalid email or password.");
                     return View(dto);
                 }
 
@@ -58,7 +60,7 @@ namespace ProiectII.Controllers
             }
             catch (Exception)
             {
-                ModelState.AddModelError("", "A apărut o eroare neprevăzută.");
+                ModelState.AddModelError("", "An unexpected error occurred.");
                 return View(dto);
             }
         }
@@ -82,7 +84,7 @@ namespace ProiectII.Controllers
                 return View(dto);
             }
 
-            TempData["SuccessMessage"] = "Cont creat cu succes! Te poți loga acum.";
+            TempData["SuccessMessage"] = "Account created successfully! You can now log in.";
             return RedirectToAction("Login");
         }
 
@@ -104,12 +106,12 @@ namespace ProiectII.Controllers
         public async Task<IActionResult> Users()
         {
             var users = await _userManager.Users.ToListAsync();
-            var viewModel = new UserManagementViewModel();
+            var viewModel = new UserManagementDto();
 
             foreach (var user in users)
             {
                 var roles = await _userManager.GetRolesAsync(user);
-                viewModel.Users.Add(new UserWithRolesViewModel
+                viewModel.Users.Add(new UserWithRolesDto
                 {
                     // + posibil de implementat id, deoarece pentru updaterole din AdminUserController trebuie un dto cu acel id
                     Email = user.Email ?? "",
@@ -121,6 +123,80 @@ namespace ProiectII.Controllers
             }
 
             return View(viewModel);
+        }
+
+        [HttpGet]
+        [Microsoft.AspNetCore.Authorization.Authorize]
+        public async Task<IActionResult> Profile()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null) return NotFound();
+
+            var model = new UserProfileDto
+            {
+                Email = user.Email ?? "",
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                BirthDate = user.BornDate,
+                ProfilePictureUrl = user.ProfilePictureUrl
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Microsoft.AspNetCore.Authorization.Authorize]
+        public async Task<IActionResult> Profile(UserProfileDto model)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null) return NotFound();
+
+            if (!ModelState.IsValid)
+            {
+                model.Email = user.Email ?? "";
+                model.ProfilePictureUrl = user.ProfilePictureUrl;
+                return View(model);
+            }
+
+            user.FirstName = model.FirstName;
+            user.LastName = model.LastName;
+            user.BornDate = model.BirthDate;
+
+            if (model.NewProfilePicture != null && model.NewProfilePicture.Length > 0)
+            {
+                try
+                {
+                    string relativePath = await _fileStorageService.SaveFileAsync(model.NewProfilePicture, "profiles");
+                    if (!string.IsNullOrEmpty(user.ProfilePictureUrl))
+                    {
+                        _fileStorageService.DeleteFile(user.ProfilePictureUrl);
+                    }
+                    user.ProfilePictureUrl = relativePath;
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", "Error saving image: " + ex.Message);
+                    model.Email = user.Email ?? "";
+                    model.ProfilePictureUrl = user.ProfilePictureUrl;
+                    return View(model);
+                }
+            }
+
+            var result = await _userManager.UpdateAsync(user);
+            if (!result.Succeeded)
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+                model.Email = user.Email ?? "";
+                model.ProfilePictureUrl = user.ProfilePictureUrl;
+                return View(model);
+            }
+
+            TempData["SuccessMessage"] = "Profile updated successfully!";
+            return RedirectToAction("Profile");
         }
     }
 }

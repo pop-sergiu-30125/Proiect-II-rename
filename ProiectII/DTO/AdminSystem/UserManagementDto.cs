@@ -1,13 +1,11 @@
-using ProiectII.Models;
-
-namespace ProiectII.ViewModels
+namespace ProiectII.DTO.AdminSystem
 {
-    public class UserManagementViewModel
+    public class UserManagementDto
     {
-        public List<UserWithRolesViewModel> Users { get; set; } = new List<UserWithRolesViewModel>();
+        public List<UserWithRolesDto> Users { get; set; } = new List<UserWithRolesDto>();
     }
 
-    public class UserWithRolesViewModel
+    public class UserWithRolesDto
     {
         public string Email { get; set; } = string.Empty;
         public string FullName { get; set; } = string.Empty;

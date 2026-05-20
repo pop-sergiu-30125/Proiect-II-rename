@@ -1,0 +1,94 @@
+@model ProiectII.DTO.AuthAccount.UserProfileDto
+
+@{
+    ViewData["Title"] = "Account Settings";
+}
+
+<div class="fox-full-page">
+    <div class="row">
+        <div class="col-12">
+            <div class="fox-page-header">
+                <h2 class="fox-title"><i class="bi bi-person-gear"></i> Account Settings</h2>
+                <p class="fox-subtitle">Manage your personal information and profile picture.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <!-- Sidebar: Profile Picture -->
+        <div class="col-lg-4">
+            <div class="fox-card h-100 text-center">
+                <div class="mb-4">
+                    @if (!string.IsNullOrEmpty(Model.ProfilePictureUrl))
+                    {
+                        <img src="@Model.ProfilePictureUrl" alt="Profile Picture" class="rounded-circle img-fox-profile" />
+                    }
+                    else
+                    {
+                        <div class="rounded-circle initials-fox-profile">
+                            @Model.FirstName[0]@Model.LastName[0]
+                        </div>
+                    }
+                </div>
+                <h4 class="mb-1" style="color: var(--fox-orange-dark);">@Model.FirstName @Model.LastName</h4>
+                <p class="text-muted">@Model.Email</p>
+                <hr />
+                <p class="small text-start">Welcome to your personal dashboard. Here you can manage your identity and how others see you on Fox Shelter.</p>
+            </div>
+        </div>
+
+        <!-- Main Area: Edit Form -->
+        <div class="col-lg-8">
+            <div class="fox-card h-100">
+                <h4 class="mb-4" style="color: var(--fox-orange-dark);">Personal Information</h4>
+                
+                <form asp-action="Profile" method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label asp-for="Email" class="form-label fw-bold">Email Address</label>
+                            <input asp-for="Email" class="form-control" readonly style="background-color: #f8f9fa;" />
+                            <div class="form-text">Your login email cannot be changed.</div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="FirstName" class="form-label fw-bold">First Name</label>
+                            <input asp-for="FirstName" class="form-control" placeholder="Enter first name" />
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="LastName" class="form-label fw-bold">Last Name</label>
+                            <input asp-for="LastName" class="form-control" placeholder="Enter last name" />
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label asp-for="BirthDate" class="form-label fw-bold">Birth Date</label>
+                            <input asp-for="BirthDate" type="date" class="form-control" />
+                            <span asp-validation-for="BirthDate" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-12 mt-4">
+                            <label asp-for="NewProfilePicture" class="form-label fw-bold">Update Profile Picture</label>
+                            <div class="input-group">
+                                <input asp-for="NewProfilePicture" type="file" class="form-control" accept="image/*" />
+                            </div>
+                            <span asp-validation-for="NewProfilePicture" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-12 mt-5 border-top pt-4 text-end">
+                            <a asp-controller="Home" asp-action="Index" class="btn btn-fox-outline me-2">Cancel</a>
+                            <button type="submit" class="btn btn-fox-primary">Save Changes</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

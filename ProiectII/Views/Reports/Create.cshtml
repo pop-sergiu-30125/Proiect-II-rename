@@ -4,6 +4,13 @@
 }
 
 <div class="form-container">
+    @if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+    {
+        <div class="text-end mb-3">
+            <a asp-action="Index" class="btn btn-outline-primary">Manage All Reports</a>
+        </div>
+    }
+
     <h2 class="form-title text-center">Report a Fox Sighting</h2>
     
     <form asp-action="Create" method="post" enctype="multipart/form-data">

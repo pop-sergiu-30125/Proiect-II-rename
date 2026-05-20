@@ -147,7 +147,10 @@ namespace ProiectII.Mappings
 
             CreateMap<Report, ReportDto>()
                 .ForMember(dest => dest.StatusName, opt => opt.MapFrom(src => src.ReportStatus.ToString()))
-                .ForMember(dest => dest.ReporterName, opt => opt.MapFrom(src => src.Reporter != null ? src.Reporter.UserName : "Guest"))
+                .ForMember(dest => dest.ReporterName, opt => opt.MapFrom(src => 
+                    src.Reporter != null ? $"{src.Reporter.FirstName} {src.Reporter.LastName}" : "Guest"))
+                .ForMember(dest => dest.ReporterProfilePictureUrl, opt => opt.MapFrom(src => 
+                    src.Reporter != null ? src.Reporter.ProfilePictureUrl : null))
                 .ForMember(dest => dest.Latitude, opt => opt.MapFrom(src => src.Location != null ? (double)src.Location.Coordinate.Latitude : 0))
                 .ForMember(dest => dest.Longitude, opt => opt.MapFrom(src => src.Location != null ? (double)src.Location.Coordinate.Longitude : 0));
         }

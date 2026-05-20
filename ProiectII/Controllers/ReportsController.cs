@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ProiectII.DTO.CommentsReport;
 using ProiectII.Interfaces;
+using ProiectII.Models;
 using System.Security.Claims;
 
 namespace ProiectII.Controllers
@@ -45,14 +46,22 @@ namespace ProiectII.Controllers
             try
             {
                 await _reportService.CreateReportAsync(dto, currentUserId);
-                TempData["SuccessMessage"] = "Raportul a fost trimis cu succes!";
+                TempData["SuccessMessage"] = "Sighting report submitted successfully!";
                 return RedirectToAction("Index", "Home");
             }
             catch (Exception ex)
             {
-                ModelState.AddModelError("", "Eroare la trimiterea raportului: " + ex.Message);
+                ModelState.AddModelError("", "Error submitting report: " + ex.Message);
                 return View(dto);
             }
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin,Employee")]
+        public async Task<IActionResult> Index()
+        {
+            var reports = await _reportService.GetAllActiveReportsAsync();
+            return View(reports);
         }
 
         // ==========================================
@@ -74,7 +83,7 @@ namespace ProiectII.Controllers
             var currentUserEmail = User.FindFirst(ClaimTypes.Email)?.Value;
             if (string.IsNullOrEmpty(currentUserEmail))
             {
-                return Unauthorized("Identitate nedetectată.");
+                return Unauthorized("Identity not detected.");
             }
 
             var personalReports = reports.Where(r => r.ReporterName == currentUserEmail);
@@ -86,9 +95,9 @@ namespace ProiectII.Controllers
         public async Task<IActionResult> UpdateStatus(uint id, [FromBody] UpdateReportStatusDto dto)
         {
             var success = await _reportService.UpdateReportStatusAsync(id, dto);
-            if (!success) return BadRequest("Status invalid sau raport negăsit.");
+            if (!success) return BadRequest("Invalid status or report not found.");
 
-            return Ok(new { Message = "Statusul raportului a fost actualizat." });
+            return Ok(new { Message = "Report status updated successfully." });
         }
 
         [Authorize(Roles = "Admin,Employee")]
@@ -98,7 +107,26 @@ namespace ProiectII.Controllers
             var success = await _reportService.DeleteReportAsync(id);
             if (!success) return NotFound();
 
-            return Ok(new { Message = "Raport șters permanent (inclusiv imaginea)." });
+            return Ok(new { Message = "Report permanently deleted (including image)." });
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin,Employee")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UpdateStatusMvc(uint id, ReportStatus newStatus)
+        {
+            var success = await _reportService.UpdateReportStatusAsync(id, new UpdateReportStatusDto { Status = newStatus.ToString() });
+            
+            if (success)
+            {
+                TempData["SuccessMessage"] = "Report status updated to " + newStatus.ToString() + "!";
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Failed to update report status.";
+            }
+
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpPost("/api/Reports/create")]
