@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|c:\\users\\sergiu\\desktop\\facultate\\an3s2\\ii\\proiect\\lastvictor\\proiect-ii-victor-04-stabil\\proiect-ii-victor-04-stabil\\proiectii\\models\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|solutionrelative:proiectii\\models\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|c:\\users\\sergiu\\desktop\\facultate\\an3s2\\ii\\proiect\\lastvictor\\proiect-ii-victor-04-stabil\\proiect-ii-victor-04-stabil\\proiectii\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|solutionrelative:proiectii\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|c:\\users\\sergiu\\desktop\\facultate\\an3s2\\ii\\proiect\\lastvictor\\proiect-ii-victor-04-stabil\\proiect-ii-victor-04-stabil\\proiectii\\models\\adoption.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|solutionrelative:proiectii\\models\\adoption.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -41,10 +49,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|c:\\users\\sergiu\\desktop\\facultate\\an3s2\\ii\\proiect\\lastvictor\\proiect-ii-victor-04-stabil\\proiect-ii-victor-04-stabil\\proiectii\\controllers\\foxcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|solutionrelative:proiectii\\controllers\\foxcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|c:\\users\\sergiu\\desktop\\facultate\\an3s2\\ii\\proiect\\lastvictor\\proiect-ii-victor-04-stabil\\proiect-ii-victor-04-stabil\\proiectii\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|solutionrelative:proiectii\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C686D350-0A4F-4CB4-A25A-C9CDD5A59870}|ProiectII\\ProiectII.csproj|c:\\users\\sergiu\\desktop\\facultate\\an3s2\\ii\\proiect\\lastvictor\\proiect-ii-victor-04-stabil\\proiect-ii-victor-04-stabil\\proiectii\\controllers\\adminusercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -271,6 +275,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "ApplicationUser.cs",
+              "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Models\\ApplicationUser.cs",
+              "RelativeDocumentMoniker": "ProiectII\\Models\\ApplicationUser.cs",
+              "ToolTip": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Models\\ApplicationUser.cs",
+              "RelativeToolTip": "ProiectII\\Models\\ApplicationUser.cs",
+              "ViewState": "AgIAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-20T09:11:53.743Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Adoption.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Models\\Adoption.cs",
               "RelativeDocumentMoniker": "ProiectII\\Models\\Adoption.cs",
@@ -283,7 +300,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "ReportStatus.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Models\\ReportStatus.cs",
               "RelativeDocumentMoniker": "ProiectII\\Models\\ReportStatus.cs",
@@ -291,12 +308,11 @@
               "RelativeToolTip": "ProiectII\\Models\\ReportStatus.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-14T06:58:18.967Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-14T06:58:18.967Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Status.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Models\\Status.cs",
               "RelativeDocumentMoniker": "ProiectII\\Models\\Status.cs",
@@ -304,12 +320,11 @@
               "RelativeToolTip": "ProiectII\\Models\\Status.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-14T06:58:15.713Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-14T06:58:15.713Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Views\\Reports\\Index.cshtml",
               "RelativeDocumentMoniker": "ProiectII\\Views\\Reports\\Index.cshtml",
@@ -317,12 +332,11 @@
               "RelativeToolTip": "ProiectII\\Views\\Reports\\Index.cshtml",
               "ViewState": "AgIAADcAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-05-14T06:53:41.679Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-14T06:53:41.679Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "fox-theme.css",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\wwwroot\\css\\fox-theme.css",
               "RelativeDocumentMoniker": "ProiectII\\wwwroot\\css\\fox-theme.css",
@@ -330,16 +344,11 @@
               "RelativeToolTip": "ProiectII\\wwwroot\\css\\fox-theme.css",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-05-14T06:53:27.286Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+              "WhenOpened": "2026-05-14T06:53:27.286Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "Profile.cshtml",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Views\\Account\\Profile.cshtml",
               "RelativeDocumentMoniker": "ProiectII\\Views\\Account\\Profile.cshtml",
@@ -347,12 +356,11 @@
               "RelativeToolTip": "ProiectII\\Views\\Account\\Profile.cshtml",
               "ViewState": "AgIAAF4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-05-14T06:14:47.005Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-14T06:14:47.005Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "site.css",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\wwwroot\\css\\site.css",
               "RelativeDocumentMoniker": "ProiectII\\wwwroot\\css\\site.css",
@@ -364,19 +372,24 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 1,
               "Title": "AccountController.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Controllers\\AccountController.cs",
               "RelativeDocumentMoniker": "ProiectII\\Controllers\\AccountController.cs",
               "ToolTip": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Controllers\\AccountController.cs",
               "RelativeToolTip": "ProiectII\\Controllers\\AccountController.cs",
-              "ViewState": "AgIAAFwAAAAAAAAAAAAuwHMAAABDAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHMAAABDAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-10T14:53:05.258Z"
+              "WhenOpened": "2026-05-10T14:53:05.258Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "DashboardController.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Controllers\\DashboardController.cs",
               "RelativeDocumentMoniker": "ProiectII\\Controllers\\DashboardController.cs",
@@ -388,7 +401,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "UserController.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "ProiectII\\Controllers\\UserController.cs",
@@ -400,7 +413,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "AuthController.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "ProiectII\\Controllers\\AuthController.cs",
@@ -412,7 +425,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "ReportsController.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Controllers\\ReportsController.cs",
               "RelativeDocumentMoniker": "ProiectII\\Controllers\\ReportsController.cs",
@@ -424,7 +437,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "FileStorageService.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Services\\UtilityServices\\FileStorageService.cs",
               "RelativeDocumentMoniker": "ProiectII\\Services\\UtilityServices\\FileStorageService.cs",
@@ -436,7 +449,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Program.cs",
               "RelativeDocumentMoniker": "ProiectII\\Program.cs",
@@ -448,7 +461,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "AdminUserController.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Controllers\\AdminUserController.cs",
               "RelativeDocumentMoniker": "ProiectII\\Controllers\\AdminUserController.cs",
@@ -460,7 +473,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "FoxController.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Controllers\\FoxController.cs",
               "RelativeDocumentMoniker": "ProiectII\\Controllers\\FoxController.cs",
@@ -472,7 +485,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "Users.cshtml",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Views\\Account\\Users.cshtml",
               "RelativeDocumentMoniker": "ProiectII\\Views\\Account\\Users.cshtml",
@@ -484,7 +497,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "TokenService.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Services\\SecurityIdentity\\TokenService.cs",
               "RelativeDocumentMoniker": "ProiectII\\Services\\SecurityIdentity\\TokenService.cs",
@@ -496,7 +509,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "CommentController.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Controllers\\CommentController.cs",
               "RelativeDocumentMoniker": "ProiectII\\Controllers\\CommentController.cs",
@@ -508,7 +521,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "ILocationRepository.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Interfaces\\ILocationRepository.cs",
               "RelativeDocumentMoniker": "ProiectII\\Interfaces\\ILocationRepository.cs",
@@ -520,7 +533,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "SecurityLog.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Models\\SecurityLog.cs",
               "RelativeDocumentMoniker": "ProiectII\\Models\\SecurityLog.cs",
@@ -532,7 +545,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "FoxService.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Services\\CoreDomain\\FoxService.cs",
               "RelativeDocumentMoniker": "ProiectII\\Services\\CoreDomain\\FoxService.cs",
@@ -544,7 +557,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 24,
               "Title": "ReportService.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Services\\CoreDomain\\ReportService.cs",
               "RelativeDocumentMoniker": "ProiectII\\Services\\CoreDomain\\ReportService.cs",
@@ -556,7 +569,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 25,
               "Title": "EmailService.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Services\\UtilityServices\\EmailService.cs",
               "RelativeDocumentMoniker": "ProiectII\\Services\\UtilityServices\\EmailService.cs",
@@ -568,7 +581,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 26,
               "Title": "AuthService.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Services\\SecurityIdentity\\AuthService.cs",
               "RelativeDocumentMoniker": "ProiectII\\Services\\SecurityIdentity\\AuthService.cs",
@@ -580,7 +593,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 27,
               "Title": "AdoptionService.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Services\\CoreDomain\\AdoptionService.cs",
               "RelativeDocumentMoniker": "ProiectII\\Services\\CoreDomain\\AdoptionService.cs",
@@ -592,7 +605,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "IFoxRepository.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Interfaces\\IFoxRepository.cs",
               "RelativeDocumentMoniker": "ProiectII\\Interfaces\\IFoxRepository.cs",
@@ -604,7 +617,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 28,
               "Title": "CommentService.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Services\\CoreDomain\\CommentService.cs",
               "RelativeDocumentMoniker": "ProiectII\\Services\\CoreDomain\\CommentService.cs",
@@ -616,7 +629,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 29,
               "Title": "IFoxService.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Interfaces\\IFoxService.cs",
               "RelativeDocumentMoniker": "ProiectII\\Interfaces\\IFoxService.cs",
@@ -628,7 +641,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 30,
               "Title": "IReportService.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Interfaces\\IReportService.cs",
               "RelativeDocumentMoniker": "ProiectII\\Interfaces\\IReportService.cs",
@@ -640,7 +653,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 31,
               "Title": "ITokenService.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Interfaces\\ITokenService.cs",
               "RelativeDocumentMoniker": "ProiectII\\Interfaces\\ITokenService.cs",
@@ -652,7 +665,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 32,
               "Title": "IAdoptionService.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Interfaces\\IAdoptionService.cs",
               "RelativeDocumentMoniker": "ProiectII\\Interfaces\\IAdoptionService.cs",
@@ -664,7 +677,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 36,
               "Title": "AdoptionRepository.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Repositories\\AdoptionRepository.cs",
               "RelativeDocumentMoniker": "ProiectII\\Repositories\\AdoptionRepository.cs",
@@ -676,7 +689,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 35,
               "Title": "ICommentRepository.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Interfaces\\ICommentRepository.cs",
               "RelativeDocumentMoniker": "ProiectII\\Interfaces\\ICommentRepository.cs",
@@ -688,7 +701,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 34,
               "Title": "IAuthService.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Interfaces\\IAuthService.cs",
               "RelativeDocumentMoniker": "ProiectII\\Interfaces\\IAuthService.cs",
@@ -700,7 +713,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 37,
               "Title": "LocationRepository.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Repositories\\LocationRepository.cs",
               "RelativeDocumentMoniker": "ProiectII\\Repositories\\LocationRepository.cs",
@@ -712,7 +725,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 33,
               "Title": "IAdoptionRepository.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Interfaces\\IAdoptionRepository.cs",
               "RelativeDocumentMoniker": "ProiectII\\Interfaces\\IAdoptionRepository.cs",
@@ -724,7 +737,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 38,
               "Title": "ReportRepository.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Repositories\\ReportRepository.cs",
               "RelativeDocumentMoniker": "ProiectII\\Repositories\\ReportRepository.cs",
@@ -736,7 +749,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 39,
               "Title": "GenericRepository.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Repositories\\GenericRepository.cs",
               "RelativeDocumentMoniker": "ProiectII\\Repositories\\GenericRepository.cs",
@@ -748,7 +761,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 40,
               "Title": "FoxRepository.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Repositories\\FoxRepository.cs",
               "RelativeDocumentMoniker": "ProiectII\\Repositories\\FoxRepository.cs",
@@ -760,7 +773,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 41,
               "Title": "EnclosureRepository.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Repositories\\EnclosureRepository.cs",
               "RelativeDocumentMoniker": "ProiectII\\Repositories\\EnclosureRepository.cs",
@@ -772,7 +785,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 42,
               "Title": "CommentRepository.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Repositories\\CommentRepository.cs",
               "RelativeDocumentMoniker": "ProiectII\\Repositories\\CommentRepository.cs",
@@ -784,7 +797,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 43,
               "Title": "ICommentService.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Interfaces\\ICommentService.cs",
               "RelativeDocumentMoniker": "ProiectII\\Interfaces\\ICommentService.cs",
@@ -796,7 +809,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 44,
               "Title": "IGenericRepository.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Interfaces\\IGenericRepository.cs",
               "RelativeDocumentMoniker": "ProiectII\\Interfaces\\IGenericRepository.cs",
@@ -808,7 +821,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 45,
               "Title": "docker-compose.yml",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\docker-compose.yml",
               "RelativeDocumentMoniker": "ProiectII\\docker-compose.yml",
@@ -820,7 +833,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 47,
               "Title": "IReportRepository.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Interfaces\\IReportRepository.cs",
               "RelativeDocumentMoniker": "ProiectII\\Interfaces\\IReportRepository.cs",
@@ -832,7 +845,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 46,
               "Title": "IEnclosureRepository.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Interfaces\\IEnclosureRepository.cs",
               "RelativeDocumentMoniker": "ProiectII\\Interfaces\\IEnclosureRepository.cs",
@@ -844,7 +857,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 48,
               "Title": "IFileStorageService.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Interfaces\\IFileStorageService.cs",
               "RelativeDocumentMoniker": "ProiectII\\Interfaces\\IFileStorageService.cs",
@@ -856,7 +869,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 49,
               "Title": "IEmailService.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Interfaces\\IEmailService.cs",
               "RelativeDocumentMoniker": "ProiectII\\Interfaces\\IEmailService.cs",
@@ -868,7 +881,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 50,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Views\\Foxes\\Index.cshtml",
               "RelativeDocumentMoniker": "ProiectII\\Views\\Foxes\\Index.cshtml",
@@ -880,7 +893,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 51,
               "Title": "DbInitializer.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Data\\DbInitializer.cs",
               "RelativeDocumentMoniker": "ProiectII\\Data\\DbInitializer.cs",
@@ -892,7 +905,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 52,
               "Title": "oldDbInitializer.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Data\\oldDbInitializer.cs",
               "RelativeDocumentMoniker": "ProiectII\\Data\\oldDbInitializer.cs",
@@ -904,7 +917,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 53,
               "Title": "MappingProfile.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Mappings\\MappingProfile.cs",
               "RelativeDocumentMoniker": "ProiectII\\Mappings\\MappingProfile.cs",
@@ -916,7 +929,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
+              "DocumentIndex": 54,
               "Title": "RecentActivityDto.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\DTO\\RecentActivityDto.cs",
               "RelativeDocumentMoniker": "ProiectII\\DTO\\RecentActivityDto.cs",
@@ -928,7 +941,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 54,
+              "DocumentIndex": 55,
               "Title": "DashboardStatsDto.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\DTO\\DashboardStatsDto.cs",
               "RelativeDocumentMoniker": "ProiectII\\DTO\\DashboardStatsDto.cs",
@@ -940,7 +953,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 55,
+              "DocumentIndex": 56,
               "Title": "HomeController.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "ProiectII\\Controllers\\HomeController.cs",
@@ -952,7 +965,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 56,
+              "DocumentIndex": 57,
               "Title": "FoxesController.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Controllers\\FoxesController.cs",
               "RelativeDocumentMoniker": "ProiectII\\Controllers\\FoxesController.cs",
@@ -964,7 +977,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 57,
+              "DocumentIndex": 58,
               "Title": "ReferenceDataController.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Controllers\\ReferenceDataController.cs",
               "RelativeDocumentMoniker": "ProiectII\\Controllers\\ReferenceDataController.cs",
@@ -976,7 +989,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 58,
+              "DocumentIndex": 59,
               "Title": "AdoptionController.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Controllers\\AdoptionController.cs",
               "RelativeDocumentMoniker": "ProiectII\\Controllers\\AdoptionController.cs",
@@ -988,7 +1001,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 59,
+              "DocumentIndex": 60,
               "Title": "auth.js",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\wwwroot\\js\\auth.js",
               "RelativeDocumentMoniker": "ProiectII\\wwwroot\\js\\auth.js",
@@ -1000,7 +1013,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 60,
+              "DocumentIndex": 61,
               "Title": "site.js",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\wwwroot\\js\\site.js",
               "RelativeDocumentMoniker": "ProiectII\\wwwroot\\js\\site.js",
@@ -1012,7 +1025,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 61,
+              "DocumentIndex": 62,
               "Title": "Enclosure.cs",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII\\Models\\Enclosure.cs",
               "RelativeDocumentMoniker": "ProiectII\\Models\\Enclosure.cs",
@@ -1024,7 +1037,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 62,
+              "DocumentIndex": 63,
               "Title": ".filenesting.json",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\.filenesting.json",
               "RelativeDocumentMoniker": ".filenesting.json",
@@ -1036,7 +1049,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 63,
+              "DocumentIndex": 64,
               "Title": "ProiectII.Tests.csproj",
               "DocumentMoniker": "C:\\Users\\Sergiu\\Desktop\\Facultate\\An3s2\\II\\Proiect\\LastVictor\\Proiect-II-Victor-04-stabil\\Proiect-II-Victor-04-stabil\\ProiectII.Tests\\ProiectII.Tests.csproj",
               "RelativeDocumentMoniker": "ProiectII.Tests\\ProiectII.Tests.csproj",

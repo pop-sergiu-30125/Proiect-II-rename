@@ -19,6 +19,8 @@ namespace ProiectII.DTO.AuthAccount
 
         public string? ProfilePictureUrl { get; set; }
 
+        public DateTime LastLogin { get; set; }
+
         public IFormFile? NewProfilePicture { get; set; }
     }
 }

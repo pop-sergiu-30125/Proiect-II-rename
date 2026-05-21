@@ -138,7 +138,8 @@ namespace ProiectII.Controllers
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 BirthDate = user.BornDate,
-                ProfilePictureUrl = user.ProfilePictureUrl
+                ProfilePictureUrl = user.ProfilePictureUrl,
+                LastLogin = user.LastLogin
             };
 
             return View(model);
@@ -196,6 +197,31 @@ namespace ProiectII.Controllers
             }
 
             TempData["SuccessMessage"] = "Profile updated successfully!";
+            return RedirectToAction("Profile");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Microsoft.AspNetCore.Authorization.Authorize]
+        public async Task<IActionResult> ChangePassword(ChangePasswordDto dto)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null) return NotFound();
+
+            if (dto.NewPassword != dto.ConfirmPassword)
+            {
+                TempData["ErrorMessage"] = "New password and confirmation do not match.";
+                return RedirectToAction("Profile");
+            }
+
+            var result = await _userManager.ChangePasswordAsync(user, dto.OldPassword, dto.NewPassword);
+            if (!result.Succeeded)
+            {
+                TempData["ErrorMessage"] = string.Join(", ", result.Errors.Select(e => e.Description));
+                return RedirectToAction("Profile");
+            }
+
+            TempData["SuccessMessage"] = "Password changed successfully!";
             return RedirectToAction("Profile");
         }
     }
