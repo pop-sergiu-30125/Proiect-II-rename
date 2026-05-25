@@ -1,0 +1,176 @@
+/* Fox Shelter Shared Theme Styles - Sky & Fox Edition */
+
+:root {
+    /* Fox Oranges */
+    --fox-orange-light: #fffaf5;
+    --fox-orange-primary: #fb923c;
+    --fox-orange-dark: #ea580c;
+    --fox-orange-muted: #fed7aa;
+    --fox-orange-bg: #fff7ed;
+    
+    /* Sky Blues */
+    --sky-blue-light: #f0f9ff;
+    --sky-blue-primary: #7dd3fc;
+    --sky-blue-dark: #0369a1;
+    --sky-blue-muted: #bae6fd;
+    --sky-blue-bg: #e0f2fe;
+
+    --fox-white: #ffffff;
+    --fox-glass: rgba(255, 255, 255, 0.7);
+}
+
+/* Layout Containers */
+.fox-full-page {
+    background: linear-gradient(135deg, var(--fox-orange-light) 0%, var(--sky-blue-light) 100%);
+    min-height: calc(100vh - 160px);
+    padding: 60px 20px;
+    position: relative;
+}
+
+/* Page Headers - Unique Asymmetric Design */
+.fox-page-header {
+    background: var(--fox-white);
+    padding: 30px;
+    border-radius: 40px 10px 40px 10px;
+    border-left: 8px solid var(--fox-orange-primary);
+    border-right: 8px solid var(--sky-blue-primary);
+    margin-bottom: 50px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+}
+
+.fox-title {
+    color: var(--sky-blue-dark);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.fox-subtitle {
+    color: var(--fox-orange-dark);
+    font-weight: 600;
+    opacity: 0.9;
+}
+
+/* Card & Containers - Glassmorphism touch */
+.fox-card {
+    background-color: var(--fox-white);
+    border-radius: 24px;
+    padding: 35px;
+    box-shadow: 0 15px 35px rgba(3, 105, 161, 0.08);
+    border: 1px solid var(--sky-blue-muted);
+    transition: transform 0.3s ease;
+}
+
+.fox-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Tables - Two-tone header */
+.fox-table-container {
+    background-color: var(--fox-white);
+    border-radius: 24px;
+    border: 1px solid var(--sky-blue-muted);
+    box-shadow: 0 15px 35px rgba(3, 105, 161, 0.08);
+    overflow: hidden;
+}
+
+.fox-table thead th {
+    background: linear-gradient(to right, var(--fox-orange-bg), var(--sky-blue-bg));
+    color: var(--sky-blue-dark);
+    border-bottom: 3px solid var(--sky-blue-primary);
+    font-weight: 800;
+    padding: 20px 15px;
+}
+
+.fox-table tbody td {
+    padding: 20px 15px;
+    vertical-align: middle;
+    border-bottom: 1px solid var(--sky-blue-light);
+}
+
+/* Buttons - Gradient style */
+.btn-fox-primary {
+    background: linear-gradient(135deg, var(--fox-orange-primary) 0%, var(--fox-orange-dark) 100%);
+    border: none;
+    color: var(--fox-white);
+    font-weight: 800;
+    padding: 12px 35px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(234, 88, 12, 0.3);
+    transition: all 0.3s ease;
+}
+
+.btn-fox-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(234, 88, 12, 0.4);
+    color: var(--fox-white);
+}
+
+.btn-fox-outline {
+    color: var(--sky-blue-dark);
+    border: 2px solid var(--sky-blue-primary);
+    background-color: transparent;
+    font-weight: 700;
+    padding: 10px 30px;
+    border-radius: 12px;
+}
+
+.btn-fox-outline:hover {
+    background-color: var(--sky-blue-bg);
+    color: var(--sky-blue-dark);
+    border-color: var(--sky-blue-dark);
+}
+
+/* Status & Badges */
+.fox-pill {
+    padding: 8px 16px;
+    border-radius: 12px;
+    font-weight: 800;
+    font-size: 0.7rem;
+    display: inline-block;
+    letter-spacing: 0.05em;
+}
+
+.fox-pill-warning {
+    background-color: var(--fox-orange-bg);
+    color: var(--fox-orange-dark);
+    border: 1px solid var(--fox-orange-muted);
+}
+
+.fox-pill-success {
+    background-color: var(--sky-blue-bg);
+    color: var(--sky-blue-dark);
+    border: 1px solid var(--sky-blue-muted);
+}
+
+.fox-id-badge {
+    background-color: var(--sky-blue-bg);
+    color: var(--sky-blue-dark);
+    font-family: 'Courier New', Courier, monospace;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-weight: 900;
+}
+
+/* Profile Specific */
+.img-fox-profile {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border: 8px solid var(--fox-white);
+    box-shadow: 0 10px 25px rgba(3, 105, 161, 0.15);
+}
+
+.initials-fox-profile {
+    width: 200px;
+    height: 200px;
+    font-size: 72px;
+    background: linear-gradient(135deg, var(--sky-blue-primary) 0%, var(--sky-blue-dark) 100%);
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 8px solid var(--fox-white);
+    box-shadow: 0 10px 25px rgba(3, 105, 161, 0.15);
+}

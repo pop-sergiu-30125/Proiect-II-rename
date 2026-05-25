@@ -1,0 +1,219 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Fox</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+    <style>
+            #map {
+                height: 260px;
+                cursor: crosshair;
+                border-radius: 8px;
+                border: 1px solid #ddd;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="container mt-5">
+
+        <h2>Add Fox 🦊</h2>
+
+        <div id="msg"></div>
+
+        <div class="mb-3">
+            <label>Name *</label>
+            <input class="form-control" id="name" />
+        </div>
+
+        <div class="mb-3">
+            <label>Description *</label>
+            <textarea class="form-control" id="description"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label>Status *</label>
+            <select class="form-control" id="status">
+                <option value="">-- Select --</option>
+            </select>
+        </div>
+
+        <div class="mb-2">
+            <label>📍 Click on map OR enter coordinates manually (REQUIRED)</label>
+            <div id="map"></div>
+        </div>
+
+        <div class="row mb-3 mt-2">
+
+            <div class="col">
+                <label>Latitude *</label>
+                <input class="form-control" id="lat" />
+            </div>
+
+            <div class="col">
+                <label>Longitude *</label>
+                <input class="form-control" id="lng" />
+            </div>
+
+        </div>
+
+        <div class="mb-3">
+            <label>Image</label>
+            <input type="file" class="form-control" id="image" />
+        </div>
+
+        <button class="btn btn-success w-100" onclick="createFox()">
+            Save Fox
+        </button>
+
+    </div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+
+        const API_BASE = "https://localhost:8443";
+
+        let map;
+        let marker = null;
+
+        /* INIT PAGE */
+        async function initAddFox() {
+
+        try {
+
+        // LOAD STATUSES
+        // DUPĂ (cale relativă):
+        const statuses = await fetch(
+        `/api/ReferenceData/fox-statuses`
+        ).then(r => r.json());
+
+        const statusSelect =
+        document.getElementById("status");
+
+        statuses.forEach(s => {
+
+        const id = s.id || s.Id;
+        const name = s.name || s.Name;
+
+        statusSelect.innerHTML +=
+        `<option value="${id}">${name}</option>`;
+        });
+
+        // LEAFLET MAP
+        map = L.map('map').setView([45.9432, 24.9668], 6);
+
+        L.tileLayer(
+        'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        {
+        attribution: '© OpenStreetMap contributors'
+        }
+        ).addTo(map);
+
+        // CLICK ON MAP
+        map.on("click", function (e) {
+
+        const lat = e.latlng.lat.toFixed(5);
+        const lng = e.latlng.lng.toFixed(5);
+
+        document.getElementById("lat").value = lat;
+        document.getElementById("lng").value = lng;
+
+        if (marker) {
+        map.removeLayer(marker);
+        }
+
+        marker = L.marker([lat, lng]).addTo(map);
+        });
+
+        } catch (err) {
+        showMsg(err.message, "danger");
+        }
+        }
+
+        /* CREATE FOX */
+        async function createFox() {
+
+        const name =
+        document.getElementById("name").value.trim();
+
+        const description =
+        document.getElementById("description").value.trim();
+
+        const statusId =
+        document.getElementById("status").value;
+
+        const lat =
+        document.getElementById("lat").value.trim();
+
+        const lng =
+        document.getElementById("lng").value.trim();
+
+        /* VALIDATION */
+        if (!name)
+        return showMsg("Name is required", "danger");
+
+        if (!description)
+        return showMsg("Description is required", "danger");
+
+        if (!statusId)
+        return showMsg("Status is required", "danger");
+
+        if (!lat || !lng)
+        return showMsg("You must select coordinates", "danger");
+
+        const fd = new FormData();
+
+        fd.append("Name", name);
+        fd.append("Description", description);
+        fd.append("StatusId", statusId);
+        fd.append("FirstSeenLatitude", lat);
+        fd.append("FirstSeenLongitude", lng);
+
+        
+        const file = document.getElementById("image").files[0];
+
+        if (file) {
+        fd.append("Image", file); 
+        }
+
+
+        try {
+
+        const res = await fetch(`/api/Fox`, {
+        method: "POST",
+        body: fd,
+        credentials: "include"
+        });
+
+        if (!res.ok) {
+        const err = await res.text();
+        throw new Error(err || "Error creating fox");
+        }
+
+        showMsg("Fox created successfully 🦊", "success");
+
+        setTimeout(() => {
+        window.location.href = "/Foxes";
+        }, 800);
+
+        } catch (err) {
+        showMsg(err.message, "danger");
+        }
+        }
+
+        /* MESSAGE */
+        function showMsg(text, type) {
+        document.getElementById("msg").innerHTML =
+        `<div class="alert alert-${type}">${text}</div>`;
+        }
+
+        /* START */
+        initAddFox();
+
+    </script>
+</body>
+</html>

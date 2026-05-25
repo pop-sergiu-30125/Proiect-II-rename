@@ -1,0 +1,372 @@
+@model ProiectII.DTO.AdminSystem.UserManagementDto
+@{
+    ViewData["Title"] = "User Management";
+}
+
+<div class="container mt-5">
+
+    <h2 class="mb-4">User Management (Admin Only)</h2>
+    <p>Manage system user accounts.</p>
+
+    <div id="admin-content">
+        <div class="text-center my-5">
+            <div class="spinner-border text-primary"></div>
+            <p class="mt-2">Loading users...</p>
+        </div>
+    </div>
+
+    <h4 class="mt-5 mb-3">Registered Users</h4>
+
+    <div class="mb-3">
+        <input type="text"
+               id="table-search"
+               class="form-control"
+               placeholder="Search by name or email..."
+               oninput="filterTable()" />
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover align-middle" id="users-table">
+            <thead class="table-dark">
+                <tr>
+                    <th>Email</th>
+                    <th>Full Name</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                    <th>Deactivation Reason</th>
+                    <th>Last Login</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model.Users)
+                {
+                    <tr>
+                        <td>@user.Email</td>
+                        <td>@user.FullName</td>
+                        <td>@user.Roles</td>
+                        <td>@(user.IsActive ? "Active" : "Inactive")</td>
+                        <td>
+                            @(user.IsActive ? "-" :
+                                (string.IsNullOrWhiteSpace(user.DeactivationReason)
+                                    ? "No reason"
+                                    : user.DeactivationReason))
+                        </td>
+                        <td>@user.LastLogin.ToString("g")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+
+        let usersCache = [];
+
+        /* API */
+        async function api(method, url, body = null) {
+
+            const options = {
+                method,
+                headers: { "Content-Type": "application/json" }
+            };
+
+            if (body) options.body = JSON.stringify(body);
+
+            const res = await fetch(url, options);
+
+            if (!res.ok) throw new Error(await res.text());
+
+            return res.status === 204 ? {} : res.json();
+        }
+
+        /* INIT */
+        document.addEventListener("DOMContentLoaded", loadUsers);
+
+        async function loadUsers() {
+
+            usersCache = await api("GET", "/api/AdminUser/all") || [];
+
+            document.getElementById("admin-content").innerHTML = `
+
+                <div id="msg"></div>
+
+                <div class="row">
+
+                    <!-- EDIT USER -->
+                    <div class="col-md-6">
+
+                        <div class="card">
+
+                            <div class="card-header bg-primary text-white">
+                                Edit User
+                            </div>
+
+                            <div class="card-body">
+
+                                <label>Select User</label>
+
+                                <!-- TRIGGER -->
+                                <div class="form-control"
+                                     style="cursor:pointer;"
+                                     onclick="toggleUserPanel()"
+                                     id="user-select-box">
+                                    Click to select user
+                                </div>
+
+                                <!-- FOLDABLE PANEL -->
+                                <div id="user-panel"
+                                     style="display:none;
+                                            border:1px solid #ddd;
+                                            margin-top:5px;
+                                            padding:10px;
+                                            background:#fff;">
+
+                                    <!-- CLOSE -->
+                                    <div style="text-align:right;">
+                                        <span style="cursor:pointer;font-weight:bold;"
+                                              onclick="toggleUserPanel()">X</span>
+                                    </div>
+
+                                    <!-- SEARCH -->
+                                    <input type="text"
+                                           id="user-search"
+                                           class="form-control"
+                                           placeholder="Search user..."
+                                           oninput="filterUsers()" />
+
+                                    <!-- LIST -->
+                                    <div id="user-results"
+                                         style="max-height:200px;
+                                                overflow:auto;
+                                                margin-top:10px;">
+                                    </div>
+
+                                </div>
+
+                                <input type="hidden" id="u-id" />
+
+                                <hr />
+
+                                <label>Role</label>
+                                <select id="u-role" class="form-control">
+                                    <option>User</option>
+                                    <option>Employee</option>
+                                    <option>Admin</option>
+                                </select>
+
+                                <button class="btn btn-primary mt-2" onclick="changeRole()">
+                                    Apply Role
+                                </button>
+
+                                <hr />
+
+                                <label>Status</label>
+
+                                <select id="u-active" class="form-control">
+                                    <option value="true">Active</option>
+                                    <option value="false">Inactive</option>
+                                </select>
+
+                                <input id="u-reason"
+                                       class="form-control mt-2"
+                                       placeholder="Deactivation reason" />
+
+                                <button class="btn btn-secondary mt-2" onclick="changeStatus()">
+                                    Apply Status
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CREATE USER -->
+                    <div class="col-md-6">
+
+                        <div class="card">
+
+                            <div class="card-header bg-success text-white">
+                                Create User
+                            </div>
+
+                            <div class="card-body">
+
+                                <!-- ROW 1 -->
+                                <div class="row mb-2">
+                                    <div class="col-md-6">
+                                        <input id="nu-email" class="form-control" placeholder="Email" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input id="nu-pwd" type="password" class="form-control" placeholder="Password" />
+                                    </div>
+                                </div>
+
+                                <!-- ROW 2 -->
+                                <div class="row mb-2">
+                                    <div class="col-md-6">
+                                        <input id="nu-first" class="form-control" placeholder="First Name" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input id="nu-last" class="form-control" placeholder="Last Name" />
+                                    </div>
+                                </div>
+
+                                <!-- ROW 3 -->
+                                <div class="row mb-2 align-items-center">
+                                    <div class="col-md-8">
+                                        <select id="nu-role" class="form-control">
+                                            <option value="">Select Role</option>
+                                            <option>User</option>
+                                            <option>Employee</option>
+                                            <option>Admin</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <button class="btn btn-success w-100"
+                                                onclick="createUserDirect()">
+                                            Create
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            `;
+        }
+
+        /* TOGGLE PANEL */
+        function toggleUserPanel() {
+
+            const panel = document.getElementById("user-panel");
+
+            if (!panel) return;
+
+            panel.style.display =
+                panel.style.display === "none" || panel.style.display === ""
+                    ? "block"
+                    : "none";
+
+            if (panel.style.display === "block") {
+                renderUsers(usersCache);
+            }
+        }
+
+        /* RENDER LIST */
+        function renderUsers(list) {
+
+            const box = document.getElementById("user-results");
+
+            box.innerHTML = "";
+
+            list.forEach(u => {
+
+                const id = u.id || u.Id || u.userId || u.UserId;
+                const text = `${u.firstName || ''} ${u.lastName || ''} ${u.email || u.Email}`;
+
+                const div = document.createElement("div");
+
+                div.innerText = text;
+
+                div.style.padding = "6px";
+                div.style.cursor = "pointer";
+                div.style.borderBottom = "1px solid #eee";
+
+                div.onclick = function () {
+
+                    document.getElementById("u-id").value = id;
+                    document.getElementById("user-select-box").innerText = text;
+
+                    toggleUserPanel();
+                };
+
+                box.appendChild(div);
+            });
+        }
+
+        /* SEARCH */
+        function filterUsers() {
+
+            const value = document.getElementById("user-search").value.toLowerCase();
+
+            const filtered = usersCache.filter(u => {
+
+                const text = `${u.firstName || ''} ${u.lastName || ''} ${u.email || u.Email}`;
+
+                return text.toLowerCase().includes(value);
+            });
+
+            renderUsers(filtered);
+        }
+
+        /* TABLE SEARCH */
+        function filterTable() {
+
+            const value = document.getElementById("table-search").value.toLowerCase();
+
+            document.querySelectorAll("#users-table tbody tr").forEach(r => {
+                r.style.display = r.innerText.toLowerCase().includes(value)
+                    ? ""
+                    : "none";
+            });
+        }
+
+        /* CREATE USER */
+        async function createUserDirect() {
+
+            const email = document.getElementById("nu-email").value;
+            const pwd = document.getElementById("nu-pwd").value;
+            const first = document.getElementById("nu-first").value;
+            const last = document.getElementById("nu-last").value;
+            const role = document.getElementById("nu-role").value;
+
+            if (!email || !pwd || !first || !last || !role) {
+                alert("All fields are required");
+                return;
+            }
+
+            await api("POST", "/api/AdminUser", {
+                email,
+                password: pwd,
+                firstName: first,
+                lastName: last,
+                role
+            });
+
+            location.reload();
+        }
+
+        /* ACTIONS */
+        async function changeRole() {
+
+            const userId = document.getElementById("u-id").value;
+            if (!userId) return alert("Select a user");
+
+            await api("PUT", "/api/AdminUser/update-role", {
+                userId,
+                newRole: document.getElementById("u-role").value
+            });
+
+            location.reload();
+        }
+
+        async function changeStatus() {
+
+            const userId = document.getElementById("u-id").value;
+            if (!userId) return alert("Select a user");
+
+            await api("PUT", "/api/AdminUser/update-status", {
+                userId,
+                isActive: document.getElementById("u-active").value === "true",
+                reason: document.getElementById("u-reason").value
+            });
+
+            location.reload();
+        }
+
+    </script>
+}

@@ -1,0 +1,339 @@
+@{
+    ViewData["Title"] = "Map";
+}
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+<div class="container mt-5">
+
+    <div class="text-center mb-4">
+        <h1 class="display-5 fw-bold">Fox Activity Map 🦊</h1>
+        <p class="lead">
+            This map highlights rescued fox locations, habitat areas, and sensitive wildlife zones.
+        </p>
+    </div>
+
+    <div class="row mb-4">
+
+        <div class="col-md-6">
+            <div class="bg-white p-4 rounded shadow-sm h-100">
+                <h4 class="mb-3">Map purpose</h4>
+
+                <p class="mb-2">
+                    The map helps users understand where foxes have been found,
+                    where fox activity is more common,
+                    and which areas may require protection.
+                </p>
+
+                <p class="mb-0 text-muted">
+                    <em>Live data directly from database.</em>
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="bg-white p-4 rounded shadow-sm h-100">
+
+                <h5 class="mb-3">Legend</h5>
+
+                <ul style="list-style:none; padding-left:0;" class="mb-0">
+
+                    <li class="mb-2">
+                        <img src="https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png"
+                             style="width:16px; margin-right:8px;" />
+                        <strong>Healthy / Available</strong>
+                    </li>
+
+                    <li class="mb-2">
+                        <img src="https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png"
+                             style="width:16px; margin-right:8px;" />
+                        <strong>Treatment / Observation</strong>
+                    </li>
+
+                    <li>
+                        <img src="https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-grey.png"
+                             style="width:16px; margin-right:8px;" />
+                        <strong>Unknown / Other</strong>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="bg-white p-3 rounded shadow-sm mb-4">
+        <div id="map"
+             style="height:500px; width:100%; border-radius:10px; z-index:1;">
+        </div>
+    </div>
+
+    <div class="bg-white p-4 rounded shadow-sm">
+
+        <h3 class="mb-3"
+            style="font-family:'Playfair Display', serif;">
+            Public Fox Coordinates
+        </h3>
+
+        <div class="table-responsive">
+
+            <table class="table table-striped table-hover align-middle mb-0"
+                   id="markers-table">
+
+                <thead class="table-dark">
+                    <tr>
+                        <th>Name</th>
+                        <th>Latitude</th>
+                        <th>Longitude</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td colspan="4" class="text-center py-4">
+                            Loading live data...
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", async function () {
+
+        // INIT MAP
+        const map = L.map('map');
+
+        L.tileLayer(
+        'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        {
+        attribution: '© OpenStreetMap contributors'
+        }
+        ).addTo(map);
+
+        // ICON FACTORY
+        const getIcon = (color) => new L.Icon({
+        iconUrl:
+        `https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-${color}.png`,
+        shadowUrl:
+        'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+        });
+
+        const icons = {
+        healthy: getIcon('green'),
+        treatment: getIcon('orange'),
+        other: getIcon('grey')
+        };
+
+        const tbody = document.querySelector('#markers-table tbody');
+
+        const bounds = [];
+
+        try {
+
+        const response = await fetch('/api/Fox/map-markers');
+
+        if (!response.ok)
+        throw new Error(`HTTP ${response.status}`);
+
+        const markersData = await response.json();
+
+        tbody.innerHTML = '';
+
+        if (!markersData || markersData.length === 0) {
+
+        tbody.innerHTML = `
+        <tr>
+        <td colspan="4"
+        class="text-center text-muted py-4">
+        No foxes available.
+        </td>
+        </tr>
+        `;
+
+        return;
+        }
+
+        markersData.forEach(m => {
+
+        const lat = parseFloat(m.latitude || m.Latitude);
+        const lng = parseFloat(m.longitude || m.Longitude);
+
+        if (isNaN(lat) || isNaN(lng))
+        return;
+
+        bounds.push([lat, lng]);
+
+        const name =
+        m.name || m.Name || 'Unknown Fox';
+
+        const status =
+        m.statusName || m.StatusName || 'Unknown';
+
+        const foxId =
+        m.id || m.Id || m.foxId;
+
+        // STATUS ICON
+        let currentIcon = icons.other;
+
+        const s = status.toLowerCase();
+
+        if (s.includes('healthy') || s.includes('available'))
+        currentIcon = icons.healthy;
+
+        else if (
+        s.includes('treatment') ||
+        s.includes('observation') ||
+        s.includes('quarantined')
+        )
+        currentIcon = icons.treatment;
+
+        // TABLE ROW
+        tbody.innerHTML += `
+        <tr>
+        <td><strong>${name}</strong></td>
+        <td>${lat.toFixed(5)}</td>
+        <td>${lng.toFixed(5)}</td>
+        <td>
+        <span class="badge ${getStatusBadgeClass(status)}">
+        ${status}
+        </span>
+        </td>
+        </tr>
+        `;
+
+        // IMAGE
+        const imgHtml = m.imageUrl
+        ? `
+        <img
+        src="/uploads/foxes/${m.imageUrl}"
+        style="
+        width:100%;
+        height:100px;
+        object-fit:cover;
+        border-radius:6px;
+        margin-bottom:6px;
+        ">
+        `
+        : '';
+
+        // MARKER
+        L.marker([lat, lng], { icon: currentIcon })
+        .addTo(map)
+        .bindPopup(`
+        <div style="
+        text-align:center;
+        min-width:140px;
+        font-family:'DM Sans', sans-serif;
+        ">
+
+        ${imgHtml}
+
+        <b>${name}</b><br>
+
+        <span class="badge ${getStatusBadgeClass(status)}">
+        ${status}
+        </span>
+
+        <br>
+
+        <a href="/Foxes/Details/${foxId}"
+        class="btn btn-sm btn-outline-dark mt-2"
+        style="width:100%;">
+        View Details
+        </a>
+
+        </div>
+        `);
+
+        });
+
+        // AUTO FIT MAP TO ALL MARKERS
+        if (bounds.length > 0) {
+
+        let minLat = bounds[0][0];
+        let maxLat = bounds[0][0];
+
+        let minLng = bounds[0][1];
+        let maxLng = bounds[0][1];
+
+        bounds.forEach(p => {
+
+        if (p[0] < minLat) minLat = p[0];
+        if (p[0] > maxLat) maxLat = p[0];
+
+        if (p[1] < minLng) minLng = p[1];
+        if (p[1] > maxLng) maxLng = p[1];
+
+        });
+
+        const latPad = (maxLat - minLat) * 0.1 || 0.01;
+        const lngPad = (maxLng - minLng) * 0.1 || 0.01;
+
+        map.fitBounds([
+        [minLat - latPad, minLng - lngPad],
+        [maxLat + latPad, maxLng + lngPad]
+        ]);
+        }
+
+        }
+        catch (error) {
+
+        console.error(error);
+
+        tbody.innerHTML = `
+        <tr>
+        <td colspan="4"
+        class="text-center text-danger py-4">
+        Error loading map:
+        ${error.message}
+        </td>
+        </tr>
+        `;
+        }
+
+        });
+
+        // BADGE COLORS
+        function getStatusBadgeClass(status) {
+
+        if (!status)
+        return 'bg-secondary';
+
+        const s = status.toLowerCase();
+
+        if (
+        s.includes('healthy') ||
+        s.includes('available')
+        )
+        return 'bg-success';
+
+        if (
+        s.includes('treatment') ||
+        s.includes('observation') ||
+        s.includes('quarantined')
+        )
+        return 'bg-warning text-dark';
+
+        return 'bg-secondary';
+        }
+
+    </script>
+
+}

@@ -1,0 +1,117 @@
+@model ProiectII.DTO.CommentsReport.CreateReportDto
+@using ProiectII.Interfaces
+@using System.Security.Claims
+@inject IReportService ReportService
+
+@{
+    ViewData["Title"] = "Report a Sighting";
+}
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+<div class="form-container">
+    @if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+    {
+        <div class="text-end mb-3">
+            <a asp-action="Index" class="btn btn-outline-primary">Manage All Reports</a>
+        </div>
+    }
+
+    <h2 class="form-title text-center">Report a Fox Sighting</h2>
+
+    <form asp-action="Create" method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="mb-4">
+            <label asp-for="Description" class="form-label">Description</label>
+            <textarea asp-for="Description" class="form-control" rows="4" placeholder="Tell us what you saw..."></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="mb-4">
+            <label class="form-label text-muted">📍 Click on the map to pinpoint the location</label>
+            <div id="map" style="height: 280px; width: 100%; border-radius: 8px; border: 1px solid #ced4da;"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <label asp-for="Latitude" class="form-label">Latitude</label>
+                <input asp-for="Latitude" class="form-control bg-light" type="number" step="any" placeholder="e.g. 44.4268" readonly />
+                <span asp-validation-for="Latitude" class="text-danger"></span>
+            </div>
+            <div class="col-md-6 mb-4">
+                <label asp-for="Longitude" class="form-label">Longitude</label>
+                <input asp-for="Longitude" class="form-control bg-light" type="number" step="any" placeholder="e.g. 26.1025" readonly />
+                <span asp-validation-for="Longitude" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <label asp-for="ImageFile" class="form-label">Photo (Optional)</label>
+            <input asp-for="ImageFile" class="form-control" type="file" accept="image/*" />
+            <span asp-validation-for="ImageFile" class="text-danger"></span>
+        </div>
+
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-custom">Submit Sighting</button>
+        </div>
+    </form>
+</div>
+
+@if (User.Identity != null && User.Identity.IsAuthenticated)
+{
+    var currentUserEmail = User.FindFirst(ClaimTypes.Email)?.Value;
+    var allReports = await ReportService.GetAllActiveReportsAsync();
+    var myReports = allReports.Where(r => r.ReporterName == currentUserEmail).OrderByDescending(r => r.CreatedAt).ToList();
+
+    <div class="form-container mt-5">
+        <h3 class="form-title text-center mb-4">My Previous Reports</h3>
+        <div class="table-responsive">
+            @if (myReports.Any())
+            {
+                <table class="table table-hover mt-2">
+                    <thead class="table-light">
+                        <tr>
+                            <th>ID</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var report in myReports)
+                        {
+                            <tr>
+                                <td><strong>#@report.Id</strong></td>
+                                <td>@report.Description</td>
+                                <td>@report.StatusName</td>
+                                <td>@report.CreatedAt.ToString("MMM dd, yyyy")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        var map = L.map('map').setView([46.75, 23.60], 12);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap' }).addTo(map);
+        var marker = null;
+        map.on('click', function (e) {
+        var lat = e.latlng.lat.toFixed(6);
+        var lng = e.latlng.lng.toFixed(6);
+        document.getElementById('Latitude').value = lat;
+        document.getElementById('Longitude').value = lng;
+        if (marker) map.removeLayer(marker);
+        marker = L.marker([lat, lng]).addTo(map);
+        });
+        });
+    </script>
+}

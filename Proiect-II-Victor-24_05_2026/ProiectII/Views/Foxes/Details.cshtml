@@ -1,0 +1,86 @@
+﻿@{
+    ViewData["Title"] = "Fox Details";
+}
+
+<div class="container mt-5">
+    <a href="/Foxes" class="btn btn-link text-decoration-none text-muted p-0 mb-4">
+        &larr; Înapoi la lista de vulpi
+    </a>
+
+    <div id="fox-details-container">
+        <div class="text-center my-5">
+            <div class="spinner-border text-primary" role="status"></div>
+            <p class="mt-2">Se încarcă fișa clinică a vulpii...</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    async function loadSingleFoxDetails() {
+        const container = document.getElementById('fox-details-container');
+
+        // 1. EXTRARE ID DIN URL: window.location.pathname ne dă "/Foxes/Details/1"
+        const urlParts = window.location.pathname.split('/');
+        const foxId = urlParts[urlParts.length - 1]; // Ia ultimul element din URL (ID-ul)
+
+        try {
+            // 2. APEL CĂTRE API-ul tău public folosind ID-ul extras
+            const response = await fetch(`/api/Fox/${foxId}`, {
+                method: 'GET',
+                headers: { 'Accept': 'application/json' }
+            });
+
+            if (!response.ok) throw new Error('Specimenul nu a putut fi găsit în baza de date.');
+
+            const fox = await response.json();
+
+            // 3. INJECTARE ÎN GRAFICA TA BOOTSTRAP
+            container.innerHTML = `
+                <div class="bg-white rounded shadow-sm p-4">
+                    <div class="row">
+                        <div class="col-md-5 text-center">
+                            <img src="${fox.imageUrl || 'default.jpg'}"
+                                 onerror="this.src='https://placehold.co/400x300?text=Fox'"
+                                 class="img-fluid rounded shadow-sm" alt="${fox.name}" style="max-height:300px; object-fit:cover; width:100%;" />
+                        </div>
+                        <div class="col-md-7 text-start">
+                            <h2 class="display-6 fw-bold mb-1">${fox.name}</h2>
+                            <p class="text-muted mb-3">Număr de înregistrare: #${fox.id}</p>
+
+                            <div class="mb-4">
+                                <span class="badge ${getStatusStyle(fox.statusName)} p-2 fs-6">${fox.statusName}</span>
+                            </div>
+
+                            <hr />
+                            <h5 class="fw-bold text-muted">Fișă de observație:</h5>
+                            <p class="mt-2 text-secondary" style="line-height: 1.6;">
+                                ${fox.description || 'Nicio descriere detaliată înregistrată.'}
+                            </p>
+
+                            <div class="d-flex gap-2 mt-5">
+                                <button class="btn btn-success" onclick="alert('Cerere trimisă!')">Formular Adopție</button>
+                                <button class="btn btn-outline-warning" onclick="alert('Raport deschis!')">Raportează Observație</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+        } catch (err) {
+            container.innerHTML = `
+                <div class="alert alert-danger w-100 text-center">
+                    <strong>Eroare:</strong> ${err.message}
+                </div>`;
+        }
+    }
+
+    function getStatusStyle(status) {
+        const s = (status || '').toLowerCase();
+        if (s.includes('healthy')) return 'bg-success';
+        if (s.includes('treatment') || s.includes('quarantined')) return 'bg-warning text-dark';
+        return 'bg-secondary';
+    }
+
+    // Rulăm funcția automat când pagina Details s-a încărcat în browser
+    document.addEventListener('DOMContentLoaded', loadSingleFoxDetails);
+</script>
