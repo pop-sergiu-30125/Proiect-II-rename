@@ -1,0 +1,201 @@
+﻿@model ProiectII.DTO.AuthAccount.UserProfileDto
+
+@{
+    ViewData["Title"] = "Account Settings";
+}
+
+<div class="fox-full-page">
+    <div class="row">
+        <div class="col-12">
+            <div class="fox-page-header">
+                <h2 class="fox-title">
+                    <i class="bi bi-person-gear"></i> Account Settings
+                </h2>
+                <p class="fox-subtitle">
+                    Manage your personal information and profile picture.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+
+        <!-- SIDEBAR -->
+        <div class="col-lg-4">
+            <div class="fox-card text-center py-4">
+
+                <div class="mb-3">
+                    @if (!string.IsNullOrEmpty(Model.ProfilePictureUrl))
+                    {
+                        <img src="@(Model.ProfilePictureUrl.StartsWith("/")
+                                                                 ? Model.ProfilePictureUrl
+                                                                 : "/uploads/users/" + Model.ProfilePictureUrl)"
+                             alt="Profile Picture"
+                             class="rounded-circle img-fox-profile"
+                             style="width: 150px; height: 150px;" />
+                    }
+                    else
+                    {
+                        <div class="rounded-circle initials-fox-profile"
+                             style="width: 150px; height: 150px; font-size: 50px;">
+                            @(Model.FirstName?[0])@(Model.LastName?[0])
+                        </div>
+                    }
+                </div>
+
+                <h4 class="mb-1" style="color: var(--fox-orange-dark);">
+                    @Model.FirstName @Model.LastName
+                </h4>
+
+                <p class="text-muted mb-2">@Model.Email</p>
+
+                <hr class="my-3" />
+
+                <div class="small text-muted mb-3">
+                    Last active:
+                    @(Model.LastLogin == default(DateTime)
+                        ? "-"
+                        : Model.LastLogin.ToString("g"))
+                </div>
+
+                <p class="small text-start mb-0">
+                    Manage your identity and how others see you on Fox Shelter.
+                </p>
+            </div>
+        </div>
+
+        <!-- MAIN -->
+        <div class="col-lg-8">
+
+            <div class="fox-card">
+                <h4 class="mb-4" style="color: var(--fox-orange-dark);">
+                    Personal Information
+                </h4>
+
+                <form asp-action="Profile" method="post" enctype="multipart/form-data">
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                    <div class="row g-3">
+
+                        <div class="col-12">
+                            <label asp-for="Email" class="form-label fw-bold small">Email Address</label>
+                            <input asp-for="Email"
+                                   class="form-control form-control-sm"
+                                   readonly
+                                   style="background-color: #f8f9fa;" />
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="FirstName" class="form-label fw-bold small">First Name</label>
+                            <input asp-for="FirstName"
+                                   class="form-control form-control-sm"
+                                   placeholder="Enter first name" />
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="LastName" class="form-label fw-bold small">Last Name</label>
+                            <input asp-for="LastName"
+                                   class="form-control form-control-sm"
+                                   placeholder="Enter last name" />
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="BirthDate" class="form-label fw-bold small">Birth Date</label>
+                            <input asp-for="BirthDate"
+                                   type="date"
+                                   class="form-control form-control-sm" />
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold small">Last Active</label>
+                            <input value="@(Model.LastLogin == default(DateTime)
+                                                                           ? "-"
+                                                                           : Model.LastLogin.ToString("g"))"
+                                   class="form-control form-control-sm"
+                                   readonly
+                                   style="background-color: #f8f9fa;" />
+                        </div>
+
+                        <div class="col-12">
+                            <label asp-for="NewProfilePicture" class="form-label fw-bold small">
+                                Update Profile Picture
+                            </label>
+
+                            <input asp-for="NewProfilePicture"
+                                   type="file"
+                                   class="form-control form-control-sm"
+                                   accept="image/*" />
+                        </div>
+
+                        <div class="col-12 mt-4 border-top pt-3 text-end">
+                            <a asp-controller="Home"
+                               asp-action="Index"
+                               class="btn btn-fox-outline btn-sm me-2">
+                                Cancel
+                            </a>
+
+                            <button type="submit"
+                                    class="btn btn-fox-primary btn-sm">
+                                Save Changes
+                            </button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+
+            <!-- PASSWORD -->
+            <div class="fox-card mt-4">
+                <h4 class="mb-4" style="color: var(--fox-orange-dark);">
+                    Change Password
+                </h4>
+
+                <form asp-action="ChangePassword" method="post">
+
+                    <div class="row g-3">
+
+                        <div class="col-12">
+                            <label class="form-label fw-bold small">Current Password</label>
+                            <input name="OldPassword"
+                                   type="password"
+                                   class="form-control form-control-sm"
+                                   required />
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold small">New Password</label>
+                            <input name="NewPassword"
+                                   type="password"
+                                   class="form-control form-control-sm"
+                                   required />
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold small">Confirm New Password</label>
+                            <input name="ConfirmPassword"
+                                   type="password"
+                                   class="form-control form-control-sm"
+                                   required />
+                        </div>
+
+                        <div class="col-12 mt-4 text-end">
+                            <button type="submit"
+                                    class="btn btn-fox-primary btn-sm">
+                                Update Password
+                            </button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
