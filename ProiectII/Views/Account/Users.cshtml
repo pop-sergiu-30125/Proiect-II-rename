@@ -1,0 +1,33 @@
+@model ProiectII.ViewModels.UserManagementViewModel
+@{
+    ViewData["Title"] = "User Management";
+}
+
+<div class="container mt-5">
+    <h2>User Management (Admin Only)</h2>
+    <p>Current users in the system:</p>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Status</th>
+                <th>Last Login</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model.Users)
+            {
+                <tr>
+                    <td>@user.Email</td>
+                    <td>@user.FullName</td>
+                    <td>@user.Roles</td>
+                    <td>@(user.IsActive ? "Active" : "Inactive")</td>
+                    <td>@user.LastLogin.ToString("g")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
