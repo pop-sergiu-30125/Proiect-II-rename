@@ -1,80 +1,151 @@
-﻿<div class="container mt-5">
+﻿@{
+    ViewData["Title"] = "Rescued Foxes";
+}
+
+<div class="container mt-5">
     <div class="text-center mb-4">
         <h1 class="display-5 fw-bold">Rescued Foxes 🦊</h1>
-        <p class="lead">See rescued foxes that are registered in the Fox Shelter system.</p>
+        <p class="lead">
+            See rescued foxes that are registered in the Fox Shelter system.
+        </p>
 
-        <!-- BUTTON STAFF -->
-        <div id="admin-actions">
-            @if (User?.Identity?.IsAuthenticated == true &&
-                 (User.IsInRole("Admin") || User.IsInRole("Employee") || User.IsInRole("Staff")))
-            {
-                <a class="btn btn-warning mt-2" href="/Foxes/CreateFox">
-                    + Adaugă vulpe
-                </a>
-            }
-        </div>
+        @if (User?.Identity?.IsAuthenticated == true &&
+                (User.IsInRole("Admin") || User.IsInRole("Employee") || User.IsInRole("Staff")))
+        {
+            <a class="btn btn-warning mt-2" href="/Foxes/CreateFox">
+                + Add fox
+            </a>
+        }
+    </div>
+
+    <div id="loadingMessage" class="alert alert-info text-center">
+        Loading rescued foxes...
+    </div>
+
+    <div id="errorMessage" class="alert alert-danger text-center d-none">
+        Could not load rescued foxes.
     </div>
 
     <div id="fox-container" class="row g-4">
-        <div class="text-center w-100">Loading...</div>
     </div>
 </div>
 
 <script>
-    // ==================== LOAD FOXES ONLY ====================
+    document.addEventListener('DOMContentLoaded', loadFoxes);
+
     async function loadFoxes() {
         const container = document.getElementById('fox-container');
+        const loadingMessage = document.getElementById('loadingMessage');
+        const errorMessage = document.getElementById('errorMessage');
 
         try {
-            const response = await fetch('https://localhost:8443/api/Fox', {
+            const response = await fetch('/api/Fox', {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json'
                 }
             });
 
-            if (!response.ok) throw new Error("Eroare la încărcarea vulpilor");
+            if (!response.ok) {
+                throw new Error('Could not load foxes.');
+            }
 
             const foxes = await response.json();
 
-            container.innerHTML = foxes.map(fox => `
-                <div class="col-md-4">
-                    <div class="bg-white rounded shadow-sm p-4 h-100 text-center">
+            loadingMessage.classList.add('d-none');
+            container.innerHTML = '';
 
-                        <img src="https://localhost:8443${fox.imageUrl}"
-                             class="img-fluid rounded mb-3"
-                             style="height:200px;width:100%;object-fit:cover;" />
-
-                        <h4>${fox.name}</h4>
-
-                        <p class="text-muted">Status: ${fox.statusName}</p>
-
-                        <span class="badge ${getStatusStyle(fox.statusName)} mb-3">
-                            ${fox.statusName}
-                        </span>
-
-                        <div class="mt-2">
-                            <a href="/Foxes/Details/${fox.id}"
-                               class="btn btn-outline-dark btn-sm">
-                                View details
-                            </a>
+            if (!foxes || foxes.length === 0) {
+                container.innerHTML = `
+                    <div class="col-12">
+                        <div class="alert alert-warning text-center">
+                            No rescued foxes are available.
                         </div>
-
                     </div>
-                </div>
-            `).join('');
+                `;
+                return;
+            }
 
-        } catch (err) {
-            container.innerHTML = `<div class="alert alert-danger">${err.message}</div>`;
+            foxes.forEach(function (fox) {
+                const foxId = fox.id || fox.Id;
+                const name = fox.name || fox.Name || 'Unnamed fox';
+                const description = fox.description || fox.Description || 'No description available.';
+                const statusName = fox.statusName || fox.StatusName || fox.status || fox.Status || 'Unknown';
+                const imageUrl = getImageUrl(fox.imageUrl || fox.ImageUrl);
+
+                const card = `
+                    <div class="col-md-4">
+                        <div class="bg-white rounded shadow-sm p-4 h-100 text-center">
+                            <img src="${imageUrl}"
+                                 onerror="this.src='https://placehold.co/400x250?text=Fox'"
+                                 class="img-fluid rounded mb-3"
+                                 alt="${name}"
+                                 style="height: 200px; width: 100%; object-fit: cover;" />
+
+                            <h4 class="fw-bold">${name}</h4>
+
+                            <p class="text-muted">
+                                ${description}
+                            </p>
+
+                            <span class="badge ${getStatusStyle(statusName)} mb-3">
+                                ${statusName}
+                            </span>
+
+                            <div class="d-flex justify-content-center gap-2 mt-3">
+                                <a href="/Foxes/Details/${foxId}" class="btn btn-outline-dark btn-sm">
+                                    View details
+                                </a>
+
+                                <a href="/Home/Map" class="btn btn-outline-success btn-sm">
+                                    See on map
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                container.innerHTML += card;
+            });
+
+        } catch (error) {
+            loadingMessage.classList.add('d-none');
+            errorMessage.classList.remove('d-none');
+            console.error(error);
         }
+    }
+
+    function getImageUrl(imageUrl) {
+        if (!imageUrl) {
+            return 'https://placehold.co/400x250?text=Fox';
+        }
+
+        if (imageUrl.startsWith('http')) {
+            return imageUrl;
+        }
+
+        if (imageUrl.startsWith('/')) {
+            return imageUrl;
+        }
+
+        return '/' + imageUrl;
     }
 
     function getStatusStyle(status) {
         const s = (status || '').toLowerCase();
-        if (s.includes('healthy')) return 'bg-success';
-        if (s.includes('treatment') || s.includes('quarantined')) return 'bg-warning text-dark';
+
+        if (s.includes('available') || s.includes('healthy')) {
+            return 'bg-success';
+        }
+
+        if (s.includes('observation') || s.includes('treatment') || s.includes('quarantined')) {
+            return 'bg-warning text-dark';
+        }
+
+        if (s.includes('adopted')) {
+            return 'bg-primary';
+        }
+
         return 'bg-secondary';
     }
-
-    document.addEventListener('DOMContentLoaded', loadFoxes);
 </script>

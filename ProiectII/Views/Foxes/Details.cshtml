@@ -4,83 +4,235 @@
 
 <div class="container mt-5">
     <a href="/Foxes" class="btn btn-link text-decoration-none text-muted p-0 mb-4">
-        &larr; Înapoi la lista de vulpi
+        &larr; Back to rescued foxes
     </a>
 
     <div id="fox-details-container">
         <div class="text-center my-5">
             <div class="spinner-border text-primary" role="status"></div>
-            <p class="mt-2">Se încarcă fișa clinică a vulpii...</p>
+            <p class="mt-2">Loading fox details...</p>
         </div>
     </div>
 </div>
 
 <script>
+    let currentFoxId = null;
+
+    document.addEventListener('DOMContentLoaded', loadSingleFoxDetails);
+
     async function loadSingleFoxDetails() {
         const container = document.getElementById('fox-details-container');
-
-        // 1. EXTRARE ID DIN URL: window.location.pathname ne dă "/Foxes/Details/1"
         const urlParts = window.location.pathname.split('/');
-        const foxId = urlParts[urlParts.length - 1]; // Ia ultimul element din URL (ID-ul)
+        currentFoxId = urlParts[urlParts.length - 1];
 
         try {
-            // 2. APEL CĂTRE API-ul tău public folosind ID-ul extras
-            const response = await fetch(`/api/Fox/${foxId}`, {
+            const response = await fetch(`/api/Fox/${currentFoxId}`, {
                 method: 'GET',
-                headers: { 'Accept': 'application/json' }
+                headers: {
+                    'Accept': 'application/json'
+                }
             });
 
-            if (!response.ok) throw new Error('Specimenul nu a putut fi găsit în baza de date.');
+            if (!response.ok) {
+                throw new Error('The selected fox could not be found.');
+            }
 
             const fox = await response.json();
 
-            // 3. INJECTARE ÎN GRAFICA TA BOOTSTRAP
             container.innerHTML = `
                 <div class="bg-white rounded shadow-sm p-4">
-                    <div class="row">
-                        <div class="col-md-5 text-center">
-                            <img src="${fox.imageUrl || 'default.jpg'}"
-                                 onerror="this.src='https://placehold.co/400x300?text=Fox'"
-                                 class="img-fluid rounded shadow-sm" alt="${fox.name}" style="max-height:300px; object-fit:cover; width:100%;" />
-                        </div>
-                        <div class="col-md-7 text-start">
-                            <h2 class="display-6 fw-bold mb-1">${fox.name}</h2>
-                            <p class="text-muted mb-3">Număr de înregistrare: #${fox.id}</p>
+                    <div class="row g-4">
+                        <div class="col-md-5">
+                            <img src="${fox.imageUrl || 'https://placehold.co/600x400?text=Fox'}"
+                                 onerror="this.src='https://placehold.co/600x400?text=Fox'"
+                                 class="img-fluid rounded shadow-sm"
+                                 alt="${fox.name || 'Fox image'}"
+                                 style="height: 320px; width: 100%; object-fit: cover;" />
 
-                            <div class="mb-4">
-                                <span class="badge ${getStatusStyle(fox.statusName)} p-2 fs-6">${fox.statusName}</span>
+                            <div class="mt-3 p-3 bg-light rounded">
+                                <h5 class="fw-bold mb-2">Adoption status</h5>
+                                <span class="badge ${getStatusStyle(fox.statusName)} p-2">
+                                    ${fox.statusName || 'Unknown'}
+                                </span>
                             </div>
+                        </div>
+
+                        <div class="col-md-7">
+                            <h2 class="display-6 fw-bold mb-1">${fox.name || 'Unnamed fox'}</h2>
+                            <p class="text-muted mb-3">Registration number: #${fox.id}</p>
 
                             <hr />
-                            <h5 class="fw-bold text-muted">Fișă de observație:</h5>
+
+                            <h5 class="fw-bold text-muted">Clinical / observation notes</h5>
                             <p class="mt-2 text-secondary" style="line-height: 1.6;">
-                                ${fox.description || 'Nicio descriere detaliată înregistrată.'}
+                                ${fox.description || 'No detailed description is available for this fox.'}
                             </p>
 
-                            <div class="d-flex gap-2 mt-5">
-                                <button class="btn btn-success" onclick="alert('Cerere trimisă!')">Formular Adopție</button>
-                                <button class="btn btn-outline-warning" onclick="alert('Raport deschis!')">Raportează Observație</button>
+                            <div class="row mt-4">
+                                <div class="col-md-6 mb-3">
+                                    <div class="p-3 bg-light rounded h-100">
+                                        <h6 class="fw-bold mb-1">Current status</h6>
+                                        <p class="mb-0 text-muted">${fox.statusName || 'Unknown'}</p>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <div class="p-3 bg-light rounded h-100">
+                                        <h6 class="fw-bold mb-1">Fox ID</h6>
+                                        <p class="mb-0 text-muted">#${fox.id}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="adoptionSuccess" class="alert alert-success d-none mt-3"></div>
+                            <div id="adoptionError" class="alert alert-danger d-none mt-3"></div>
+
+                            <div class="bg-light rounded p-4 mt-4 border">
+                                <h4 class="fw-bold mb-2">Apply for adoption</h4>
+                                <p class="text-muted mb-3">
+                                    Send a short message explaining why you want to adopt this fox.
+                                    The request will be reviewed by an employee or administrator.
+                                </p>
+
+                                <form id="adoptionForm">
+                                    <div class="mb-3">
+                                        <label for="applicantMessage" class="form-label fw-semibold">
+                                            Adoption request message
+                                        </label>
+
+                                        <textarea id="applicantMessage"
+                                                  class="form-control"
+                                                  rows="4"
+                                                  maxlength="500"
+                                                  placeholder="Example: I have experience taking care of animals and I can provide a safe environment..."
+                                                  required></textarea>
+
+                                        <div class="form-text">
+                                            Maximum 500 characters.
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <button type="submit" id="submitAdoptionButton" class="btn btn-success">
+                                            Submit adoption request
+                                        </button>
+
+                                        <a href="/Reports/Create" class="btn btn-outline-warning">
+                                            Report another sighting
+                                        </a>
+
+                                        <a href="/Foxes" class="btn btn-outline-secondary">
+                                            Back to list
+                                        </a>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
             `;
 
+            document.getElementById('adoptionForm').addEventListener('submit', submitAdoptionRequest);
         } catch (err) {
             container.innerHTML = `
                 <div class="alert alert-danger w-100 text-center">
-                    <strong>Eroare:</strong> ${err.message}
-                </div>`;
+                    <strong>Error:</strong> ${err.message}
+                </div>
+            `;
         }
+    }
+
+    async function submitAdoptionRequest(event) {
+        event.preventDefault();
+
+        const successBox = document.getElementById('adoptionSuccess');
+        const errorBox = document.getElementById('adoptionError');
+        const messageInput = document.getElementById('applicantMessage');
+        const submitButton = document.getElementById('submitAdoptionButton');
+
+        successBox.classList.add('d-none');
+        errorBox.classList.add('d-none');
+
+        const applicantMessage = messageInput.value.trim();
+
+        if (!applicantMessage) {
+            showAdoptionError('Please write a short message before submitting the request.');
+            return;
+        }
+
+        if (applicantMessage.length > 500) {
+            showAdoptionError('The adoption message is too long. Please keep it under 500 characters.');
+            return;
+        }
+
+        const requestData = {
+            foxId: parseInt(currentFoxId),
+            applicantMessage: applicantMessage
+        };
+
+        try {
+            submitButton.disabled = true;
+            submitButton.textContent = 'Submitting...';
+
+            const response = await fetch('/api/Adoption', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(requestData)
+            });
+
+            if (response.status === 401) {
+                showAdoptionError('You must be logged in to submit an adoption request.');
+                return;
+            }
+
+            if (response.status === 403) {
+                showAdoptionError('You do not have permission to submit this adoption request.');
+                return;
+            }
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                showAdoptionError(errorText || 'The adoption request could not be submitted.');
+                return;
+            }
+
+            successBox.textContent = 'Your adoption request was submitted successfully.';
+            successBox.classList.remove('d-none');
+
+            messageInput.value = '';
+        } catch (error) {
+            showAdoptionError('A connection error occurred while submitting the adoption request.');
+            console.error(error);
+        } finally {
+            submitButton.disabled = false;
+            submitButton.textContent = 'Submit adoption request';
+        }
+    }
+
+    function showAdoptionError(message) {
+        const errorBox = document.getElementById('adoptionError');
+        errorBox.textContent = message;
+        errorBox.classList.remove('d-none');
     }
 
     function getStatusStyle(status) {
         const s = (status || '').toLowerCase();
-        if (s.includes('healthy')) return 'bg-success';
-        if (s.includes('treatment') || s.includes('quarantined')) return 'bg-warning text-dark';
+
+        if (s.includes('healthy') || s.includes('available')) {
+            return 'bg-success';
+        }
+
+        if (s.includes('treatment') || s.includes('quarantined') || s.includes('pending')) {
+            return 'bg-warning text-dark';
+        }
+
+        if (s.includes('adopted')) {
+            return 'bg-primary';
+        }
+
         return 'bg-secondary';
     }
-
-    // Rulăm funcția automat când pagina Details s-a încărcat în browser
-    document.addEventListener('DOMContentLoaded', loadSingleFoxDetails);
 </script>
