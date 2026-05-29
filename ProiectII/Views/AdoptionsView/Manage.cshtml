@@ -1,0 +1,374 @@
+﻿@{
+    ViewData["Title"] = "Manage Adoptions";
+}
+
+<div class="container mt-5">
+    <div class="text-center mb-4">
+        <h1 class="display-5 fw-bold">Manage Adoptions</h1>
+        <p class="lead">
+            Review adoption requests and decide if they should be approved or rejected.
+        </p>
+    </div>
+
+    <div id="loadingMessage" class="alert alert-info text-center">
+        Loading adoption requests...
+    </div>
+
+    <div id="errorMessage" class="alert alert-danger text-center d-none">
+        Could not load adoption requests.
+    </div>
+
+    <div id="successMessage" class="alert alert-success text-center d-none"></div>
+
+    <div class="bg-white rounded shadow-sm p-4 mb-4">
+        <div class="row g-3 align-items-end">
+            <div class="col-md-4">
+                <label class="form-label fw-semibold">Filter by status</label>
+                <select id="statusFilter" class="form-select">
+                    <option value="all">All requests</option>
+                    <option value="pending">Pending</option>
+                    <option value="approved">Approved</option>
+                    <option value="rejected">Rejected</option>
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label fw-semibold">Search</label>
+                <input id="searchInput" type="text" class="form-control" placeholder="Search by fox, applicant or email..." />
+            </div>
+
+            <div class="col-md-4">
+                <button id="refreshButton" class="btn btn-outline-dark w-100">
+                    Refresh list
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="adoptionsContainer" class="row g-4">
+    </div>
+</div>
+
+<div class="modal fade" id="processModal" tabindex="-1" aria-labelledby="processModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="processForm">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="processModalLabel">Process adoption request</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <input type="hidden" id="selectedAdoptionId" />
+                    <input type="hidden" id="selectedStatus" />
+
+                    <p id="modalDescription" class="text-muted"></p>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Admin comment</label>
+                        <textarea id="adminComment" class="form-control" rows="4" maxlength="500"
+                                  placeholder="Write a short explanation for this decision..."></textarea>
+                        <div class="form-text">Maximum 500 characters.</div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                        Cancel
+                    </button>
+                    <button type="submit" id="confirmProcessButton" class="btn btn-primary">
+                        Confirm decision
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        let allAdoptions = [];
+        let processModal = null;
+
+        document.addEventListener("DOMContentLoaded", function () {
+            processModal = new bootstrap.Modal(document.getElementById("processModal"));
+
+            document.getElementById("statusFilter").addEventListener("change", renderAdoptions);
+            document.getElementById("searchInput").addEventListener("input", renderAdoptions);
+            document.getElementById("refreshButton").addEventListener("click", loadAdoptions);
+            document.getElementById("processForm").addEventListener("submit", submitProcessDecision);
+
+            loadAdoptions();
+        });
+
+        async function loadAdoptions() {
+            const loadingMessage = document.getElementById("loadingMessage");
+            const errorMessage = document.getElementById("errorMessage");
+            const successMessage = document.getElementById("successMessage");
+
+            loadingMessage.classList.remove("d-none");
+            errorMessage.classList.add("d-none");
+            successMessage.classList.add("d-none");
+
+            try {
+                const response = await fetch("/api/Adoption/all", {
+                    method: "GET",
+                    headers: {
+                        "Accept": "application/json"
+                    }
+                });
+
+                if (response.status === 401 || response.status === 403) {
+                    throw new Error("You do not have permission to view adoption requests.");
+                }
+
+                if (!response.ok) {
+                    throw new Error("Could not load adoption requests.");
+                }
+
+                allAdoptions = await response.json();
+                loadingMessage.classList.add("d-none");
+                renderAdoptions();
+            } catch (error) {
+                loadingMessage.classList.add("d-none");
+                errorMessage.textContent = error.message;
+                errorMessage.classList.remove("d-none");
+                console.error(error);
+            }
+        }
+
+        function renderAdoptions() {
+            const container = document.getElementById("adoptionsContainer");
+            const statusFilter = document.getElementById("statusFilter").value.toLowerCase();
+            const searchText = document.getElementById("searchInput").value.toLowerCase().trim();
+
+            container.innerHTML = "";
+
+            let filtered = allAdoptions.filter(function (adoption) {
+                const status = getValue(adoption, "status").toLowerCase();
+                const foxName = getValue(adoption, "foxName").toLowerCase();
+                const applicantName = getValue(adoption, "applicantName").toLowerCase();
+                const applicantEmail = getValue(adoption, "applicantEmail").toLowerCase();
+
+                const statusMatches = statusFilter === "all" || status === statusFilter;
+                const searchMatches =
+                    !searchText ||
+                    foxName.includes(searchText) ||
+                    applicantName.includes(searchText) ||
+                    applicantEmail.includes(searchText);
+
+                return statusMatches && searchMatches;
+            });
+
+            if (!filtered || filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="col-12">
+                        <div class="alert alert-warning text-center">
+                            No adoption requests found.
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            filtered.forEach(function (adoption) {
+                const id = getValue(adoption, "id");
+                const foxId = getValue(adoption, "foxId");
+                const foxName = getValue(adoption, "foxName") || "Unknown fox";
+                const status = getValue(adoption, "status") || "Pending";
+                const submittedAt = getValue(adoption, "submittedAt");
+                const applicantMessage = getValue(adoption, "applicantMessage") || "No message provided.";
+                const adminComment = getValue(adoption, "adminComment");
+                const applicantName = getValue(adoption, "applicantName") || "Unknown applicant";
+                const applicantEmail = getValue(adoption, "applicantEmail") || "No email available";
+
+                const isPending = status.toLowerCase() === "pending";
+
+                const card = `
+                    <div class="col-md-6">
+                        <div class="bg-white rounded shadow-sm p-4 h-100 adoption-card">
+                            <div class="d-flex justify-content-between align-items-start gap-3 mb-3">
+                                <div>
+                                    <h4 class="fw-bold mb-1">${escapeHtml(foxName)}</h4>
+                                    <p class="text-muted mb-0">Fox ID: #${foxId}</p>
+                                </div>
+
+                                <span class="badge ${getStatusBadge(status)} p-2">
+                                    ${escapeHtml(status)}
+                                </span>
+                            </div>
+
+                            <hr />
+
+                            <div class="mb-3">
+                                <h6 class="fw-bold mb-1">Applicant</h6>
+                                <p class="mb-0">${escapeHtml(applicantName)}</p>
+                                <p class="text-muted mb-0">${escapeHtml(applicantEmail)}</p>
+                            </div>
+
+                            <div class="mb-3">
+                                <h6 class="fw-bold mb-1">Request message</h6>
+                                <p class="text-muted mb-0">${escapeHtml(applicantMessage)}</p>
+                            </div>
+
+                            <div class="mb-3">
+                                <h6 class="fw-bold mb-1">Submitted at</h6>
+                                <p class="text-muted mb-0">${formatDate(submittedAt)}</p>
+                            </div>
+
+                            ${adminComment ? `
+                                <div class="mb-3">
+                                    <h6 class="fw-bold mb-1">Admin comment</h6>
+                                    <p class="text-muted mb-0">${escapeHtml(adminComment)}</p>
+                                </div>
+                            ` : ""}
+
+                            <div class="d-flex flex-wrap gap-2 mt-4">
+                                <a href="/Foxes/Details/${foxId}" class="btn btn-outline-dark btn-sm">
+                                    View fox
+                                </a>
+
+                                ${isPending ? `
+                                    <button class="btn btn-success btn-sm" onclick="openProcessModal(${id}, 'approved', '${escapeJs(foxName)}')">
+                                        Approve
+                                    </button>
+
+                                    <button class="btn btn-outline-danger btn-sm" onclick="openProcessModal(${id}, 'rejected', '${escapeJs(foxName)}')">
+                                        Reject
+                                    </button>
+                                ` : ""}
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                container.innerHTML += card;
+            });
+        }
+
+        function openProcessModal(adoptionId, status, foxName) {
+            document.getElementById("selectedAdoptionId").value = adoptionId;
+            document.getElementById("selectedStatus").value = status;
+            document.getElementById("adminComment").value = "";
+
+            const readableStatus = status === "approved" ? "approve" : "reject";
+
+            document.getElementById("modalDescription").textContent =
+                `You are about to ${readableStatus} the adoption request for ${foxName}.`;
+
+            const confirmButton = document.getElementById("confirmProcessButton");
+
+            if (status === "approved") {
+                confirmButton.className = "btn btn-success";
+                confirmButton.textContent = "Approve request";
+            } else {
+                confirmButton.className = "btn btn-danger";
+                confirmButton.textContent = "Reject request";
+            }
+
+            processModal.show();
+        }
+
+        async function submitProcessDecision(event) {
+            event.preventDefault();
+
+            const successMessage = document.getElementById("successMessage");
+            const errorMessage = document.getElementById("errorMessage");
+            const confirmButton = document.getElementById("confirmProcessButton");
+
+            const adoptionId = parseInt(document.getElementById("selectedAdoptionId").value);
+            const status = document.getElementById("selectedStatus").value;
+            const adminComment = document.getElementById("adminComment").value.trim();
+
+            const requestData = {
+                adoptionId: adoptionId,
+                status: status,
+                adminComment: adminComment
+            };
+
+            try {
+                confirmButton.disabled = true;
+
+                const response = await fetch("/api/Adoption/process", {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
+                    body: JSON.stringify(requestData)
+                });
+
+                if (response.status === 401 || response.status === 403) {
+                    throw new Error("You do not have permission to process adoption requests.");
+                }
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(errorText || "Could not process adoption request.");
+                }
+
+                processModal.hide();
+
+                successMessage.textContent = "Adoption request was processed successfully.";
+                successMessage.classList.remove("d-none");
+                errorMessage.classList.add("d-none");
+
+                await loadAdoptions();
+            } catch (error) {
+                processModal.hide();
+                errorMessage.textContent = error.message;
+                errorMessage.classList.remove("d-none");
+                successMessage.classList.add("d-none");
+                console.error(error);
+            } finally {
+                confirmButton.disabled = false;
+            }
+        }
+
+        function getValue(obj, name) {
+            return obj[name] ?? obj[name.charAt(0).toUpperCase() + name.slice(1)] ?? "";
+        }
+
+        function getStatusBadge(status) {
+            const s = (status || "").toLowerCase();
+
+            if (s === "pending") {
+                return "bg-warning text-dark";
+            }
+
+            if (s === "approved") {
+                return "bg-success";
+            }
+
+            if (s === "rejected") {
+                return "bg-danger";
+            }
+
+            return "bg-secondary";
+        }
+
+        function formatDate(value) {
+            if (!value) {
+                return "Not available";
+            }
+
+            return new Date(value).toLocaleString();
+        }
+
+        function escapeHtml(value) {
+            return String(value ?? "")
+                .replaceAll("&", "&amp;")
+                .replaceAll("<", "&lt;")
+                .replaceAll(">", "&gt;")
+                .replaceAll('"', "&quot;")
+                .replaceAll("'", "&#039;");
+        }
+
+        function escapeJs(value) {
+            return String(value ?? "")
+                .replaceAll("\\", "\\\\")
+                .replaceAll("'", "\\'")
+                .replaceAll('"', '\\"');
+        }
+    </script>
+}
