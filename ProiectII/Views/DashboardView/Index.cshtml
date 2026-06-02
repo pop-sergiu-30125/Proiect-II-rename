@@ -1,0 +1,87 @@
+@model ProiectII.DTO.DashboardStatsDto
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="fox-full-page">
+    <div class="container">
+        <div class="fox-page-header">
+            <h1 class="fox-title">Shelter Dashboard 📊</h1>
+            <p class="fox-subtitle">Real-time statistics and recent activity overview.</p>
+        </div>
+
+        <div id="stats-container" class="row g-4 mb-5">
+            <div class="col-md-3">
+                <div class="fox-card text-center" style="border-bottom: 5px solid var(--fox-orange-primary);">
+                    <div class="display-5 fw-bold text-primary mb-1">@Model.TotalFoxes</div>
+                    <div class="text-muted fw-bold small text-uppercase">Total Foxes</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="fox-card text-center" style="border-bottom: 5px solid var(--sky-blue-primary);">
+                    <div class="display-5 fw-bold text-success mb-1">@Model.PendingAdoptions</div>
+                    <div class="text-muted fw-bold small text-uppercase">Pending Adoptions</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="fox-card text-center" style="border-bottom: 5px solid var(--fox-orange-dark);">
+                    <div class="display-5 fw-bold text-warning mb-1">@Model.ActiveReports</div>
+                    <div class="text-muted fw-bold small text-uppercase">Active Reports</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="fox-card text-center" style="border-bottom: 5px solid var(--sky-blue-dark);">
+                    <div class="display-5 fw-bold text-info mb-1">@Model.TotalUsers</div>
+                    <div class="text-muted fw-bold small text-uppercase">Total Users</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <div class="fox-card h-100">
+                    <h3 class="fox-title mb-4">Recent Sighting Reports</h3>
+                    <div id="recent-activities" class="list-group list-group-flush">
+                        @if (!Model.RecentActivities.Any())
+                        {
+                            <div class="text-center py-4 text-muted">No recent activity to display.</div>
+                        }
+                        else
+                        {
+                            @foreach (var act in Model.RecentActivities)
+                            {
+                                <div class="list-group-item bg-transparent border-0 px-0 mb-3">
+                                    <div class="d-flex w-100 justify-content-between align-items-center mb-1">
+                                        <h6 class="fox-title mb-0">@act.Title</h6>
+                                        <small class="text-muted">@act.Date.ToString("MMM dd, yyyy")</small>
+                                    </div>
+                                    <p class="text-secondary small mb-0">@act.Description</p>
+                                </div>
+                            }
+                        }
+                    </div>
+                    <div class="mt-4 text-center">
+                        <a href="/Reports/Index" class="btn btn-fox-outline">View All Reports</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="fox-card h-100">
+                    <h3 class="fox-title mb-4">Quick Actions</h3>
+                    <div class="d-grid gap-3">
+                        <a href="/Foxes/CreateFox" class="btn btn-fox-primary py-3">
+                            <i class="bi bi-plus-circle me-2"></i> Register New Fox
+                        </a>
+                        <a href="/AdoptionsView/Manage" class="btn btn-fox-outline py-3">
+                            <i class="bi bi-heart-fill me-2"></i> Manage Adoptions
+                        </a>
+                        <a href="/Account/Users" class="btn btn-fox-outline py-3">
+                            <i class="bi bi-people-fill me-2"></i> User Management
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

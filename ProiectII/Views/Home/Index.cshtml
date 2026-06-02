@@ -1,0 +1,151 @@
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="fox-full-page" style="padding: 0;">
+    <!-- Hero Section -->
+    <div class="fox-page-header text-center mb-0" style="border-radius: 0; margin-bottom: 0 !important; border-top: none;">
+        <h1 class="fox-title display-4">Fox Shelter 🦊</h1>
+        <p class="fox-subtitle fs-5 mb-2">“NO CONCRETE SLOP IN THIS DEN”</p>
+        <p class="lead text-muted">
+            Protecting foxes affected by urban expansion and habitat destruction.
+        </p>
+    </div>
+
+    <!-- Quick Actions (Contained) -->
+    <div class="container py-5">
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-4">
+                <div class="fox-card h-100 text-center">
+                    <div class="mb-3">
+                        <i class="bi bi-map-fill" style="font-size: 3rem; color: var(--fox-orange-primary);"></i>
+                    </div>
+                    <h4 class="fox-title">Activity Map</h4>
+                    <p class="text-secondary small">Explore real-time fox activity zones, tracking coordinates and safe enclosures within the city.</p>
+                    <a class="btn btn-fox-outline mt-3" asp-controller="Home" asp-action="Map">Open Map</a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="fox-card h-100 text-center">
+                    <div class="mb-3">
+                        <i class="bi bi-heart-pulse-fill" style="font-size: 3rem; color: var(--fox-orange-dark);"></i>
+                    </div>
+                    <h4 class="fox-title">Rescued Residents</h4>
+                    <p class="text-secondary small">Meet our residents, read their clinical stories, and learn about their recovery journey.</p>
+                    <a class="btn btn-fox-primary mt-3" asp-controller="Foxes" asp-action="Index">Meet the Foxes</a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="fox-card h-100 text-center">
+                    <div class="mb-3">
+                        <i class="bi bi-megaphone-fill" style="font-size: 3rem; color: var(--sky-blue-dark);"></i>
+                    </div>
+                    <h4 class="fox-title">Report Sighting</h4>
+                    <p class="text-secondary small">Saw a fox in distress or a new den? Help the community by pinning the exact location.</p>
+                    <a class="btn btn-fox-outline mt-3" asp-controller="Reports" asp-action="Create">Report Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Full Screen Featured Image -->
+    <div class="fox-break-out fox-hero-banner mb-5" style="background-image: url('/images/design/home_page_fox.jpg');">
+        <div class="position-relative" style="z-index: 2; width: 100%;">
+            <div class="container">
+                <h3 class="text-white fw-bold display-5 mb-2">Our Residents are waiting for a home</h3>
+                <p class="text-white fs-4 opacity-75 mb-0">Every fox we rescue has a unique story of resilience.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container pb-5">
+        <!-- Our Mission Section -->
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-10">
+                <div class="fox-card" style="border-left: 8px solid var(--sky-blue-primary);">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h2 class="fox-title mb-4">Our Mission</h2>
+                            <p class="lead text-secondary">
+                                Fox Shelter is a community-driven platform focused on protecting foxes affected by urban expansion.
+                            </p>
+                            <p class="text-muted">
+                                As cities continue to grow, natural habitats are being reduced or destroyed, forcing wild animals like foxes to adapt to unsafe urban environments. This often leads to road accidents and habitat loss.
+                            </p>
+                            <p class="text-muted">
+                                Through Fox Shelter, you can learn about their stories, track activity, and contribute to a growing network of people who care about wildlife safety.
+                            </p>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <div class="p-4 rounded-circle bg-light d-inline-block shadow-sm" style="border: 4px dashed var(--fox-orange-muted);">
+                                <i class="bi bi-shield-check" style="font-size: 5rem; color: var(--fox-orange-primary);"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact & Location Section -->
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="fox-card h-100" style="border-top: 8px solid var(--fox-orange-primary);">
+                            <h3 class="fox-title mb-4">Contact The Den</h3>
+                            <div class="d-flex align-items-start mb-3">
+                                <div class="rounded-circle bg-light p-2 me-3">
+                                    <i class="bi bi-geo-alt-fill text-primary"></i>
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-0">Location</h6>
+                                    <p class="text-muted small mb-0">Wildwood Sanctuary, Forest Edge, RO 45943</p>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-start mb-3">
+                                <div class="rounded-circle bg-light p-2 me-3">
+                                    <i class="bi bi-telephone-fill text-primary"></i>
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-0">Phone</h6>
+                                    <p class="text-muted small mb-0">+40 700 123 456</p>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-start">
+                                <div class="rounded-circle bg-light p-2 me-3">
+                                    <i class="bi bi-envelope-at-fill text-primary"></i>
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-0">Electronic Mail</h6>
+                                    <p class="text-muted small mb-0">hello@@foxshelter.org</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="fox-card h-100" style="background-color: var(--sky-blue-bg); border: 2px dashed var(--sky-blue-primary);">
+                            <h3 class="fox-title mb-3" style="color: var(--sky-blue-dark);">Support Hours</h3>
+                            <p class="text-secondary small mb-4">Our dedicated team of caretakers and volunteers are available during these hours to help with sighting reports or adoption inquiries.</p>
+                            <ul class="list-unstyled small fw-bold">
+                                <li class="d-flex justify-content-between border-bottom border-white py-2">
+                                    <span>Monday - Friday</span>
+                                    <span class="text-primary">08:00 - 18:00</span>
+                                </li>
+                                <li class="d-flex justify-content-between border-bottom border-white py-2">
+                                    <span>Saturday</span>
+                                    <span class="text-primary">09:00 - 14:00</span>
+                                </li>
+                                <li class="d-flex justify-content-between py-2">
+                                    <span>Emergency Sighting</span>
+                                    <span class="text-danger">24/7 (Via Website)</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

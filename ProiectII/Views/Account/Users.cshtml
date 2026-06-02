@@ -1,0 +1,309 @@
+@model ProiectII.DTO.AdminSystem.UserManagementDto
+@{
+    ViewData["Title"] = "User Management";
+}
+
+<div class="fox-full-page">
+    <div class="container">
+        <div class="fox-page-header">
+            <h1 class="fox-title">User Management 👥</h1>
+            <p class="fox-subtitle">Oversee user accounts, roles, and system access.</p>
+        </div>
+
+        <div id="admin-content">
+            <div class="fox-card text-center my-5">
+                <div class="spinner-border text-primary" role="status"></div>
+                <p class="mt-2 text-muted">Loading administrative console...</p>
+            </div>
+        </div>
+
+        <div class="mt-5">
+            <h3 class="fox-title mb-4">Registered Members</h3>
+            
+            <div class="fox-card mb-4">
+                <div class="input-group">
+                    <span class="input-group-text bg-white border-2 border-end-0" style="border-color: var(--sky-blue-muted);">
+                        <i class="bi bi-search text-muted"></i>
+                    </span>
+                    <input type="text" id="table-search" class="form-control border-2 border-start-0" 
+                           style="border-color: var(--sky-blue-muted); border-radius: 0 12px 12px 0;" 
+                           placeholder="Filter members by name, email or role..." oninput="filterTable()" />
+                </div>
+            </div>
+
+            <div class="fox-table-container">
+                <div class="table-responsive">
+                    <table class="table table-hover fox-table mb-0" id="users-table">
+                        <thead>
+                            <tr>
+                                <th>Identity</th>
+                                <th>Access Role</th>
+                                <th>Account Status</th>
+                                <th>Last Active</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var user in Model.Users)
+                            {
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="rounded-circle bg-light d-flex align-items-center justify-content-center me-3" 
+                                                 style="width: 40px; height: 40px; font-weight: bold; color: var(--sky-blue-dark); border: 2px solid var(--sky-blue-muted);">
+                                                @(string.IsNullOrEmpty(user.FullName) ? "?" : user.FullName.Substring(0, 1).ToUpper())
+                                            </div>
+                                            <div>
+                                                <div class="fw-bold">@user.FullName</div>
+                                                <div class="small text-muted">@user.Email</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="fox-pill fox-pill-success">@user.Roles</span>
+                                    </td>
+                                    <td>
+                                        @if (user.IsActive)
+                                        {
+                                            <span class="badge bg-success-subtle text-success border border-success px-3 py-2 rounded-pill">Active</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-danger-subtle text-danger border border-danger px-3 py-2 rounded-pill" 
+                                                  title="@user.DeactivationReason">Inactive</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        <div class="small text-dark fw-bold">@user.LastLogin.ToString("MMM dd, yyyy")</div>
+                                        <div class="small text-muted">@user.LastLogin.ToString("HH:mm")</div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        let usersCache = [];
+
+        async function api(method, url, body = null) {
+            const options = {
+                method,
+                headers: { "Content-Type": "application/json" }
+            };
+            if (body) options.body = JSON.stringify(body);
+            const res = await fetch(url, options);
+            if (!res.ok) throw new Error(await res.text());
+            return res.status === 204 ? {} : res.json();
+        }
+
+        document.addEventListener("DOMContentLoaded", loadUsers);
+        
+        document.addEventListener("click", function() {
+            const panel = document.getElementById("user-panel");
+            if (panel && !panel.classList.contains("d-none")) {
+                panel.classList.add("d-none");
+            }
+        });
+
+        async function loadUsers() {
+            try {
+                usersCache = await api("GET", "/api/AdminUser/all") || [];
+                renderAdminConsole();
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        function renderAdminConsole() {
+            document.getElementById("admin-content").innerHTML = `
+                <div id="msg"></div>
+                <div class="row g-4">
+                    <!-- EDIT USER -->
+                    <div class="col-md-6">
+                        <div class="fox-card h-100 shadow-sm">
+                            <h4 class="fox-title mb-4" style="color: var(--sky-blue-dark);">Update Permissions</h4>
+                            
+                            <div class="mb-4 position-relative">
+                                <label class="form-label fw-bold small">SELECT MEMBER</label>
+                                <div class="form-control border-2 text-muted" style="cursor:pointer; border-radius: 12px; border-color: var(--sky-blue-muted);" 
+                                     onclick="event.stopPropagation(); toggleUserPanel()" id="user-select-box">
+                                    Click to search for a member...
+                                </div>
+
+                                <div id="user-panel" class="fox-user-panel d-none">
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span class="fw-bold small text-primary">Search Results</span>
+                                        <span class="btn-close btn-sm" style="cursor:pointer;" onclick="toggleUserPanel()"></span>
+                                    </div>
+                                    <input type="text" id="user-search" class="form-control mb-3" placeholder="Type name or email..." 
+                                           onclick="event.stopPropagation()" oninput="filterUsers()" />
+                                    <div id="user-results" style="max-height:200px; overflow-y:auto;"></div>
+                                </div>
+                                <input type="hidden" id="u-id" />
+                            </div>
+
+                            <div class="row g-3 mb-4">
+                                <div class="col-12">
+                                    <label class="form-label fw-bold small">ASSIGN NEW ROLE</label>
+                                    <select id="u-role" class="form-select border-2" style="border-radius: 12px; border-color: var(--sky-blue-muted);">
+                                        <option>User</option>
+                                        <option>Employee</option>
+                                        <option>Admin</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button class="btn btn-fox-primary w-100" onclick="changeRole()">Apply Role Updates</button>
+
+                            <hr class="my-4" style="opacity: 0.1;" />
+
+                            <div class="mb-4">
+                                <label class="form-label fw-bold small">ACCOUNT ACCESS</label>
+                                <select id="u-active" class="form-select border-2 mb-2" style="border-radius: 12px; border-color: var(--fox-orange-muted);">
+                                    <option value="true">Account Active</option>
+                                    <option value="false">Account Deactivated</option>
+                                </select>
+                                <input id="u-reason" class="form-control border-2 mt-2" placeholder="Reason for deactivation..." style="border-radius: 12px; border-color: var(--fox-orange-muted);" />
+                            </div>
+                            <button class="btn btn-fox-outline w-100" onclick="changeStatus()">Update Access Status</button>
+                        </div>
+                    </div>
+
+                    <!-- CREATE USER -->
+                    <div class="col-md-6">
+                        <div class="fox-card h-100" style="border-left: 8px solid var(--fox-orange-primary);">
+                            <h4 class="fox-title mb-4" style="color: var(--fox-orange-dark);">Direct Registration</h4>
+                            
+                            <div class="row g-3 mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold small">FIRST NAME</label>
+                                    <input id="nu-first" class="form-control border-2" style="border-radius: 12px;" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold small">LAST NAME</label>
+                                    <input id="nu-last" class="form-control border-2" style="border-radius: 12px;" />
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-bold small">EMAIL ADDRESS</label>
+                                <input id="nu-email" class="form-control border-2" style="border-radius: 12px;" />
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-bold small">INITIAL PASSWORD</label>
+                                <input id="nu-pwd" type="password" class="form-control border-2" style="border-radius: 12px;" />
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label fw-bold small">INITIAL ROLE</label>
+                                <select id="nu-role" class="form-select border-2" style="border-radius: 12px;">
+                                    <option value="">-- Select --</option>
+                                    <option>User</option>
+                                    <option>Employee</option>
+                                    <option>Admin</option>
+                                </select>
+                            </div>
+
+                            <button class="btn btn-fox-primary w-100 py-3" onclick="createUserDirect()">
+                                <i class="bi bi-person-plus-fill me-2"></i> Create System Account
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function toggleUserPanel() {
+            const panel = document.getElementById("user-panel");
+            panel.classList.toggle("d-none");
+            if (!panel.classList.contains("d-none")) renderUsersList(usersCache);
+        }
+
+        function renderUsersList(list) {
+            const box = document.getElementById("user-results");
+            box.innerHTML = "";
+            list.forEach(u => {
+                const id = u.id || u.Id || u.userId || u.UserId;
+                const name = `${u.firstName || ''} ${u.lastName || ''}`;
+                const email = u.email || u.Email;
+                
+                const div = document.createElement("div");
+                div.className = "p-2 border-bottom small user-item";
+                div.style.cursor = "pointer";
+                div.innerHTML = `<strong>${name}</strong><br/><span class="text-muted">${email}</span>`;
+                div.onclick = function () {
+                    document.getElementById("u-id").value = id;
+                    document.getElementById("user-select-box").innerText = `${name} (${email})`;
+                    document.getElementById("user-select-box").classList.remove("text-muted");
+                    document.getElementById("user-select-box").classList.add("fw-bold", "text-dark");
+                    toggleUserPanel();
+                };
+                box.appendChild(div);
+            });
+        }
+
+        function filterUsers() {
+            const val = document.getElementById("user-search").value.toLowerCase();
+            const filtered = usersCache.filter(u => 
+                `${u.firstName} ${u.lastName} ${u.email}`.toLowerCase().includes(val)
+            );
+            renderUsersList(filtered);
+        }
+
+        function filterTable() {
+            const val = document.getElementById("table-search").value.toLowerCase();
+            document.querySelectorAll("#users-table tbody tr").forEach(r => {
+                r.style.display = r.innerText.toLowerCase().includes(val) ? "" : "none";
+            });
+        }
+
+        async function createUserDirect() {
+            const email = document.getElementById("nu-email").value;
+            const pwd = document.getElementById("nu-pwd").value;
+            const first = document.getElementById("nu-first").value;
+            const last = document.getElementById("nu-last").value;
+            const role = document.getElementById("nu-role").value;
+
+            if (!email || !pwd || !first || !last || !role) return showLocalMsg("All fields are required", "danger");
+
+            try {
+                await api("POST", "/api/AdminUser", { email, password: pwd, firstName: first, lastName: last, role });
+                location.reload();
+            } catch (err) { showLocalMsg(err.message, "danger"); }
+        }
+
+        async function changeRole() {
+            const userId = document.getElementById("u-id").value;
+            if (!userId) return showLocalMsg("Select a user first", "warning");
+
+            try {
+                await api("PUT", "/api/AdminUser/update-role", { userId, newRole: document.getElementById("u-role").value });
+                location.reload();
+            } catch (err) { showLocalMsg(err.message, "danger"); }
+        }
+
+        async function changeStatus() {
+            const userId = document.getElementById("u-id").value;
+            if (!userId) return showLocalMsg("Select a user first", "warning");
+
+            try {
+                await api("PUT", "/api/AdminUser/update-status", { 
+                    userId, 
+                    isActive: document.getElementById("u-active").value === "true",
+                    reason: document.getElementById("u-reason").value 
+                });
+                location.reload();
+            } catch (err) { showLocalMsg(err.message, "danger"); }
+        }
+
+        function showLocalMsg(text, type) {
+            const msgDiv = document.getElementById("msg");
+            if(msgDiv) msgDiv.innerHTML = `<div class="alert alert-${type} border-0 shadow-sm mb-3">${text}</div>`;
+        }
+    </script>
+}

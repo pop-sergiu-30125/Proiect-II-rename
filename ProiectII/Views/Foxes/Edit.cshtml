@@ -1,0 +1,226 @@
+@{
+    ViewData["Title"] = "Edit Resident Details";
+}
+
+<div class="fox-full-page">
+    <div class="container">
+        <a href="javascript:history.back()" class="btn btn-fox-outline btn-sm mb-4">
+            <i class="bi bi-arrow-left me-1"></i> Back to details
+        </a>
+
+        <div class="fox-page-header">
+            <h1 class="fox-title">Edit Resident 🦊</h1>
+            <p class="fox-subtitle">Update information for an existing fox resident.</p>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="fox-card">
+                    <div id="msg"></div>
+
+                    <div id="loading-overlay" class="text-center py-5">
+                        <div class="spinner-border text-primary" role="status"></div>
+                        <p class="mt-2 text-muted">Loading resident data...</p>
+                    </div>
+
+                    <form id="editFoxForm" class="d-none">
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <div class="mb-4">
+                                    <label class="form-label fw-bold small" style="color: var(--sky-blue-dark);">FOX NAME *</label>
+                                    <input class="form-control border-2" id="name" placeholder="Enter name..." style="border-radius: 12px; border-color: var(--sky-blue-muted);" />
+                                </div>
+
+                                <div class="mb-4">
+                                    <label class="form-label fw-bold small" style="color: var(--sky-blue-dark);">DESCRIPTION & CLINICAL NOTES *</label>
+                                    <textarea class="form-control border-2" id="description" rows="8" placeholder="Medical history and notes..." style="border-radius: 12px; border-color: var(--sky-blue-muted);"></textarea>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label class="form-label fw-bold small" style="color: var(--sky-blue-dark);">CURRENT STATUS *</label>
+                                    <select class="form-select border-2" id="status" style="border-radius: 12px; border-color: var(--sky-blue-muted);">
+                                        <option value="">-- Select Status --</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="mb-4">
+                                    <label class="form-label fw-bold small" style="color: var(--fox-orange-dark);">📍 HABITAT LOCATION</label>
+                                    <p class="text-muted small mb-2">Click on the map to update the fox's current location.</p>
+                                    <div id="map" style="height: 300px; border-radius: 20px; border: 4px solid var(--fox-orange-bg);"></div>
+                                </div>
+
+                                <div class="row g-3">
+                                    <div class="col-6">
+                                        <label class="form-label fw-bold small text-muted">LATITUDE</label>
+                                        <input class="form-control border-2 bg-light" id="lat" readonly style="border-radius: 12px; border-color: var(--fox-orange-muted);" />
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="form-label fw-bold small text-muted">LONGITUDE</label>
+                                        <input class="form-control border-2 bg-light" id="lng" readonly style="border-radius: 12px; border-color: var(--fox-orange-muted);" />
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 p-3 rounded-4" style="background-color: var(--sky-blue-bg);">
+                                    <div class="small fw-bold text-uppercase" style="color: var(--sky-blue-dark);">Tip</div>
+                                    <div class="small text-muted">Updating the location here will update where the fox appears on the public tracking map.</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-5 border-top pt-4 d-flex justify-content-between">
+                            <button type="button" class="btn btn-outline-danger py-3 px-4" style="border-radius: 12px; font-weight: 800;" onclick="archiveFox()">
+                                <i class="bi bi-archive-fill me-2"></i> Archive Resident
+                            </button>
+                            
+                            <button type="submit" class="btn btn-fox-primary py-3 px-5">
+                                <i class="bi bi-cloud-check-fill me-2"></i> Save Changes
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <script>
+        let map;
+        let marker = null;
+        let foxId = null;
+
+        document.addEventListener('DOMContentLoaded', initEditPage);
+
+        async function initEditPage() {
+            const urlParts = window.location.pathname.split('/');
+            foxId = urlParts[urlParts.length - 1];
+
+            try {
+                // Load Statuses
+                const statusRes = await fetch('/api/ReferenceData/fox-statuses');
+                const statuses = await statusRes.json();
+                const statusSelect = document.getElementById("status");
+                statuses.forEach(s => {
+                    const option = document.createElement("option");
+                    option.value = s.id || s.Id;
+                    option.textContent = s.name || s.Name;
+                    statusSelect.appendChild(option);
+                });
+
+                // Load Fox Data
+                const foxRes = await fetch(`/api/Fox/${foxId}`);
+                if (!foxRes.ok) throw new Error("Could not find resident.");
+                const fox = await foxRes.json();
+
+                // Fill Form
+                document.getElementById('name').value = fox.name || '';
+                document.getElementById('description').value = fox.description || '';
+                document.getElementById('status').value = fox.statusId || '';
+                document.getElementById('lat').value = fox.latitude || '';
+                document.getElementById('lng').value = fox.longitude || '';
+
+                // Show Form
+                document.getElementById('loading-overlay').classList.add('d-none');
+                document.getElementById('editFoxForm').classList.remove('d-none');
+
+                // Init Map
+                const initialLat = fox.latitude || 45.9432;
+                const initialLng = fox.longitude || 24.9668;
+                map = L.map('map').setView([initialLat, initialLng], 12);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '© OpenStreetMap contributors'
+                }).addTo(map);
+
+                if (fox.latitude && fox.longitude) {
+                    marker = L.marker([fox.latitude, fox.longitude]).addTo(map);
+                }
+
+                map.on("click", function (e) {
+                    const lat = e.latlng.lat.toFixed(5);
+                    const lng = e.latlng.lng.toFixed(5);
+                    document.getElementById("lat").value = lat;
+                    document.getElementById("lng").value = lng;
+                    if (marker) map.removeLayer(marker);
+                    marker = L.marker([lat, lng]).addTo(map);
+                });
+
+                document.getElementById('editFoxForm').addEventListener('submit', saveChanges);
+
+            } catch (err) {
+                showMsg(err.message, "danger");
+            }
+        }
+
+        async function saveChanges(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            
+            const data = {
+                name: document.getElementById('name').value.trim(),
+                description: document.getElementById('description').value.trim(),
+                statusId: parseInt(document.getElementById('status').value)
+            };
+
+            const locData = {
+                latitude: parseFloat(document.getElementById('lat').value),
+                longitude: parseFloat(document.getElementById('lng').value)
+            };
+
+            try {
+                btn.disabled = true;
+                btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Saving...';
+
+                // Update Info
+                const res1 = await fetch(`/api/Fox/${foxId}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                if (!res1.ok) throw new Error(await res1.text() || "Failed to update info");
+
+                // Update Location
+                const res2 = await fetch(`/api/Fox/${foxId}/location`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(locData)
+                });
+
+                if (!res2.ok) throw new Error(await res2.text() || "Failed to update location");
+
+                showMsg("Resident updated successfully! Redirecting...", "success");
+                setTimeout(() => window.location.href = `/Foxes/Details/${foxId}`, 1500);
+
+            } catch (err) {
+                showMsg(err.message, "danger");
+                btn.disabled = false;
+                btn.innerHTML = '<i class="bi bi-cloud-check-fill me-2"></i> Save Changes';
+            }
+        }
+
+        async function archiveFox() {
+            if (!confirm("Are you sure you want to archive this resident? This will remove them from the public tracking map.")) return;
+
+            try {
+                const res = await fetch(`/api/Fox/${foxId}`, { method: 'DELETE' });
+                if (!res.ok) throw new Error(await res.text() || "Failed to archive fox");
+
+                showMsg("Resident archived successfully! Redirecting...", "success");
+                setTimeout(() => window.location.href = "/Foxes", 1500);
+            } catch (err) {
+                showMsg(err.message, "danger");
+            }
+        }
+
+        function showMsg(text, type) {
+            const msgDiv = document.getElementById("msg");
+            msgDiv.innerHTML = `<div class="alert alert-${type} border-0 shadow-sm mb-4" style="border-radius: 12px;">${text}</div>`;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+}

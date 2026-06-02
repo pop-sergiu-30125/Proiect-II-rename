@@ -1,0 +1,193 @@
+@{
+    ViewData["Title"] = "Add New Resident";
+}
+
+<div class="fox-full-page">
+    <div class="container">
+        <a href="/Foxes" class="btn btn-fox-outline btn-sm mb-4">
+            <i class="bi bi-arrow-left me-1"></i> Back to rescued foxes
+        </a>
+
+        <div class="fox-page-header">
+            <h1 class="fox-title">Add New Resident 🦊</h1>
+            <p class="fox-subtitle">Register a newly rescued fox into the system.</p>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="fox-card">
+                    <div id="msg"></div>
+
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="mb-4">
+                                <label class="form-label fw-bold small" style="color: var(--sky-blue-dark);">FOX NAME *</label>
+                                <input class="form-control border-2" id="name" placeholder="Enter a name for the fox..." style="border-radius: 12px; border-color: var(--sky-blue-muted);" />
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label fw-bold small" style="color: var(--sky-blue-dark);">DESCRIPTION & CLINICAL NOTES *</label>
+                                <textarea class="form-control border-2" id="description" rows="5" placeholder="Details about the fox's health and rescue story..." style="border-radius: 12px; border-color: var(--sky-blue-muted);"></textarea>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label fw-bold small" style="color: var(--sky-blue-dark);">CURRENT STATUS *</label>
+                                <select class="form-select border-2" id="status" style="border-radius: 12px; border-color: var(--sky-blue-muted);">
+                                    <option value="">-- Select Status --</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label fw-bold small" style="color: var(--sky-blue-dark);">IDENTIFICATION IMAGE</label>
+                                <input type="file" class="form-control border-2" id="image" style="border-radius: 12px; border-color: var(--sky-blue-muted);" />
+                                <div class="form-text small">High-quality photos help with identification.</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="mb-4">
+                                <label class="form-label fw-bold small" style="color: var(--fox-orange-dark);">📍 RESCUE LOCATION (REQUIRED)</label>
+                                <p class="text-muted small mb-2">Click on the map to mark where the fox was found.</p>
+                                <div id="map" style="height: 300px; border-radius: 20px; border: 4px solid var(--fox-orange-bg);"></div>
+                            </div>
+
+                            <div class="row g-3">
+                                <div class="col-6">
+                                    <label class="form-label fw-bold small text-muted">LATITUDE</label>
+                                    <input class="form-control border-2 bg-light" id="lat" readonly style="border-radius: 12px; border-color: var(--fox-orange-muted);" />
+                                </div>
+                                <div class="col-6">
+                                    <label class="form-label fw-bold small text-muted">LONGITUDE</label>
+                                    <input class="form-control border-2 bg-light" id="lng" readonly style="border-radius: 12px; border-color: var(--fox-orange-muted);" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 border-top pt-4 text-center">
+                        <button class="btn btn-fox-primary py-3 px-5" onclick="createFox()">
+                            <i class="bi bi-check-circle-fill me-2"></i> Register Fox into Den
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <script>
+        let map;
+        let marker = null;
+
+        document.addEventListener('DOMContentLoaded', initAddFox);
+
+        async function initAddFox() {
+            try {
+                // LOAD STATUSES
+                const response = await fetch('/api/ReferenceData/fox-statuses');
+                if (!response.ok) throw new Error('Failed to load statuses');
+                
+                const statuses = await response.json();
+                const statusSelect = document.getElementById("status");
+
+                statuses.forEach(s => {
+                    const id = s.id || s.Id;
+                    const name = s.name || s.Name;
+                    const option = document.createElement("option");
+                    option.value = id;
+                    option.textContent = name;
+                    statusSelect.appendChild(option);
+                });
+
+                // LEAFLET MAP
+                map = L.map('map').setView([45.9432, 24.9668], 6);
+
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '© OpenStreetMap contributors'
+                }).addTo(map);
+
+                // CLICK ON MAP
+                map.on("click", function (e) {
+                    const lat = e.latlng.lat.toFixed(5);
+                    const lng = e.latlng.lng.toFixed(5);
+
+                    document.getElementById("lat").value = lat;
+                    document.getElementById("lng").value = lng;
+
+                    if (marker) {
+                        map.removeLayer(marker);
+                    }
+
+                    marker = L.marker([lat, lng]).addTo(map);
+                });
+
+            } catch (err) {
+                showMsg(err.message, "danger");
+            }
+        }
+
+        async function createFox() {
+            const name = document.getElementById("name").value.trim();
+            const description = document.getElementById("description").value.trim();
+            const statusId = document.getElementById("status").value;
+            const lat = document.getElementById("lat").value.trim();
+            const lng = document.getElementById("lng").value.trim();
+
+            if (!name || !description || !statusId || !lat || !lng) {
+                return showMsg("Please fill in all required fields and select a location on the map.", "danger");
+            }
+
+            const fd = new FormData();
+            fd.append("Name", name);
+            fd.append("Description", description);
+            fd.append("StatusId", statusId);
+            fd.append("FirstSeenLatitude", lat);
+            fd.append("FirstSeenLongitude", lng);
+
+            const file = document.getElementById("image").files[0];
+            if (file) {
+                fd.append("Image", file);
+            }
+
+            try {
+                const btn = document.querySelector('button[onclick="createFox()"]');
+                const originalText = btn.innerHTML;
+                btn.disabled = true;
+                btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Saving...';
+
+                const res = await fetch(`/api/Fox`, {
+                    method: "POST",
+                    body: fd,
+                    credentials: "include"
+                });
+
+                if (!res.ok) {
+                    const err = await res.text();
+                    throw new Error(err || "Error creating fox");
+                }
+
+                showMsg("Fox successfully registered! Redirecting...", "success");
+
+                setTimeout(() => {
+                    window.location.href = "/Foxes";
+                }, 1500);
+
+            } catch (err) {
+                showMsg(err.message, "danger");
+                const btn = document.querySelector('button[onclick="createFox()"]');
+                btn.disabled = false;
+                btn.innerHTML = '<i class="bi bi-check-circle-fill me-2"></i> Register Fox into Den';
+            }
+        }
+
+        function showMsg(text, type) {
+            const msgDiv = document.getElementById("msg");
+            msgDiv.innerHTML = `<div class="alert alert-${type} border-0 shadow-sm mb-4" style="border-radius: 12px;">${text}</div>`;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+}

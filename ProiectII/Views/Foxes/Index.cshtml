@@ -1,0 +1,138 @@
+@model IEnumerable<ProiectII.DTO.FoxManagement.FoxSummaryDto>
+@{
+    ViewData["Title"] = "Rescued Foxes";
+    string currentSearch = ViewBag.Search ?? "";
+    string currentStatus = ViewBag.Status ?? "all";
+    string currentSort = ViewBag.Sort ?? "newest";
+}
+
+<div class="fox-full-page">
+    <div class="fox-page-header">
+        <div class="d-flex justify-content-between align-items-center flex-wrap">
+            <div>
+                <h1 class="fox-title">Rescued Foxes 🦊</h1>
+                <p class="fox-subtitle">See rescued foxes that are registered in the Fox Shelter system.</p>
+            </div>
+            @if (User?.Identity?.IsAuthenticated == true &&
+                    (User.IsInRole("Admin") || User.IsInRole("Employee") || User.IsInRole("Staff")))
+            {
+                <a class="btn btn-fox-primary" href="/Foxes/CreateFox">
+                    <i class="bi bi-plus-circle-fill me-2"></i> Add New Fox
+                </a>
+            }
+        </div>
+    </div>
+
+    <!-- Filter Bar (Moved to C#) -->
+    <div id="filter-bar" class="fox-card mb-5">
+        <form method="get" action="/Foxes">
+            <div class="row g-3 align-items-end">
+                <div class="col-md-4">
+                    <label class="form-label fw-bold small text-primary">SEARCH BY NAME</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-white border-2 border-end-0" style="border-color: var(--sky-blue-muted);">
+                            <i class="bi bi-search text-muted"></i>
+                        </span>
+                        <input type="text" name="search" class="form-control border-2 border-start-0" 
+                               style="border-color: var(--sky-blue-muted); border-radius: 0 12px 12px 0;" 
+                               placeholder="Enter fox name..." value="@currentSearch" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label fw-bold small text-primary">STATUS</label>
+                    <select name="status" class="form-select border-2" style="border-radius: 12px; border-color: var(--sky-blue-muted);">
+                        <option value="all" selected="@(currentStatus == "all")">All Statuses</option>
+                        <option value="healthy" selected="@(currentStatus == "healthy")">Healthy / Available</option>
+                        <option value="treatment" selected="@(currentStatus == "treatment")">In Treatment</option>
+                        <option value="observation" selected="@(currentStatus == "observation")">Observation</option>
+                        <option value="adopted" selected="@(currentStatus == "adopted")">Adopted</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label fw-bold small text-primary">SORT BY</label>
+                    <select name="sort" class="form-select border-2" style="border-radius: 12px; border-color: var(--sky-blue-muted);">
+                        <option value="newest" selected="@(currentSort == "newest")">Newest First</option>
+                        <option value="oldest" selected="@(currentSort == "oldest")">Oldest First</option>
+                        <option value="az" selected="@(currentSort == "az")">Name (A-Z)</option>
+                        <option value="za" selected="@(currentSort == "za")">Name (Z-A)</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-fox-primary w-100">Filter</button>
+                        <a href="/Foxes" class="btn btn-fox-outline" title="Reset">
+                            <i class="bi bi-x-lg"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="col-12">
+            <div class="fox-card text-center py-5">
+                <i class="bi bi-emoji-frown mb-3" style="font-size: 3rem; color: var(--fox-orange-muted);"></i>
+                <h4 class="text-muted">No rescued foxes match your current filters.</h4>
+                <a href="/Foxes" class="btn btn-fox-outline mt-3">Clear all filters</a>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row g-4">
+            @foreach (var fox in Model)
+            {
+                <div class="col-md-4">
+                    <div class="fox-card h-100 text-center d-flex flex-column">
+                        <div class="position-relative mb-3">
+                            @{
+                                var imageUrl = string.IsNullOrEmpty(fox.ImageUrl) 
+                                    ? "https://placehold.co/400x250?text=Fox" 
+                                    : (fox.ImageUrl.StartsWith("http") || fox.ImageUrl.StartsWith("/") ? fox.ImageUrl : "/" + fox.ImageUrl);
+                            }
+                            <img src="@imageUrl"
+                                 onerror="this.src='https://placehold.co/400x250?text=Fox'"
+                                 class="img-fluid rounded-3"
+                                 alt="@fox.Name"
+                                 style="height: 220px; width: 100%; object-fit: cover; border: 4px solid var(--fox-orange-bg);" />
+                            <div class="position-absolute top-0 end-0 m-2">
+                                <span class="fox-pill @GetStatusStyle(fox.StatusName)">
+                                    @fox.StatusName
+                                </span>
+                            </div>
+                        </div>
+
+                        <h4 class="fox-title mb-2">@fox.Name</h4>
+
+                        <p class="text-secondary small mb-4 flex-grow-1">
+                            @(fox.Description?.Length > 120 ? fox.Description.Substring(0, 117) + "..." : fox.Description)
+                        </p>
+
+                        <div class="d-flex justify-content-center gap-2 mt-auto">
+                            <a href="/Foxes/Details/@fox.Id" class="btn btn-fox-outline btn-sm">
+                                View Details
+                            </a>
+
+                            <a href="/Home/Map" class="btn btn-fox-primary btn-sm">
+                                Track on Map
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+@functions {
+    public string GetStatusStyle(string status)
+    {
+        var s = (status ?? "").ToLower();
+        if (s.Contains("available") || s.Contains("healthy")) return "fox-pill-success";
+        if (s.Contains("observation") || s.Contains("treatment") || s.Contains("quarantined")) return "fox-pill-warning";
+        if (s.Contains("adopted")) return "fox-pill-success";
+        return "fox-pill-warning";
+    }
+}

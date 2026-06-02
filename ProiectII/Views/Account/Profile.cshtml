@@ -1,0 +1,280 @@
+﻿@model ProiectII.DTO.AuthAccount.UserProfileDto
+
+@{
+    ViewData["Title"] = "Account Settings";
+}
+
+<div class="fox-full-page">
+    <div class="row">
+        <div class="col-12">
+            <div class="fox-page-header">
+                <h2 class="fox-title">
+                    <i class="bi bi-person-gear"></i> Account Settings
+                </h2>
+                <p class="fox-subtitle">
+                    Manage your personal information and profile picture.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+
+        <!-- SIDEBAR -->
+        <div class="col-lg-4">
+            <div class="fox-card text-center py-4">
+
+                <div class="mb-3">
+                    @if (!string.IsNullOrEmpty(Model.ProfilePictureUrl))
+                    {
+                        <img src="@(Model.ProfilePictureUrl.StartsWith("/")
+                                                                 ? Model.ProfilePictureUrl
+                                                                 : "/uploads/users/" + Model.ProfilePictureUrl)"
+                             alt="Profile Picture"
+                             class="rounded-circle img-fox-profile"
+                             style="width: 150px; height: 150px;" />
+                    }
+                    else
+                    {
+                        <div class="rounded-circle initials-fox-profile"
+                             style="width: 150px; height: 150px; font-size: 50px;">
+                            @(Model.FirstName?[0])@(Model.LastName?[0])
+                        </div>
+                    }
+                </div>
+
+                <h4 class="mb-1" style="color: var(--fox-orange-dark);">
+                    @Model.FirstName @Model.LastName
+                </h4>
+
+                <p class="text-muted mb-2">@Model.Email</p>
+
+                <hr class="my-3" />
+
+                <div class="small text-muted mb-3">
+                    Last active:
+                    @(Model.LastLogin == default(DateTime)
+                        ? "-"
+                        : Model.LastLogin.ToString("g"))
+                </div>
+
+                <p class="small text-start mb-0">
+                    Manage your identity and how others see you on Fox Shelter.
+                </p>
+            </div>
+        </div>
+
+        <!-- MAIN -->
+        <div class="col-lg-8">
+
+            <div class="fox-card">
+                <h4 class="mb-4" style="color: var(--fox-orange-dark);">
+                    Personal Information
+                </h4>
+
+                <form asp-action="Profile" method="post" enctype="multipart/form-data">
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                    <div class="row g-3">
+
+                        <div class="col-12">
+                            <label asp-for="Email" class="form-label fw-bold small">Email Address</label>
+                            <input asp-for="Email"
+                                   class="form-control form-control-sm"
+                                   readonly
+                                   style="background-color: #f8f9fa;" />
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="FirstName" class="form-label fw-bold small">First Name</label>
+                            <input asp-for="FirstName"
+                                   class="form-control form-control-sm"
+                                   placeholder="Enter first name" />
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="LastName" class="form-label fw-bold small">Last Name</label>
+                            <input asp-for="LastName"
+                                   class="form-control form-control-sm"
+                                   placeholder="Enter last name" />
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="BirthDate" class="form-label fw-bold small">Birth Date</label>
+                            <input asp-for="BirthDate"
+                                   type="date"
+                                   class="form-control form-control-sm" />
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold small">Last Active</label>
+                            <input value="@(Model.LastLogin == default(DateTime)
+                                                                           ? "-"
+                                                                           : Model.LastLogin.ToString("g"))"
+                                   class="form-control form-control-sm"
+                                   readonly
+                                   style="background-color: #f8f9fa;" />
+                        </div>
+
+                        <div class="col-12">
+                            <label asp-for="NewProfilePicture" class="form-label fw-bold small">
+                                Update Profile Picture
+                            </label>
+
+                            <input asp-for="NewProfilePicture"
+                                   type="file"
+                                   class="form-control form-control-sm"
+                                   accept="image/*" />
+                        </div>
+
+                        <div class="col-12 mt-4 border-top pt-3 text-end">
+                            <a asp-controller="Home"
+                               asp-action="Index"
+                               class="btn btn-fox-outline btn-sm me-2">
+                                Cancel
+                            </a>
+
+                            <button type="submit"
+                                    class="btn btn-fox-primary btn-sm">
+                                Save Changes
+                            </button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+
+            <!-- PASSWORD -->
+            <div class="fox-card mt-4">
+                <h4 class="mb-4" style="color: var(--fox-orange-dark);">
+                    Change Password
+                </h4>
+
+                <form asp-action="ChangePassword" method="post">
+
+                    <div class="row g-3">
+
+                        <div class="col-12">
+                            <label class="form-label fw-bold small">Current Password</label>
+                            <input name="OldPassword"
+                                   type="password"
+                                   class="form-control form-control-sm"
+                                   required />
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold small">New Password</label>
+                            <input name="NewPassword"
+                                   type="password"
+                                   class="form-control form-control-sm"
+                                   required />
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold small">Confirm New Password</label>
+                            <input name="ConfirmPassword"
+                                   type="password"
+                                   class="form-control form-control-sm"
+                                   required />
+                        </div>
+
+                        <div class="col-12 mt-4 text-end">
+                            <button type="submit"
+                                    class="btn btn-fox-primary btn-sm">
+                                Update Password
+                            </button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+
+            <div class="fox-card mt-4">
+                <h4 class="mb-4" style="color: var(--fox-orange-dark);">
+                    <i class="bi bi-heart-fill"></i> My Adoption Requests
+                </h4>
+
+                <div id="adoptions-loading" class="text-center py-4">
+                    <div class="spinner-border text-primary" role="status"></div>
+                </div>
+
+                <div id="adoptions-error" class="alert alert-danger d-none"></div>
+
+                <div id="adoptions-container" class="row g-3">
+                    <!-- Adoption requests will be loaded here -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        document.addEventListener('DOMContentLoaded', loadMyAdoptions);
+
+        async function loadMyAdoptions() {
+            const container = document.getElementById('adoptions-container');
+            const loading = document.getElementById('adoptions-loading');
+            const error = document.getElementById('adoptions-error');
+
+            try {
+                const response = await fetch('/api/Adoption/my-applications');
+                if (!response.ok) throw new Error('Failed to load adoption requests.');
+
+                const adoptions = await response.json();
+                loading.classList.add('d-none');
+
+                if (!adoptions || adoptions.length === 0) {
+                    container.innerHTML = `
+                        <div class="col-12 text-center py-4">
+                            <p class="text-muted">You haven't submitted any adoption requests yet.</p>
+                            <a href="/Foxes" class="btn btn-fox-outline">Browse Foxes</a>
+                        </div>
+                    `;
+                    return;
+                }
+
+                container.innerHTML = adoptions.map(ad => `
+                    <div class="col-md-6">
+                        <div class="p-3 rounded-4 h-100 border" style="background-color: var(--sky-blue-bg); border-color: var(--sky-blue-muted) !important;">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h6 class="fox-title mb-0">${ad.foxName || 'Unknown Fox'}</h6>
+                                <span class="fox-pill ${getStatusBadgeClass(ad.status)}">${ad.status}</span>
+                            </div>
+                            <div class="small text-muted mb-2">
+                                <i class="bi bi-calendar-event me-1"></i> ${new Date(ad.submittedAt).toLocaleDateString()}
+                            </div>
+                            <div class="small mb-2">
+                                <strong class="text-uppercase" style="font-size: 0.7rem; color: var(--sky-blue-dark);">Your Message:</strong>
+                                <p class="mb-0 text-secondary" style="font-style: italic;">"${ad.applicantMessage}"</p>
+                            </div>
+                            ${ad.adminComment ? `
+                                <div class="mt-2 p-2 rounded bg-white small border">
+                                    <strong class="text-uppercase text-danger" style="font-size: 0.7rem;">Feedback:</strong>
+                                    <p class="mb-0">${ad.adminComment}</p>
+                                </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                `).join('');
+
+            } catch (err) {
+                loading.classList.add('d-none');
+                error.textContent = err.message;
+                error.classList.remove('d-none');
+            }
+        }
+
+        function getStatusBadgeClass(status) {
+            const s = (status || '').toLowerCase();
+            if (s === 'approved') return 'fox-pill-success';
+            if (s === 'rejected') return 'fox-pill-warning'; 
+            return 'fox-pill-warning';
+        }
+    </script>
+}

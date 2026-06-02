@@ -1,0 +1,180 @@
+@model ProiectII.DTO.FoxManagement.FoxDetailsDto
+@{
+    ViewData["Title"] = "Fox Details";
+    bool isAuthenticated = User?.Identity?.IsAuthenticated == true;
+}
+
+<div class="fox-full-page">
+    <div class="container">
+        <a href="/Foxes" class="btn btn-fox-outline btn-sm mb-4">
+            <i class="bi bi-arrow-left me-1"></i> Back to rescued foxes
+        </a>
+
+        <div id="fox-details-container">
+            <div class="fox-card">
+                <div class="row g-5">
+                    <div class="col-md-5">
+                        <div class="position-relative">
+                            @{
+                                var imageUrl = string.IsNullOrEmpty(Model.ImageUrl) 
+                                    ? "https://placehold.co/600x400?text=Fox" 
+                                    : (Model.ImageUrl.StartsWith("http") || Model.ImageUrl.StartsWith("/") ? Model.ImageUrl : "/" + Model.ImageUrl);
+                            }
+                            <img src="@imageUrl"
+                                 onerror="this.src='https://placehold.co/600x400?text=Fox'"
+                                 class="img-fluid rounded-4 shadow-sm"
+                                 alt="@(Model.Name ?? "Fox image")"
+                                 style="height: 400px; width: 100%; object-fit: cover; border: 8px solid var(--fox-orange-bg);" />
+                            <div class="position-absolute top-0 end-0 m-3">
+                                <span class="fox-pill @GetStatusStyle(Model.StatusName) shadow-sm">
+                                    @(Model.StatusName ?? "Unknown")
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 p-4 rounded-4" style="background-color: var(--sky-blue-bg); border-left: 5px solid var(--sky-blue-primary);">
+                            <h5 class="fox-title mb-2" style="font-size: 1.1rem;">Official ID</h5>
+                            <span class="fox-id-badge" style="font-size: 1.2rem;">#@Model.Id</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-7">
+                        <div class="mb-4">
+                            <h2 class="fox-title display-5 mb-1">@(Model.Name ?? "Unnamed fox")</h2>
+                            <p class="fox-subtitle fs-5">Rescued Resident</p>
+                        </div>
+
+                        <hr style="border-color: var(--sky-blue-muted); opacity: 0.5;" />
+
+                        <div class="mb-5">
+                            <h5 class="fw-bold text-uppercase small mb-3" style="color: var(--sky-blue-dark); letter-spacing: 0.1em;">Medical & Clinical Observation</h5>
+                            <p class="text-secondary" style="line-height: 1.8; font-size: 1.05rem;">
+                                @(Model.Description ?? "No detailed description is available for this fox.")
+                            </p>
+                        </div>
+
+                        <div id="adoptionSuccess" class="alert alert-success border-0 d-none mt-3" style="border-radius: 12px; background-color: var(--sky-blue-bg); color: var(--sky-blue-dark);"></div>
+                        <div id="adoptionError" class="alert alert-danger border-0 d-none mt-3" style="border-radius: 12px;"></div>
+
+                        <div class="p-4 rounded-4 mt-4" style="background-color: var(--fox-orange-bg); border: 2px solid var(--fox-orange-muted);">
+                            <h4 class="fox-title mb-2" style="color: var(--fox-orange-dark);">Apply for Adoption</h4>
+                            <p class="text-muted mb-4 small">
+                                Our residents deserve the best dens. Send us a message explaining why you'd like to provide a home for @(Model.Name ?? "this fox").
+                            </p>
+
+                            <form id="adoptionForm">
+                                <div class="mb-3">
+                                    <textarea id="applicantMessage"
+                                              class="form-control border-2"
+                                              style="border-color: var(--fox-orange-muted); border-radius: 12px;"
+                                              rows="4"
+                                              placeholder="Tell us about your experience and the environment you can provide..."></textarea>
+                                </div>
+                                <button type="submit" id="submitAdoptionButton" class="btn btn-fox-primary w-100">
+                                    <i class="bi bi-heart-fill me-2"></i> Submit Adoption Request
+                                </button>
+                            </form>
+                        </div>
+
+                        <div class="mt-4 text-center">
+                            @if (isAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Employee")))
+                            {
+                                <div class="d-flex gap-2 mb-2">
+                                    <a href="/Foxes/Edit/@Model.Id" class="btn btn-fox-outline w-100">
+                                        <i class="bi bi-pencil-square me-2"></i> Edit Resident Details
+                                    </a>
+                                </div>
+                            }
+                            <a href="/Home/Map" class="btn btn-fox-primary w-100">
+                                <i class="bi bi-geo-alt-fill me-2"></i> Track Current Habitat on Map
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        const currentFoxId = '@Model.Id';
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('adoptionForm');
+            if (form) form.addEventListener('submit', submitAdoptionRequest);
+        });
+
+        async function submitAdoptionRequest(event) {
+            event.preventDefault();
+
+            const successBox = document.getElementById('adoptionSuccess');
+            const errorBox = document.getElementById('adoptionError');
+            const messageInput = document.getElementById('applicantMessage');
+            const submitButton = document.getElementById('submitAdoptionButton');
+
+            successBox.classList.add('d-none');
+            errorBox.classList.add('d-none');
+
+            const applicantMessage = messageInput.value.trim();
+
+            if (!applicantMessage) {
+                showAdoptionError('Please write a short message before submitting the request.');
+                return;
+            }
+
+            const requestData = {
+                foxId: parseInt(currentFoxId),
+                applicantMessage: applicantMessage
+            };
+
+            try {
+                submitButton.disabled = true;
+                const response = await fetch('/api/Adoption', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(requestData)
+                });
+
+                if (response.status === 401) {
+                    showAdoptionError('You must be logged in to submit an adoption request.');
+                    return;
+                }
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    showAdoptionError(errorText || 'The adoption request could not be submitted.');
+                    return;
+                }
+
+                successBox.textContent = 'Your adoption request was submitted successfully.';
+                successBox.classList.remove('d-none');
+                messageInput.value = '';
+            } catch (error) {
+                showAdoptionError('A connection error occurred.');
+            } finally {
+                submitButton.disabled = false;
+            }
+        }
+
+        function showAdoptionError(message) {
+            const errorBox = document.getElementById('adoptionError');
+            errorBox.textContent = message;
+            errorBox.classList.remove('d-none');
+        }
+    </script>
+}
+
+@functions {
+    public string GetStatusStyle(string status)
+    {
+        var s = (status ?? "").ToLower();
+        if (s.Contains("healthy") || s.Contains("available")) return "fox-pill-success";
+        if (s.Contains("treatment") || s.Contains("quarantined") || s.Contains("pending")) return "fox-pill-warning";
+        if (s.Contains("adopted")) return "fox-pill-success";
+        return "fox-pill-warning";
+    }
+}

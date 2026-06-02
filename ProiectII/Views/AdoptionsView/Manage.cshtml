@@ -1,0 +1,242 @@
+@model IEnumerable<ProiectII.DTO.AdoptionProcess.AdoptionDto>
+@{
+    ViewData["Title"] = "Manage Adoptions";
+    string currentSearch = ViewBag.Search ?? "";
+    string currentStatus = ViewBag.Status ?? "all";
+    string currentSort = ViewBag.Sort ?? "newest";
+}
+
+<div class="fox-full-page">
+    <div class="fox-page-header">
+        <h1 class="fox-title">Manage Adoptions</h1>
+        <p class="fox-subtitle">Review adoption requests and decide if they should be approved or rejected.</p>
+    </div>
+
+    <!-- Filter Bar (Moved to C#) -->
+    <div class="fox-card mb-5">
+        <form method="get" action="/AdoptionsView/Manage">
+            <div class="row g-3 align-items-end">
+                <div class="col-md-4">
+                    <label class="form-label fw-bold small text-primary">SEARCH REQUESTS</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-white border-2 border-end-0" style="border-color: var(--sky-blue-muted);">
+                            <i class="bi bi-search text-muted"></i>
+                        </span>
+                        <input type="text" name="search" class="form-control border-2 border-start-0" 
+                               style="border-color: var(--sky-blue-muted); border-radius: 0 12px 12px 0;" 
+                               placeholder="Fox, applicant or email..." value="@currentSearch" />
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label fw-bold small text-primary">STATUS</label>
+                    <select name="status" class="form-select border-2" style="border-radius: 12px; border-color: var(--sky-blue-muted);">
+                        <option value="all" selected="@(currentStatus == "all")">All requests</option>
+                        <option value="pending" selected="@(currentStatus == "pending")">Pending</option>
+                        <option value="approved" selected="@(currentStatus == "approved")">Approved</option>
+                        <option value="rejected" selected="@(currentStatus == "rejected")">Rejected</option>
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label fw-bold small text-primary">SORT BY DATE</label>
+                    <select name="sort" class="form-select border-2" style="border-radius: 12px; border-color: var(--sky-blue-muted);">
+                        <option value="newest" selected="@(currentSort == "newest")">Newest First</option>
+                        <option value="oldest" selected="@(currentSort == "oldest")">Oldest First</option>
+                    </select>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-fox-primary w-100">Filter</button>
+                        <a href="/AdoptionsView/Manage" class="btn btn-fox-outline" title="Reset">
+                            <i class="bi bi-x-lg"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="fox-card text-center py-5">
+            <i class="bi bi-search mb-3" style="font-size: 3rem; color: var(--sky-blue-muted);"></i>
+            <h4 class="text-muted">No adoption requests found matching your criteria.</h4>
+            <a href="/AdoptionsView/Manage" class="btn btn-fox-outline mt-3">Clear all filters</a>
+        </div>
+    }
+    else
+    {
+        <div class="row g-4">
+            @foreach (var adoption in Model)
+            {
+                bool isPending = adoption.Status?.ToLower() == "pending";
+                
+                <div class="col-md-6">
+                    <div class="fox-card h-100 d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-start gap-3 mb-3">
+                            <div>
+                                <h4 class="fox-title mb-1">@adoption.FoxName</h4>
+                                <span class="fox-id-badge">ID: #@adoption.FoxId</span>
+                            </div>
+
+                            <span class="fox-pill @GetStatusBadge(adoption.Status)">
+                                @adoption.Status
+                            </span>
+                        </div>
+
+                        <div class="p-3 rounded-3 mb-3" style="background-color: var(--sky-blue-bg);">
+                            <h6 class="fw-bold mb-2 small text-uppercase" style="color: var(--sky-blue-dark); letter-spacing: 0.05em;">Applicant Details</h6>
+                            <div class="d-flex align-items-center mb-2">
+                                <div class="rounded-circle bg-white d-flex align-items-center justify-content-center me-2" style="width: 24px; height: 24px; font-size: 10px; font-weight: bold; color: var(--sky-blue-dark);">
+                                    @(!string.IsNullOrEmpty(adoption.ApplicantName) ? adoption.ApplicantName[0].ToString().ToUpper() : "?")
+                                </div>
+                                <span class="fw-bold small">@adoption.ApplicantName</span>
+                            </div>
+                            <div class="small text-muted">
+                                <i class="bi bi-envelope-fill me-1"></i> @adoption.ApplicantEmail
+                            </div>
+                        </div>
+
+                        <div class="mb-3 flex-grow-1">
+                            <h6 class="fw-bold mb-1 small text-uppercase" style="color: var(--fox-orange-dark);">Message</h6>
+                            <p class="text-secondary small mb-0" style="line-height: 1.5;">@adoption.ApplicantMessage</p>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div class="small text-muted">
+                                <i class="bi bi-calendar3 me-1"></i> @adoption.SubmittedAt.ToString("MMM dd, yyyy")
+                            </div>
+                        </div>
+
+                        @if (!string.IsNullOrEmpty(adoption.AdminComment))
+                        {
+                            <div class="p-3 rounded-3 mb-4" style="background-color: var(--fox-orange-bg); border-left: 4px solid var(--fox-orange-primary);">
+                                <h6 class="fw-bold mb-1 small text-uppercase" style="color: var(--fox-orange-dark);">Admin Feedback</h6>
+                                <p class="text-secondary small mb-0">@adoption.AdminComment</p>
+                            </div>
+                        }
+
+                        <div class="d-flex flex-wrap gap-2 mt-auto pt-3 border-top">
+                            <a href="/Foxes/Details/@adoption.FoxId" class="btn btn-fox-outline btn-sm">
+                                View Fox
+                            </a>
+
+                            @if (isPending)
+                            {
+                                <button class="btn btn-fox-primary btn-sm ms-auto" onclick="openProcessModal(@adoption.Id, 'approved', '@adoption.FoxName?.Replace("'", "\\'")')">
+                                    <i class="bi bi-check-circle-fill me-1"></i> Approve
+                                </button>
+
+                                <button class="btn btn-outline-danger btn-sm border-2" style="border-radius: 12px; font-weight: 700;" onclick="openProcessModal(@adoption.Id, 'rejected', '@adoption.FoxName?.Replace("'", "\\'")')">
+                                    <i class="bi bi-x-circle-fill me-1"></i> Reject
+                                </button>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+<!-- Modal remains for action handling -->
+<div class="modal fade" id="processModal" tabindex="-1" aria-labelledby="processModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0" style="border-radius: 24px; overflow: hidden;">
+            <form id="processForm">
+                <div class="modal-header border-0 bg-light py-3 px-4">
+                    <h5 class="modal-title fox-title" id="processModalLabel">Process Request</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body p-4">
+                    <input type="hidden" id="selectedAdoptionId" />
+                    <input type="hidden" id="selectedStatus" />
+
+                    <div id="modalDescription" class="alert alert-info border-0 mb-4" style="background-color: var(--sky-blue-bg); color: var(--sky-blue-dark);"></div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold small" style="color: var(--fox-orange-dark);">ADMIN COMMENT (OPTIONAL)</label>
+                        <textarea id="adminComment" class="form-control border-2" style="border-color: var(--fox-orange-muted);" rows="4" maxlength="500"
+                                  placeholder="Write a short explanation for this decision..."></textarea>
+                    </div>
+                </div>
+
+                <div class="modal-footer border-0 p-4 pt-0">
+                    <button type="button" class="btn btn-fox-outline" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" id="confirmProcessButton" class="btn btn-fox-primary">Confirm Decision</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        let processModal = null;
+
+        document.addEventListener("DOMContentLoaded", function () {
+            processModal = new bootstrap.Modal(document.getElementById('processModal'));
+            document.getElementById("processForm").addEventListener("submit", submitProcessDecision);
+        });
+
+        function openProcessModal(adoptionId, status, foxName) {
+            document.getElementById("selectedAdoptionId").value = adoptionId;
+            document.getElementById("selectedStatus").value = status;
+            document.getElementById("adminComment").value = "";
+
+            const readableStatus = status === "approved" ? "approve" : "reject";
+            document.getElementById("modalDescription").innerHTML = 
+                `You are about to <strong class="${status === "approved" ? "text-success" : "text-danger"}">${readableStatus}</strong> the adoption request for <strong>${foxName}</strong>.`;
+
+            const btn = document.getElementById("confirmProcessButton");
+            if (status === "approved") {
+                btn.className = "btn btn-fox-primary";
+                btn.textContent = "Approve Request";
+            } else {
+                btn.className = "btn btn-danger py-2 px-4";
+                btn.style.borderRadius = "12px";
+                btn.style.fontWeight = "800";
+                btn.textContent = "Reject Request";
+            }
+
+            processModal.show();
+        }
+
+        async function submitProcessDecision(event) {
+            event.preventDefault();
+            const btn = document.getElementById("confirmProcessButton");
+            const data = {
+                adoptionId: parseInt(document.getElementById("selectedAdoptionId").value),
+                status: document.getElementById("selectedStatus").value,
+                adminComment: document.getElementById("adminComment").value
+            };
+
+            try {
+                btn.disabled = true;
+                const response = await fetch('/api/Adoption/process', {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                if (!response.ok) throw new Error(await response.text());
+                location.reload();
+            } catch (error) {
+                alert("Error processing decision: " + error.message);
+                btn.disabled = false;
+            }
+        }
+    </script>
+}
+
+@functions {
+    public string GetStatusBadge(string status) {
+        var s = (status ?? "").ToLower();
+        if (s == "pending") return "fox-pill-warning";
+        if (s == "approved") return "fox-pill-success";
+        return "fox-pill-warning";
+    }
+}

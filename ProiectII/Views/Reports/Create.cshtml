@@ -1,0 +1,190 @@
+@model ProiectII.DTO.CommentsReport.CreateReportDto
+@using ProiectII.Interfaces
+@using System.Security.Claims
+@inject IReportService ReportService
+
+@{
+    ViewData["Title"] = "Report a Sighting";
+    bool isAuthenticated = User?.Identity?.IsAuthenticated == true;
+}
+
+<div class="fox-full-page">
+    <div class="container">
+        @if (isAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Employee")))
+        {
+            <div class="text-end mb-4">
+                <a asp-action="Index" class="btn btn-fox-outline btn-sm">
+                    <i class="bi bi-shield-lock-fill me-1"></i> Manage All Reports
+                </a>
+            </div>
+        }
+
+        <div class="fox-page-header">
+            <h1 class="fox-title">Report a Sighting 🦊</h1>
+            <p class="fox-subtitle">Help us track urban foxes by reporting where you've seen them.</p>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                
+                @if (!isAuthenticated)
+                {
+                    <div class="fox-card mb-5 text-center py-5" style="border-top: 8px solid var(--fox-orange-primary);">
+                        <div class="mb-4">
+                            <i class="bi bi-person-circle" style="font-size: 4rem; color: var(--fox-orange-muted);"></i>
+                        </div>
+                        <h2 class="fox-title">Join the Community</h2>
+                        <p class="text-secondary mb-4 mx-auto" style="max-width: 600px;">
+                            To ensure the accuracy of our tracking data and protect our wildlife, sighting reports can only be submitted by registered members.
+                        </p>
+                        <div class="d-flex justify-content-center gap-3">
+                            <a asp-controller="Account" asp-action="Login" class="btn btn-fox-primary px-5 py-3">
+                                <i class="bi bi-box-arrow-in-right me-2"></i> Sign In to Report
+                            </a>
+                            <a asp-controller="Account" asp-action="Register" class="btn btn-fox-outline px-5 py-3">
+                                <i class="bi bi-person-plus-fill me-2"></i> Create Account
+                            </a>
+                        </div>
+                        <p class="mt-4 text-muted small">
+                            Registration is quick and helps us reach out if we need more details about your sighting.
+                        </p>
+                    </div>
+                }
+                else
+                {
+                    <div class="fox-card mb-5">
+                        <form asp-action="Create" method="post" enctype="multipart/form-data">
+                            <div asp-validation-summary="ModelOnly" class="text-danger mb-4"></div>
+
+                            <div class="row g-4">
+                                <div class="col-md-6">
+                                    <div class="mb-4">
+                                        <label asp-for="Description" class="form-label fw-bold small" style="color: var(--sky-blue-dark);">WHAT DID YOU SEE? *</label>
+                                        <textarea asp-for="Description" class="form-control border-2" rows="6" placeholder="Describe the fox's appearance, behavior, or any visible injuries..." style="border-radius: 12px; border-color: var(--sky-blue-muted);"></textarea>
+                                        <span asp-validation-for="Description" class="text-danger small"></span>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <label asp-for="ImageFile" class="form-label fw-bold small" style="color: var(--sky-blue-dark);">PHOTO (OPTIONAL)</label>
+                                        <input asp-for="ImageFile" class="form-control border-2" type="file" accept="image/*" style="border-radius: 12px; border-color: var(--sky-blue-muted);" />
+                                        <div class="form-text small">Upload a photo to help our team identify the fox.</div>
+                                        <span asp-validation-for="ImageFile" class="text-danger small"></span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="mb-4">
+                                        <label class="form-label fw-bold small" style="color: var(--fox-orange-dark);">📍 PINPOINT LOCATION (REQUIRED)</label>
+                                        <p class="text-muted small mb-2">Click on the map to mark exactly where you saw the fox.</p>
+                                        <div id="map" style="height: 280px; width: 100%; border-radius: 20px; border: 4px solid var(--fox-orange-bg);"></div>
+                                    </div>
+
+                                    <div class="row g-3">
+                                        <div class="col-6">
+                                            <label asp-for="Latitude" class="form-label fw-bold small text-muted">LATITUDE</label>
+                                            <input asp-for="Latitude" class="form-control border-2 bg-light" type="number" step="any" readonly style="border-radius: 12px; border-color: var(--fox-orange-muted);" />
+                                        </div>
+                                        <div class="col-6">
+                                            <label asp-for="Longitude" class="form-label fw-bold small text-muted">LONGITUDE</label>
+                                            <input asp-for="Longitude" class="form-control border-2 bg-light" type="number" step="any" readonly style="border-radius: 12px; border-color: var(--fox-orange-muted);" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-center mt-5 pt-4 border-top">
+                                <button type="submit" class="btn btn-fox-primary py-3 px-5">
+                                    <i class="bi bi-send-fill me-2"></i> Submit Sighting Report
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                }
+
+                @if (isAuthenticated)
+                {
+                    var currentUserEmail = User.FindFirst(ClaimTypes.Email)?.Value;
+                    var allReports = await ReportService.GetAllActiveReportsAsync();
+                    var myReports = allReports.Where(r => r.ReporterName == currentUserEmail).OrderByDescending(r => r.CreatedAt).ToList();
+
+                    @if (myReports.Any())
+                    {
+                        <div class="mt-5">
+                            <h3 class="fox-title mb-4" style="font-size: 1.5rem;">My Previous Reports</h3>
+                            <div class="fox-table-container">
+                                <div class="table-responsive">
+                                    <table class="table table-hover fox-table mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Description</th>
+                                                <th>Status</th>
+                                                <th>Date Submitted</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var report in myReports)
+                                            {
+                                                <tr>
+                                                    <td><span class="fox-id-badge">#@report.Id</span></td>
+                                                    <td style="max-width: 300px;">
+                                                        <div class="text-truncate" title="@report.Description">@report.Description</div>
+                                                    </td>
+                                                    <td>
+                                                        <span class="fox-pill @(report.StatusName == "Pending" ? "fox-pill-warning" : "fox-pill-success")">
+                                                            @report.StatusName
+                                                        </span>
+                                                    </td>
+                                                    <td class="small text-muted">@report.CreatedAt.ToString("MMM dd, yyyy")</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @if (isAuthenticated) {
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var map = L.map('map').setView([45.9432, 24.9668], 6);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { 
+                attribution: '© OpenStreetMap contributors' 
+            }).addTo(map);
+            
+            var marker = null;
+            
+            @if (isAuthenticated) {
+                <text>
+                // Set initial marker if values exist
+                var initialLat = document.getElementById('Latitude').value;
+                var initialLng = document.getElementById('Longitude').value;
+                if (initialLat && initialLng) {
+                    marker = L.marker([initialLat, initialLng]).addTo(map);
+                    map.setView([initialLat, initialLng], 12);
+                }
+
+                map.on('click', function (e) {
+                    var lat = e.latlng.lat.toFixed(6);
+                    var lng = e.latlng.lng.toFixed(6);
+                    document.getElementById('Latitude').value = lat;
+                    document.getElementById('Longitude').value = lng;
+                    if (marker) map.removeLayer(marker);
+                    marker = L.marker([lat, lng]).addTo(map);
+                });
+                </text>
+            }
+        });
+    </script>
+}
