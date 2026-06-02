@@ -3,78 +3,70 @@
 }
 
 <div class="fox-full-page" style="padding: 0;">
-    <!-- Hero Section -->
-    <div class="fox-page-header text-center mb-0" style="border-radius: 0; margin-bottom: 0 !important; border-top: none;">
-        <h1 class="fox-title display-4">Fox Shelter 🦊</h1>
-        <p class="fox-subtitle fs-5 mb-2">“NO CONCRETE SLOP IN THIS DEN”</p>
-        <p class="lead text-muted">
-            Protecting foxes affected by urban expansion and habitat destruction.
-        </p>
+    <!-- Cinematic Full-Width Hero Section -->
+    <div class="fox-break-out fox-hero-full text-center" style="background-image: url('/images/design/home_page_fox.jpg');">
+        <div class="fox-hero-overlay"></div>
+        
+        <div class="container" style="z-index: 2;">
+            <div class="fox-hero-content shadow-lg">
+                <h1 class="fox-title display-3 mb-3" style="letter-spacing: -0.02em;">Fox Shelter 🦊</h1>
+                <p class="fs-4 fw-bold mb-4" style="color: var(--fox-orange-dark) !important;">“NO CONCRETE SLOP IN THIS DEN”</p>
+                <p class="text-secondary lead mb-5 mx-auto" style="max-width: 600px; font-size: 1.25rem;">
+                    Protecting urban wildlife affected by city expansion. Join our community to track, rescue, and provide homes for our residents.
+                </p>
+                <div class="d-flex justify-content-center gap-3">
+                    <a class="btn btn-fox-primary py-3 px-5 shadow-lg" asp-controller="Foxes" asp-action="Index">
+                        Meet the Foxes
+                    </a>
+                    <a class="btn btn-fox-outline py-3 px-5" asp-controller="Home" asp-action="Map">
+                        Track Residents
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- Quick Actions (Contained) -->
+    <!-- Contained Content Below -->
     <div class="container py-5">
-        <div class="row g-4 justify-content-center">
+        <!-- Quick Actions Row -->
+        <div class="row g-4 justify-content-center mb-5 mt-n5" style="position: relative; z-index: 3; margin-top: -60px;">
             <div class="col-md-4">
-                <div class="fox-card h-100 text-center">
-                    <div class="mb-3">
-                        <i class="bi bi-map-fill" style="font-size: 3rem; color: var(--fox-orange-primary);"></i>
-                    </div>
-                    <h4 class="fox-title">Activity Map</h4>
-                    <p class="text-secondary small">Explore real-time fox activity zones, tracking coordinates and safe enclosures within the city.</p>
-                    <a class="btn btn-fox-outline mt-3" asp-controller="Home" asp-action="Map">Open Map</a>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="fox-card h-100 text-center">
-                    <div class="mb-3">
-                        <i class="bi bi-heart-pulse-fill" style="font-size: 3rem; color: var(--fox-orange-dark);"></i>
-                    </div>
-                    <h4 class="fox-title">Rescued Residents</h4>
-                    <p class="text-secondary small">Meet our residents, read their clinical stories, and learn about their recovery journey.</p>
-                    <a class="btn btn-fox-primary mt-3" asp-controller="Foxes" asp-action="Index">Meet the Foxes</a>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="fox-card h-100 text-center">
+                <div class="fox-card-soft p-4 h-100 text-center shadow-lg">
                     <div class="mb-3">
                         <i class="bi bi-megaphone-fill" style="font-size: 3rem; color: var(--sky-blue-dark);"></i>
                     </div>
                     <h4 class="fox-title">Report Sighting</h4>
-                    <p class="text-secondary small">Saw a fox in distress or a new den? Help the community by pinning the exact location.</p>
-                    <a class="btn btn-fox-outline mt-3" asp-controller="Reports" asp-action="Create">Report Now</a>
+                    <p class="text-secondary small">Saw a fox in distress? Help the community by pinning the exact location on our map.</p>
+                    <a class="btn btn-fox-outline mt-3 w-100" asp-controller="Reports" asp-action="Create">Report Now</a>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="fox-card-soft p-4 h-100 text-center shadow-lg">
+                    <div class="mb-3">
+                        <i class="bi bi-heart-fill" style="font-size: 3rem; color: var(--fox-orange-primary);"></i>
+                    </div>
+                    <h4 class="fox-title">Apply to Adopt</h4>
+                    <p class="text-secondary small">Our residents deserve the best dens. Start the application process to welcome a new member.</p>
+                    <a class="btn btn-fox-outline mt-3 w-100" asp-controller="Foxes" asp-action="Index">View Residents</a>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Full Screen Featured Image -->
-    <div class="fox-break-out fox-hero-banner mb-5" style="background-image: url('/images/design/home_page_fox.jpg');">
-        <div class="position-relative" style="z-index: 2; width: 100%;">
-            <div class="container">
-                <h3 class="text-white fw-bold display-5 mb-2">Our Residents are waiting for a home</h3>
-                <p class="text-white fs-4 opacity-75 mb-0">Every fox we rescue has a unique story of resilience.</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="container pb-5">
         <!-- Our Mission Section -->
-        <div class="row justify-content-center mb-5">
+        <div class="row justify-content-center mb-5 pt-5">
             <div class="col-lg-10">
                 <div class="fox-card" style="border-left: 8px solid var(--sky-blue-primary);">
                     <div class="row align-items-center">
                         <div class="col-md-8">
-                            <h2 class="fox-title mb-4">Our Mission</h2>
-                            <p class="lead text-secondary">
+                            <h2 class="fox-title mb-4 h1">Our Mission</h2>
+                            <p class="lead text-secondary mb-4">
                                 Fox Shelter is a community-driven platform focused on protecting foxes affected by urban expansion.
                             </p>
-                            <p class="text-muted">
+                            <p class="text-muted" style="line-height: 1.8;">
                                 As cities continue to grow, natural habitats are being reduced or destroyed, forcing wild animals like foxes to adapt to unsafe urban environments. This often leads to road accidents and habitat loss.
                             </p>
-                            <p class="text-muted">
+                            <p class="text-muted" style="line-height: 1.8;">
                                 Through Fox Shelter, you can learn about their stories, track activity, and contribute to a growing network of people who care about wildlife safety.
                             </p>
                         </div>
@@ -101,7 +93,7 @@
                                 </div>
                                 <div>
                                     <h6 class="fw-bold mb-0">Location</h6>
-                                    <p class="text-muted small mb-0">Wildwood Sanctuary, Forest Edge, RO 45943</p>
+                                    <p class="text-muted small mb-0">Hoia-Baciu Forest, Cluj-Napoca, RO 400001</p>
                                 </div>
                             </div>
                             <div class="d-flex align-items-start mb-3">
