@@ -1,0 +1,214 @@
+@{
+    ViewData["Title"] = "Reviews";
+    var isAdmin = (User?.Identity?.IsAuthenticated == true && User.IsInRole("Admin"));
+    var isAuthenticated = User?.Identity?.IsAuthenticated == true;
+}
+
+
+<style>
+    .star {
+        font-size: 28px;
+        cursor: pointer;
+        color: gray;
+        user-select: none;
+        transition: 0.2s;
+    }
+
+        .star:hover {
+            transform: scale(1.2);
+        }
+</style>
+
+<div class="container mt-5">
+
+    <div class="text-center mb-4">
+        <h1>App Reviews</h1>
+    </div>
+
+    <!-- ================= STATS ================= -->
+    <div id="stats-container" class="text-center mb-4">
+        Loading stats...
+    </div>
+
+    <!-- ================= ADD REVIEW ================= -->
+    @if (isAuthenticated)
+    {
+        <div class="card p-3 mb-4">
+
+            <h5>Add a review</h5>
+
+                <div id="star-rating" class="mb-2">
+                <span onclick="setRating(1)" class="star">☆</span>
+                <span onclick="setRating(2)" class="star">☆</span>
+                <span onclick="setRating(3)" class="star">☆</span>
+                <span onclick="setRating(4)" class="star">☆</span>
+                <span onclick="setRating(5)" class="star">☆</span>
+            </div>
+
+            <input type="hidden" id="review-rating" value="0" />
+
+            <textarea id="review-comment" class="form-control mb-2"
+                      placeholder="Write review..."></textarea>
+
+            <button class="btn btn-primary" onclick="addReview()">
+                Submit
+            </button>
+
+            <div id="form-msg" class="mt-2"></div>
+
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning text-center">
+            You must be logged in to add a review.
+        </div>
+    }
+
+    <!-- ================= REVIEWS ================= -->
+    <div id="reviews-container" class="row g-3">
+        Loading...
+    </div>
+
+</div>
+
+@section Scripts {
+    <script>
+        const isAdmin = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(isAdmin));
+
+        let currentRating = 0;
+
+        // ================= STARS INPUT =================
+               function setRating(value) {
+            document.getElementById("review-rating").value = value;
+
+            const stars = document.querySelectorAll("#star-rating .star");
+
+            stars.forEach((star, index) => {
+                if (index < value) {
+                    star.textContent = "⭐";
+                    star.style.color = "gold";
+                } else {
+                    star.textContent = "☆";
+                    star.style.color = "gray";
+                }
+            });
+        }
+
+        // ================= LOAD STATS =================
+        async function loadStats() {
+            try {
+                const res = await fetch('/api/AppReview/stats');
+                if (!res.ok) throw new Error("Could not load stats");
+                const data = await res.json();
+
+                document.getElementById("stats-container").innerHTML = `
+                    <div class="alert alert-info">
+                        Total: ${data.totalReviews} |
+                        Average: ${renderStars(data.averageRating)} (${data.averageRating.toFixed(1)})
+                    </div>
+                `;
+            } catch (err) {
+                document.getElementById("stats-container").innerHTML = `<div class='alert alert-danger'>Error loading stats.</div>`;
+            }
+        }
+
+        function renderStars(val) {
+            let html = "";
+            for (let i = 0; i < 5; i++) {
+                html += i < Math.round(val) ? "⭐" : "☆";
+            }
+            return html;
+        }
+
+        // ================= LOAD REVIEWS =================
+        async function loadReviews() {
+            try {
+                const res = await fetch('/api/AppReview');
+                if (!res.ok) throw new Error("Could not load reviews");
+                const data = await res.json();
+
+                if (data.length === 0) {
+                    document.getElementById("reviews-container").innerHTML = `<div class='col-12 text-center text-muted'>No reviews yet. Be the first!</div>`;
+                    return;
+                }
+
+                document.getElementById("reviews-container").innerHTML = data.map(r => `
+                    <div class="col-md-4">
+                        <div class="border rounded p-3 bg-white h-100 shadow-sm">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <b>${r.userName}</b>
+                                <span class="badge bg-light text-dark border">${renderStars(r.rating)}</span>
+                            </div>
+                            <p class="mb-2" style="min-height: 50px;">${r.comment}</p>
+                            <small class="text-muted">${new Date(r.createdAt).toLocaleDateString()}</small>
+
+                            ${isAdmin ? `
+                                <div class="mt-3 pt-2 border-top">
+                                    <input id="reason-${r.id}" class="form-control form-control-sm mb-1" placeholder="Reason for hiding..." />
+                                    <button class="btn btn-danger btn-sm w-100" onclick="hideReview(${r.id})">
+                                        Hide Review
+                                    </button>
+                                </div>
+                            ` : ""}
+                        </div>
+                    </div>
+                `).join('');
+            } catch (err) {
+                document.getElementById("reviews-container").innerHTML = `<div class='col-12 text-center text-danger'>The reviews system is temporarily unavailable (DB sync required).</div>`;
+            }
+        }
+
+        // ================= ADD REVIEW =================
+        async function addReview() {
+            const rating = parseInt(document.getElementById("review-rating").value);
+            const comment = document.getElementById("review-comment").value;
+            const msgDiv = document.getElementById("form-msg");
+
+            if (rating === 0) {
+                msgDiv.innerHTML = "<div class='text-danger small'>Please select a star rating.</div>";
+                return;
+            }
+
+            try {
+                const res = await fetch('/api/AppReview', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ rating, comment })
+                });
+
+                if (res.ok) {
+                    msgDiv.innerHTML = "<div class='text-success small'>Review posted successfully!</div>";
+                    document.getElementById("review-comment").value = "";
+                    setRating(0);
+                    loadReviews();
+                    loadStats();
+                } else {
+                    const data = await res.json();
+                    msgDiv.innerHTML = `<div class='text-danger small'>${data.message || 'Error posting review.'}</div>`;
+                }
+            } catch (err) {
+                msgDiv.innerHTML = "<div class='text-danger small'>Network error. Please try again.</div>";
+            }
+        }
+
+        // ================= HIDE =================
+        async function hideReview(id) {
+            const reason = document.getElementById(`reason-${id}`).value;
+
+            await fetch(`/api/AppReview/${id}/hide?reason=${encodeURIComponent(reason)}`, {
+                method: 'PUT'
+            });
+
+            loadReviews();
+            loadStats();
+        }
+
+        // ================= INIT =================
+        document.addEventListener("DOMContentLoaded", () => {
+            setRating(0);
+            loadStats();
+            loadReviews();
+        });
+    </script>
+}

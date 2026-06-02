@@ -23,6 +23,8 @@ namespace ProiectII.Data
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Report> Reports { get; set; }
         public DbSet<SecurityLog> SecurityLogs { get; set; }
+        public DbSet<AppReview> AppReviews { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

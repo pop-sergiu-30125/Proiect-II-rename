@@ -64,7 +64,7 @@ docker exec fox_shelter_db mysql -u root -pRootPassword123! FoxShelterDB -e "INS
 docker exec fox_shelter_db mysql -u root -pRootPassword123! FoxShelterDB -e "INSERT IGNORE INTO Statuses (Name, Description, IsAdoptable, FoxStatus) VALUES ('Healthy', 'Ready for a new home', 1, 0), ('Under Treatment', 'In medical wing', 0, 0), ('Quarantined', 'New arrival', 0, 0);"
 
 ECHO [INFO] Pornire API si Proxy (rebuild imagine)...
-docker-compose up -d --build api proxy
+docker-compose up -d --build api proxy mailpit
 IF %ERRORLEVEL% NEQ 0 (
     ECHO [EROARE] API Build a esuat.
     GOTO MENU

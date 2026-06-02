@@ -1,7 +1,8 @@
-﻿using AutoMapper;
+using AutoMapper;
 using ProiectII.DTO.AdoptionProcess;
 using ProiectII.DTO.CommentsReport;
 using ProiectII.DTO.FoxManagement;
+using ProiectII.DTO.Reviews;
 using ProiectII.Models;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
@@ -150,6 +151,25 @@ namespace ProiectII.Mappings
                 .ForMember(dest => dest.ReporterName, opt => opt.MapFrom(src => src.Reporter != null ? src.Reporter.UserName : "Guest"))
                 .ForMember(dest => dest.Latitude, opt => opt.MapFrom(src => src.Location != null ? (double)src.Location.Coordinate.Latitude : 0))
                 .ForMember(dest => dest.Longitude, opt => opt.MapFrom(src => src.Location != null ? (double)src.Location.Coordinate.Longitude : 0));
+
+            // ==========================================
+            // 5. Reviews
+            // ==========================================
+
+            CreateMap<AppReview, AppReviewListItemDto>()
+               .ForMember(dest => dest.UserName,
+                   opt => opt.MapFrom(src =>
+                       src.User != null
+                           ? src.User.FirstName + " " + src.User.LastName
+                           : "Anonim"));
+
+            CreateMap<CreateAppReviewDto, AppReview>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForMember(dest => dest.UserId, opt => opt.Ignore())
+                .ForMember(dest => dest.User, opt => opt.Ignore())
+                .ForMember(dest => dest.CreatedAt, opt => opt.Ignore())
+                .ForMember(dest => dest.IsHidden, opt => opt.Ignore())
+                .ForMember(dest => dest.HiddenReason, opt => opt.Ignore());
         }
     }
 }

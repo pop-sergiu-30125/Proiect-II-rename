@@ -52,8 +52,8 @@ builder.Services.AddScoped<ILocationRepository, LocationRepository>();
 builder.Services.AddScoped<IAdoptionService, AdoptionService>();
 builder.Services.AddScoped<IFoxService, FoxService>();
 
-//builder.Services.AddScoped<IAppReviewService, AppReviewService>();
-builder.Services.AddScoped<IReportService, ReportService>();
+builder.Services.AddScoped<IAppReviewService, AppReviewService>();
+builder.Services.AddScoped<IAppReviewRepository, AppReviewRepository>();
 
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 
