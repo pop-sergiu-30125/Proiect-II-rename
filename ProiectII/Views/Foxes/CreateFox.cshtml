@@ -94,6 +94,9 @@
                 const statuses = await response.json();
                 const statusSelect = document.getElementById("status");
 
+                // Clear existing options
+                statusSelect.innerHTML = '<option value="">-- Select Status --</option>';
+
                 statuses.forEach(s => {
                     const id = s.id || s.Id;
                     const name = s.name || s.Name;

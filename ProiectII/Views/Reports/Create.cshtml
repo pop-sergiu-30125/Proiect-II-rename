@@ -104,7 +104,7 @@
                 @if (isAuthenticated)
                 {
                     var currentUserEmail = User.FindFirst(ClaimTypes.Email)?.Value;
-                    var allReports = await ReportService.GetAllActiveReportsAsync();
+                    var allReports = await ReportService.GetAllReportsAsync();
                     var myReports = allReports.Where(r => r.ReporterName == currentUserEmail).OrderByDescending(r => r.CreatedAt).ToList();
 
                     @if (myReports.Any())

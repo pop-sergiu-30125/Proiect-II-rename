@@ -56,7 +56,7 @@ namespace ProiectII.Controllers
         [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Index(string? search, string? status, string? sort = "newest")
         {
-            var reports = await _reportService.GetAllActiveReportsAsync();
+            var reports = await _reportService.GetAllReportsAsync();
 
             // C# Filtering Logic
             if (!string.IsNullOrEmpty(search))
