@@ -74,12 +74,20 @@ public class FoxService(
 
         fox.Name = dto.Name;
         fox.Description = dto.Description;
-        fox.EnclosureId = dto.EnclosureId;
+        fox.StatusId = dto.StatusId;
+        
+        // Handle enclosure - if 0 or null, set to null in DB
+        fox.EnclosureId = (dto.EnclosureId == 0) ? null : dto.EnclosureId;
 
-        if (fox.FirstSeenLocation != null)
+        // Note: Location updates are typically handled by UpdateFoxLocation endpoint,
+        // but we handle them here as well if provided in the DTO.
+        if (dto.Latitude.HasValue && dto.Longitude.HasValue)
         {
-            fox.FirstSeenLocation.Coordinate.Latitude = (decimal)dto.Latitude;
-            fox.FirstSeenLocation.Coordinate.Longitude = (decimal)dto.Longitude;
+            if (fox.FirstSeenLocation != null)
+            {
+                fox.FirstSeenLocation.Coordinate.Latitude = dto.Latitude.Value;
+                fox.FirstSeenLocation.Coordinate.Longitude = dto.Longitude.Value;
+            }
         }
 
         foxRepository.Update(fox);

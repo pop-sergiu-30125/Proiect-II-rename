@@ -82,6 +82,12 @@ namespace ProiectII.Services.CoreDomain
             return _mapper.Map<IEnumerable<ReportDto>>(reports);
         }
 
+        public async Task<IEnumerable<ReportDto>> GetAllReportsAsync()
+        {
+            var reports = await _reportRepository.GetAllReportsWithDetailsAsync();
+            return _mapper.Map<IEnumerable<ReportDto>>(reports);
+        }
+
         public async Task<ReportDto?> GetReportByIdAsync(uint id)
         {
             var report = await _reportRepository.GetByIdWithDetailsAsync(id);

@@ -6,6 +6,7 @@ namespace ProiectII.Interfaces
     {
         Task<ReportDto> CreateReportAsync(CreateReportDto dto, string? userId);
         Task<IEnumerable<ReportDto>> GetAllActiveReportsAsync();
+        Task<IEnumerable<ReportDto>> GetAllReportsAsync();
         Task<ReportDto?> GetReportByIdAsync(uint id);
         Task<bool> UpdateReportStatusAsync(uint reportId, UpdateReportStatusDto dto);
         Task<bool> DeleteReportAsync(uint reportId);

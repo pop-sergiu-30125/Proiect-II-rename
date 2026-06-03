@@ -103,8 +103,13 @@
             try {
                 // Load Statuses
                 const statusRes = await fetch('/api/ReferenceData/fox-statuses');
+                if (!statusRes.ok) throw new Error("Could not load fox statuses from the server.");
                 const statuses = await statusRes.json();
                 const statusSelect = document.getElementById("status");
+                
+                // Clear existing options to prevent duplication
+                statusSelect.innerHTML = '<option value="">-- Select Status --</option>';
+                
                 statuses.forEach(s => {
                     const option = document.createElement("option");
                     option.value = s.id || s.Id;
@@ -160,15 +165,26 @@
             e.preventDefault();
             const btn = e.target.querySelector('button[type="submit"]');
             
+            const name = document.getElementById('name').value.trim();
+            const description = document.getElementById('description').value.trim();
+            const statusVal = document.getElementById('status').value;
+
+            if (!name || !description || !statusVal) {
+                showMsg("Please fill in all required fields (Name, Description, and Status).", "warning");
+                return;
+            }
+
             const data = {
-                name: document.getElementById('name').value.trim(),
-                description: document.getElementById('description').value.trim(),
-                statusId: parseInt(document.getElementById('status').value)
+                name: name,
+                description: description,
+                statusId: parseInt(statusVal),
+                latitude: parseFloat(document.getElementById('lat').value) || 0,
+                longitude: parseFloat(document.getElementById('lng').value) || 0
             };
 
             const locData = {
-                latitude: parseFloat(document.getElementById('lat').value),
-                longitude: parseFloat(document.getElementById('lng').value)
+                latitude: parseFloat(document.getElementById('lat').value) || 0,
+                longitude: parseFloat(document.getElementById('lng').value) || 0
             };
 
             try {
@@ -182,7 +198,19 @@
                     body: JSON.stringify(data)
                 });
 
-                if (!res1.ok) throw new Error(await res1.text() || "Failed to update info");
+                if (!res1.ok) {
+                    let errorText = "Failed to update resident details.";
+                    try {
+                        const errJson = await res1.json();
+                        if (errJson.errors) {
+                            errorText = "Validation Error: Please ensure all fields are correctly filled.";
+                            console.error("Detailed validation errors:", errJson.errors);
+                        }
+                    } catch (e) {
+                        errorText = await res1.text() || errorText;
+                    }
+                    throw new Error(errorText);
+                }
 
                 // Update Location
                 const res2 = await fetch(`/api/Fox/${foxId}/location`, {
@@ -191,7 +219,7 @@
                     body: JSON.stringify(locData)
                 });
 
-                if (!res2.ok) throw new Error(await res2.text() || "Failed to update location");
+                if (!res2.ok) throw new Error("Info updated, but location update failed.");
 
                 showMsg("Resident updated successfully! Redirecting...", "success");
                 setTimeout(() => window.location.href = `/Foxes/Details/${foxId}`, 1500);

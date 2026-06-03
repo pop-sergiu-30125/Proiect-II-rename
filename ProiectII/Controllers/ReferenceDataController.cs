@@ -21,10 +21,16 @@ namespace ProiectII.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> GetFoxStatuses()
         {
-            var statuses = await _context.Statuses
+            // Fetch all first, then group in memory to avoid EF Core translation errors
+            var rawStatuses = await _context.Statuses
                 .AsNoTracking()
                 .Select(s => new { s.Id, s.Name })
                 .ToListAsync();
+
+            var statuses = rawStatuses
+                .GroupBy(s => s.Name)
+                .Select(g => g.First())
+                .ToList();
 
             return Ok(statuses);
         }

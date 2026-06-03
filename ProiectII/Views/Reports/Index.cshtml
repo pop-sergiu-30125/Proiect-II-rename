@@ -33,9 +33,11 @@
                     <label class="form-label fw-bold small text-primary">STATUS</label>
                     <select name="status" class="form-select border-2" style="border-radius: 12px; border-color: var(--sky-blue-muted);">
                         <option value="all" selected="@(currentStatus == "all")">All Statuses</option>
-                        <option value="pending" selected="@(currentStatus == "pending")">Pending</option>
-                        <option value="resolved" selected="@(currentStatus == "resolved")">Resolved</option>
-                        <option value="invalid" selected="@(currentStatus == "invalid")">Invalid</option>
+                        @foreach (var status in Enum.GetValues<ReportStatus>())
+                        {
+                            var s = status.ToString().ToLower();
+                            <option value="@s" selected="@(currentStatus == s)">@status</option>
+                        }
                     </select>
                 </div>
                 <div class="col-md-3">
